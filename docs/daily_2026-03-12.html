@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bluearXiv-ai - 2026-03-12</title>
+    <!-- KaTeX for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #f8f9fa;
+            font-size: 14px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #4a6fa5;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 8px;
+        }
+        .header .date {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .nav-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-link {
+            color: #2980b9;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .config-section {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+        .config-title {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .config-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .config-item {
+            display: inline-block;
+            background-color: #e8f4fc;
+            color: #2c3e50;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            margin: 0 5px 5px 0;
+        }
+        .section {
+            background: white;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .counter-item {
+            background-color: #f1f8ff;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .counter-category {
+            font-size: 1em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .counter-value {
+            font-size: 1.5em;
+            color: #4a6fa5;
+            margin: 8px 0;
+        }
+        .category-section {
+            margin-bottom: 30px;
+        }
+        .category-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #4a6fa5;
+        }
+        .paper-list {
+            margin: 0;
+            padding: 0;
+        }
+        .paper-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .paper-item:last-child {
+            border-bottom: none;
+        }
+        .paper-title {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .paper-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .paper-title a:hover {
+            color: #4a6fa5;
+            text-decoration: underline;
+        }
+        .paper-authors {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+        .paper-categories {
+            margin-bottom: 10px;
+        }
+        .category-tag {
+            display: inline-block;
+            background-color: #e8f4fc;
+            color: #2c3e50;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 4px;
+        }
+        .paper-comment {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #4a6fa5;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .selection-badge {
+            display: inline-block;
+            background-color: #ffeaa7;
+            color: #d35400;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .back-to-top:hover {
+            background-color: #3a5a80;
+        }
+        .footnote {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            line-height: 1.4;
+        }
+        @media (max-width: 768px) {
+            .counter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .header h1 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>bluearXiv-ai 论文精选</h1>
+        <div class="date">2026-03-12</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">返回首页</a>
+            <a href="#counter" class="nav-link">论文统计</a>
+            <a href="#selection" class="nav-link">精选论文</a>
+            <a href="#papers" class="nav-link">所有论文</a>
+        </div>
+    </div>
+    
+    <!-- 特定学科和关键词列表 -->
+    <div class="config-section">
+        <h3 class="config-title">📚 跟踪学科 (Categories)</h3>
+        <ul class="config-list">
+            <li class="config-item">math.AG</li>
+<li class="config-item">math.RT</li>
+<li class="config-item">math.QA</li>
+        </ul>
+    </div>
+    <div class="config-section">
+        <h3 class="config-title">🔍 筛选关键词 (Keywords)</h3>
+        <ul class="config-list">
+            <li class="config-item">hyperkahler</li>
+<li class="config-item">cubic fourfold</li>
+<li class="config-item">Coulomb branch</li>
+<li class="config-item">stability condition</li>
+<li class="config-item">quantum cohomology</li>
+<li class="config-item">automorphism group</li>
+<li class="config-item">Hodge structure</li>
+<li class="config-item">Coulumb branch</li>
+<li class="config-item">hyperplane arrangement</li>
+<li class="config-item">quantum group</li>
+<li class="config-item">geometric langlands program</li>
+<li class="config-item">quiver gauge theory</li>
+<li class="config-item">cluster algebra</li>
+<li class="config-item">Yangian</li>
+<li class="config-item">P=W conjecture</li>
+<li class="config-item">Ngo's support theorem</li>
+<li class="config-item">hypergeometric function</li>
+<li class="config-item">rationality of varieties</li>
+<li class="config-item">Hecke algebra/category</li>
+<li class="config-item">ind-geometry</li>
+<li class="config-item">coherent sheaf</li>
+<li class="config-item">characteristic stack</li>
+<li class="config-item">K3 surface</li>
+<li class="config-item">period map</li>
+        </ul>
+    </div>
+    
+    <!-- 论文统计部分 -->
+    <section id="counter" class="section">
+        <h2 class="section-title">📊 论文统计</h2>
+        <div class="counter-grid">
+            
+        <div class="counter-item">
+            <div class="counter-category">math.AG</div>
+            <div class="counter-value">7</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">math.RT</div>
+            <div class="counter-value">0</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">math.QA</div>
+            <div class="counter-value">0</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">others</div>
+            <div class="counter-value">3</div>
+        </div>
+        
+
+    <div class="counter-item" style="background-color: #e8f4fc;">
+        <div class="counter-category" style="font-weight: bold;">总计</div>
+        <div class="counter-value" style="color: #2c3e50;">10</div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <!-- 精选论文部分 -->
+    <section id="selection" class="section">
+        <h2 class="section-title">⭐ 精选论文</h2>
+        <div class="paper-list">
+            <h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">others</h3>
+
+                <div class="paper-item">
+                    <div class="paper-title">
+                        <a href="https://arxiv.org/abs/2603.10312" target="_blank">The Kobayashi-Hitchin correspondence for nef and big classes</a>
+                        <span class="selection-badge">⭐ 精选</span>
+                    </div>
+                    <div class="paper-authors">Satoshi Jinnouchi</div>
+                    <div class="paper-categories">
+                        <span class="category-tag">math.DG</span>
+<span class="category-tag">math.AG</span>
+<span class="category-tag">math.CV</span>
+                    </div>
+                </div>
+                
+        </div>
+    </section>
+    
+    <!-- 所有论文部分 - 按学科分节 -->
+    <section id="papers" class="section">
+        <h2 class="section-title">📄 所有论文</h2>
+        
+        <!-- 这里将动态生成各个学科的论文小节 -->
+        <!-- 格式示例：
+        <div id="cs-AI" class="category-section">
+            <h3 class="category-title">cs.AI - 人工智能</h3>
+            <div class="paper-list">
+                论文内容...
+            </div>
+        </div>
+        <div id="others" class="category-section">
+            <h3 class="category-title">others - 其他</h3>
+            <div class="paper-list">
+                论文内容...
+            </div>
+        </div>
+        -->
+        <div id="math-AG" class="category-section">
+<h3 class="category-title">math.AG</h3>
+<div class="paper-list">
+
+    <div id="paper-2603.10181" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10181" target="_blank">Vector bundles over certain Koras-Russell threefolds of the third kind</a>
+    
+        </div>
+        <div class="paper-authors">Tariq Syed</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AG</span>
+<span class="category-tag">math.KT</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文研究了特定类型的Koras-Russell三维簇\(Y\)上的向量丛。证明了在某些整数条件下，\(Y\)的Chow群是平凡的，因此所有代数向量丛也是平凡的。对于\(\alpha_{1}\)为奇数的情形，进一步证明了带系数的Chow-Witt群也是平凡的。
+        </div>
+        </div>
+
+    <div id="paper-2603.10368" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10368" target="_blank">Classification of Poor Manifolds in Low dimensions</a>
+    
+        </div>
+        <div class="paper-authors">Pisya Vikash</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AG</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文研究了由Bandman和Zarhin引入的poor manifold（即不含rational curves和一维以上解析子簇的紧致Kähler流形）的分类问题。作者在维数不超过3的情况下，以及在任意维数但附加了Kodaira维数\(\kappa(X)\neq -\infty\)的条件下，完成了分类。此外，文章还描述了poor K3曲面在周期域中的轨迹。
+        </div>
+        </div>
+
+    <div id="paper-2603.10372" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10372" target="_blank">Kalinin Effectivity and Wonderful Compactifications</a>
+    
+        </div>
+        <div class="paper-authors">Viatcheslav Kharlamov, Rareş Răsdeaconu</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AG</span>
+<span class="category-tag">math.AT</span>
+<span class="category-tag">math.GT</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文回顾了 Kalinin effectivity 的定义与主要性质, 并描述了构建 effective spaces 的方法与示例. 作者证明了超平面构型 (hyperplane arrangement) 和某些构型空间 (configuration space) 的 wonderful compactifications 是 Kalinin effective 的, 并以此研究了 Smith-Thom maximality 问题.
+        </div>
+        </div>
+
+    <div id="paper-2603.10455" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10455" target="_blank">Positivity of polynomials on the nonnegative part of certain affine hypersurfaces</a>
+    
+        </div>
+        <div class="paper-authors">Colin Tan, Wing-Keung To</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AG</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文研究了在由正系数多项式定义的特定仿射超曲面非负部分上多项式取正值的问题. 作者证明了在此类半代数集上严格正的多项式可以表示为仅含正系数的多项式, 这一结果推广了Pólya关于标准单纯形的经典定理. 证明的核心是应用了实代数中的Archimedean表示定理.
+        </div>
+        </div>
+
+    <div id="paper-2603.10617" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10617" target="_blank">Motives, cohomological invariants and Freudenthal magic square</a>
+    
+        </div>
+        <div class="paper-authors">Nikita Geldhauser, Alexander Henke, Maksim Zhykhovich</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AG</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文研究了Freudenthal magic square中出现的半单代数群的上同调不变量和motivic不变量. 对于某些\(^2E_6\)型群, 作者构造了一个5次上同调不变量来检测其各向同性.
+        </div>
+        </div>
+
+    <div id="paper-2603.10666" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10666" target="_blank">Real Line Congruences of Trilinear Birational Maps</a>
+    
+        </div>
+        <div class="paper-authors">Bert Jüttler, Pablo Mazón, Josef Schicho</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AG</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文在实数域上对由三线性双有理映射产生的参数线同余进行了分类. 该研究将线几何的工具应用于分析三线性映射的参数线族, 这些线族构成了空间填充的线同余.
+        </div>
+        </div>
+
+    <div id="paper-2603.10894" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10894" target="_blank">The Chow motive of LSV hyper-Kälher manifolds</a>
+    
+        </div>
+        <div class="paper-authors">Claudio Pedrini</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AG</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文研究了由光滑三次四维流形\(X\)构造的LSV超Kahler流形\(\sJ(X)\)的Chow motive. 证明了对于一般的\(X\), \(h(\sJ(X))\)是\(X^5\)的（扭）motive的直和项, 从而当\(h(X)\)是abelian型时, \(h(\sJ(X))\)也是abelian型. 此外, 作者描述了一个10维的立方体族\(\sF\), 使得对应的\(\sJ(X)\)是唯一、光滑且具有不可约纤维的, 并且其Chow motive是abelian型.
+        </div>
+        </div>
+</div>
+</div>
+<div id="others" class="category-section">
+<h3 class="category-title">others</h3>
+<div class="paper-list">
+
+    <div id="paper-2603.10312" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10312" target="_blank">The Kobayashi-Hitchin correspondence for nef and big classes</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Satoshi Jinnouchi</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.DG</span>
+<span class="category-tag">math.AG</span>
+<span class="category-tag">math.CV</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文为 nef and big classes 上的 Kobayashi-Hitchin 对应关系提供了完整证明。作者引入了适应于 nef and big 类 \(\alpha\) 的闭正 \((1,1)\)-current \(T\) 以及全纯向量丛的 \(T\)-adapted Hermitian-Yang-Mills 度量的概念。主要结果是证明了在紧致 Kähler 流形上，一个全纯向量丛 \(E\) 关于 \(\alpha\) 是 slope polystable 的，当且仅当对于 \(\alpha\) 中的每个适应 current \(T\)，\(E\) 都容许一个 \(T\)-adapted Hermitian-Yang-Mills 度量，并建立了该度量的唯一性。这一结果将对应关系推广到了奇异情形，并应用于具有 log terminal 奇点的紧致正规 Kähler 簇上的自反层。作为应用，作者还证明了满足 Bogomolov-Gieseker 不等式等式的 slope polystable 丛在 \(\alpha\) 的 ample locus 上是射影平坦的。
+        </div>
+        </div>
+
+    <div id="paper-2603.10386" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10386" target="_blank">Geometric, algebraic and analytic properties of hyperelliptic $\mathrm{al}_{ab}$ function</a>
+    
+        </div>
+        <div class="paper-authors">Shigeki Matsutani</div>
+        <div class="paper-categories">
+            <span class="category-tag">nlin.SI</span>
+<span class="category-tag">math.AG</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文研究了超椭圆曲线\(X\)上超椭圆\(\mathrm{al}_{ab}\)函数的几何、代数与分析性质，这些函数是Jacobi椭圆函数\(\mathrm{sn}\), \(\mathrm{cn}\), \(\mathrm{dn}\)的推广。作者展示了\(\mathrm{al}_{ab}\)函数可作为非线性薛定谔方程和复修正Korteweg-de Vries方程的潜在超椭圆解。
+        </div>
+        </div>
+
+    <div id="paper-2603.10810" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2603.10810" target="_blank">On the ubiquity of uniformly dominant local rings</a>
+    
+        </div>
+        <div class="paper-authors">Toshinori Kobayashi, Ryo Takahashi</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.AC</span>
+<span class="category-tag">math.RT</span>
+        </div>
+    
+        <div class="paper-comment">
+            本文研究了Cohen-Macaulay完备局部环的一致主导性。对于非完全交的余维2环，证明了其主导指数有上界\(6d+5\)；对于Burch环、拟纤维积环以及重数不超过5的非Gorenstein环，也分别给出了主导指数的上界。
+        </div>
+        </div>
+</div>
+</div>
+    </section>
+    
+    <div class="footnote">
+        <p>- 数据来源 Data Source: <a href="https:arXiv.org">arXiv.org</a></p>
+        <p>- 本网页的内容由 <a href="https://github.com/vegetablefj/bluearXiv-ai">bluearXiv-ai</a> 自动生成。实际抓取的是 arXiv 中 "new" 页面的数据，即最近的有所在分类论文变动的一天的数据。</p>
+        <p>- 感谢 arXiv 提供的服务。评论和精选由 AI 生成，不代表任何人对论文本身的看法。精选依赖于论文与给定关键词的匹配度。</p>
+        <p>- 计数基于主学科，不计重数。</p>
+        <p>- This webpage is automatically generated by <a href="https://github.com/vegetablefj/bluearXiv-ai">bluearXiv-ai</a>.</p>
+        <p>- The data actually captured is from the "new" page, that is, the data of the most recent day when there were changes in corresponding subjects.</p>
+        <p>- Thanks for services prodived by arXiv. Comments and selection of good papers are generated by AI, not showing anyone's point of view about those papers. </p>
+        <p>- The selection also depends on the matched-degrees between papers and given keywords. </p>
+        <p>- The counters are based on main subject, not counting multiplicities.</p>
+    </div>
+    
+    <a href="#" class="back-to-top">↑</a>
+
+    <script>
+        // KaTeX自动渲染配置
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError: false
+            });
+            
+            // 平滑滚动到锚点
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 10,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
