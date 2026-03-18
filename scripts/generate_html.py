@@ -172,6 +172,7 @@ def generate_selection_section(categorized_papers: Dict[str, List[Dict]]) -> str
             paper_id = paper['id']
             title = escape_html(paper.get('title', '无标题'))
             authors = format_authors(paper.get('authors', []))
+            comment_html = process_latex_in_comment(paper.get('comment', ''))
             
             selection_html.append(f'''
             <div class="paper-item">
@@ -183,6 +184,7 @@ def generate_selection_section(categorized_papers: Dict[str, List[Dict]]) -> str
                 <div class="paper-categories">
                     {generate_category_tags(paper.get('categories', []))}
                 </div>
+                {f'<div class="paper-comment">{comment_html}</div>' if comment_html else ''}
             </div>
             ''')
     
@@ -195,6 +197,7 @@ def generate_selection_section(categorized_papers: Dict[str, List[Dict]]) -> str
                 paper_id = paper['id']
                 title = escape_html(paper.get('title', '无标题'))
                 authors = format_authors(paper.get('authors', []))
+                comment_html = process_latex_in_comment(paper.get('comment', ''))
                 
                 selection_html.append(f'''
                 <div class="paper-item">
@@ -206,6 +209,7 @@ def generate_selection_section(categorized_papers: Dict[str, List[Dict]]) -> str
                     <div class="paper-categories">
                         {generate_category_tags(paper.get('categories', []))}
                     </div>
+                    {f'<div class="paper-comment">{comment_html}</div>' if comment_html else ''}
                 </div>
                 ''')
     
@@ -273,11 +277,7 @@ def generate_paper_html(paper: Dict) -> str:
     title = escape_html(paper.get('title', '无标题'))
     authors = format_authors(paper.get('authors', []))
     categories = paper.get('categories', [])
-    comment = paper.get('comment', '')
     is_selected = paper.get('selected', False)
-    
-    # 处理评论中的LaTeX公式
-    comment_html = process_latex_in_comment(comment)
     
     html = f'''
     <div id="paper-{paper_id}" class="paper-item">
@@ -295,13 +295,6 @@ def generate_paper_html(paper: Dict) -> str:
             {generate_category_tags(categories)}
         </div>
     '''
-    
-    if comment_html:
-        html += f'''
-        <div class="paper-comment">
-            {comment_html}
-        </div>
-        '''
     
     html += '</div>'
     return html

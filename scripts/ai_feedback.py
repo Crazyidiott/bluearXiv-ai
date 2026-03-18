@@ -2,8 +2,7 @@ import os
 import sys
 import json
 from openai import OpenAI
-from pathlib import Path
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Tuple
 import time
 import math
 
@@ -11,7 +10,7 @@ import math
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 从环境变量读取模型名称，如果没有则使用默认值
-MODEL_NAME = MODEL_NAME = os.getenv('AI_MODEL_NAME', 'deepseek-chat')
+MODEL_NAME = os.getenv('AI_MODEL_NAME', 'deepseek-chat')
 
 def get_file_paths():
     """获取所有必要的文件路径"""
@@ -65,16 +64,85 @@ def load_papers_from_json(file_path: str) -> List[Dict]:
         print(f"加载论文数据错误: {e}")
         return []
 
+
+def normalize_text(text: str) -> str:
+    """统一文本格式，便于做关键词匹配。"""
+    return (text or "").strip().lower()
+
+
+def should_select_by_keywords(paper: Dict, keywords: List[str]) -> bool:
+    """用本地关键词规则筛选精选候选，不调用API。"""
+    title = normalize_text(paper.get('title', ''))
+    abstract = normalize_text(paper.get('abstract', ''))
+    categories = " ".join(paper.get('categories', []))
+    haystack = f"{title}\n{abstract}\n{normalize_text(categories)}"
+
+    for keyword in keywords:
+        kw = normalize_text(keyword)
+        if kw and kw in haystack:
+            return True
+    return False
+
+
+def build_summary_prompt(paper: Dict, keywords: List[str]) -> str:
+    """构造单篇精选论文的总结提示词。"""
+    title = paper.get('title', 'N/A')
+    authors = paper.get('authors', [])
+    categories = paper.get('categories', [])
+    abstract = paper.get('abstract', '')
+
+    return f"""请总结以下数学论文（该论文已通过关键词筛选）：
+
+标题: {title}
+作者: {', '.join(authors) if authors else 'N/A'}
+分类: {', '.join(categories) if categories else 'N/A'}
+摘要: {abstract}
+
+关键词列表: {", ".join(keywords)}
+
+请直接输出一段中文总结，要求：
+1. 3-4句，简洁，不要照搬摘要。
+2. 数学术语保持英文，使用英文标点。
+3. 可使用$...$表示公式，确保可被常见LaTeX数学包编译。
+4. 不要输出序号、标签或额外解释。
+"""
+
+
+def summarize_selected_paper(client: OpenAI, paper: Dict, keywords: List[str], system_prompt: str) -> str:
+    """仅对精选论文调用API生成翻译/总结。"""
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": build_summary_prompt(paper, keywords)}
+    ]
+
+    response = client.chat.completions.create(
+        model=MODEL_NAME,
+        messages=messages,
+        temperature=0.1,
+        max_tokens=260,
+        timeout=30
+    )
+
+    result = (response.choices[0].message.content or "").strip()
+    if not result:
+        return ""
+
+    if hasattr(response, 'usage'):
+        usage = response.usage
+        print(f"Token使用: 输入={usage.prompt_tokens}, 输出={usage.completion_tokens}, 总计={usage.total_tokens}")
+
+    return result
+
 def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
     """
-    处理所有论文内容总结功能 - 分批处理所有论文
+    先用关键词筛选精选，再仅对精选论文做AI总结
     
     Args:
         batch_size: 每批处理的论文数量（默认5篇）
         
     Returns:
-        papers_with_feedback: 添加了'selected'和'comment'的论文列表
-        selected_count: 被精选的论文数量
+        papers_with_feedback: 添加了 selected/comment 字段的论文列表
+        selected_count: 被精选的论文数量（关键词筛选后）
     """
     # 获取文件路径
     paths = get_file_paths()
@@ -97,71 +165,86 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
         keywords = ["moduli space", "Conlumb branch", "Hodge theory"]
     
     print(f"使用关键词: {', '.join(keywords)}")
-    print(f"开始处理所有 {len(all_papers)} 篇论文...\n")
+    print(f"开始进行关键词筛选，共 {len(all_papers)} 篇论文...\n")
+
+    # 第一阶段：本地关键词筛选（不调用API）
+    selected_indices = []
+    for idx, paper in enumerate(all_papers):
+        is_selected = should_select_by_keywords(paper, keywords)
+        paper['selected'] = is_selected
+        # 只在精选论文上保存翻译；非精选论文清空comment
+        paper['comment'] = ""
+        if is_selected:
+            selected_indices.append(idx)
+
+    selected_count = len(selected_indices)
+    print(f"关键词筛选完成：精选候选 {selected_count} 篇，非精选 {len(all_papers) - selected_count} 篇")
+
+    if selected_count == 0:
+        print("没有命中关键词的精选论文，跳过DeepSeek调用")
+        try:
+            with open(paths['json_output'], 'w', encoding='utf-8') as f:
+                json.dump(all_papers, f, ensure_ascii=False, indent=2)
+            print(f"结果已保存到: {paths['json_output']}")
+        except Exception as e:
+            print(f"保存结果文件错误: {e}")
+        return all_papers, 0
     
     # 创建进度文件目录
     if not os.path.exists(paths['progress_dir']):
         os.makedirs(paths['progress_dir'])
         print(f"创建进度目录: {paths['progress_dir']}")
 
-    # 计算总批次数
-    total_batches = math.ceil(len(all_papers) / batch_size)
-    print(f"将分 {total_batches} 批处理，每批 {batch_size} 篇论文")
-    
+    # 第二阶段：仅对精选论文调用DeepSeek
+    total_batches = math.ceil(selected_count / batch_size)
+    print(f"开始生成精选论文翻译：共 {selected_count} 篇，将分 {total_batches} 批处理，每批 {batch_size} 篇")
+
     # 初始化客户端
-    
     deepseek_key = os.environ.get('DEEPSEEK_API_KEY')
-    modelscope_key = os.environ.get('MODEL_SCOPE_API_KEY')
+
+    if not deepseek_key:
+        print("错误: 未设置 DEEPSEEK_API_KEY，无法生成精选论文翻译")
+        try:
+            with open(paths['json_output'], 'w', encoding='utf-8') as f:
+                json.dump(all_papers, f, ensure_ascii=False, indent=2)
+            print(f"已保存仅含筛选结果的数据: {paths['json_output']}")
+        except Exception as e:
+            print(f"保存结果文件错误: {e}")
+        return all_papers, selected_count
     
     client = OpenAI(
-    api_key=deepseek_key,
-    base_url="https://api.deepseek.com",  # DeepSeek API 端点
+        api_key=deepseek_key,
+        base_url="https://api.deepseek.com",  # DeepSeek API 端点
     )
     
-    # 系统提示
-    system_prompt = """你是一位严格的数学学术专家。请用中文（数学名词术语保持英文！！！使用英文标点符号！！）为每篇论文生成内容总结。
+    # 系统提示：这里只做精选论文翻译/总结，不再输出打分
+    system_prompt = """你是一位严格的数学学术专家。请仅输出中文总结。
 
-## 输出格式（对每篇论文）：
-第一行：0 或 1
-第二行开始：总结（中文！！！数学名词术语保持英文！！！使用英文标点符号！！！）
-
-## 精选标准较为严格，只对以下论文标1：
-1. 方法具有一定的开创性
-2. 解决了该领域长期存在的问题
-3. 与我提供的关键词中的某个较为契合
-
-## 总结撰写规则：
-- 如果标1：在同一段内给出详细概括（3-4句）
-- 如果标0：保持简洁概括，甚至可以模糊（2句左右）
-- 对于一些可能不那么常见的概念，可以用括号在名词后面进行一定的解释，如果做不到完全严谨可以略有模糊
-
-## 内容要求：
-0. 简洁一些，不要照搬摘要！！！
-1. 使用中文！！！注意斟酌术语翻译！！！注意斟酌术语翻译！！！
-2. 使用英文标点符号！！！
-3. 数学公式用$...$包裹，严格确保公式部分可以直接被latex中常用的数学包编译。这一点很重要！
-4. 大致格式，不需要完全严格遵循：本文用[工具/方法]证明了[结果]，为[问题]提供了[贡献]
-5. 不要解释评分原因，直接给出判断
+要求：
+1. 数学术语保持英文，使用英文标点符号。
+2. 内容精炼，避免照搬摘要。
+3. 可包含必要公式，使用$...$。
+4. 不要输出标签、评分、前后缀解释。
 """
-    
-    selected_count = 0
+
     processed_count = 0
     
-    # 分批处理所有论文
+    # 分批处理精选论文
     for batch_num in range(total_batches):
         start_idx = batch_num * batch_size
-        end_idx = min((batch_num + 1) * batch_size, len(all_papers))
-        current_batch = all_papers[start_idx:end_idx]
+        end_idx = min((batch_num + 1) * batch_size, selected_count)
+        current_selected_indices = selected_indices[start_idx:end_idx]
         
         print(f"\n{'='*60}")
-        print(f"处理批次 {batch_num+1}/{total_batches} (论文 {start_idx+1}-{end_idx})")
+        print(f"处理批次 {batch_num+1}/{total_batches} (精选论文 {start_idx+1}-{end_idx})")
         print(f"{'='*60}")
-        
-        batch_selected_count = 0
-        
-        for i, paper in enumerate(current_batch, 1):
-            paper_global_idx = start_idx + i
-            print(f"\n--- 论文 {paper_global_idx}/{len(all_papers)} ---")
+
+        batch_done_count = 0
+
+        for i, paper_idx in enumerate(current_selected_indices, 1):
+            paper = all_papers[paper_idx]
+            paper_global_idx = paper_idx + 1
+            print(f"\n--- 精选论文 {start_idx + i}/{selected_count} (全量序号 {paper_global_idx}) ---")
             
             # 提取论文信息
             title = paper.get('title', 'N/A')
@@ -174,83 +257,28 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
             print(f"分类: {', '.join(categories) if categories else 'N/A'}")
             print(f"摘要: {abstract[:200]}...")
             
-            # 构建用户提示
-            user_prompt = f"""请总结以下数学论文：
-
-标题: {title}
-作者: {', '.join(authors) if authors else 'N/A'}
-分类: {', '.join(categories) if categories else 'N/A'}
-摘要: {abstract}
-
-我的关键词列表：{", ".join(keywords)}
-
-请按以下格式输出总结：
-[0或1]
-[总结内容]
-"""
-            
-            # 构建消息
-            messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ]
-            
-            # 调用API
             try:
-                print("调用API生成总结...")
-                response = client.chat.completions.create(
-                    model=MODEL_NAME,
-                    messages=messages,
-                    temperature=0.1,
-                    max_tokens=300,
-                    timeout=30
-                )
-                
-                # 解析响应
-                result = response.choices[0].message.content.strip()
-                lines = [line.strip() for line in result.split('\n') if line.strip()]
-                
-                if len(lines) >= 2:
-                    selected = lines[0] == '1'
-                    comment = '\n'.join(lines[1:]).strip()
-                    
-                    if selected:
-                        selected_count += 1
-                        batch_selected_count += 1
-                        print("✅ 精选论文")
-                    else:
-                        print("◯◯ 普通论文")
-                    
-                    print(f"总结:\n{comment}")
-                    
-                    # 添加到论文数据中
-                    paper['selected'] = selected
-                    paper['comment'] = comment
-                    
-                else:
-                    print("❌❌ 响应格式错误")
-                    paper['selected'] = False
-                    paper['comment'] = "API响应格式错误"
-                
-                # 显示token使用情况
-                if hasattr(response, 'usage'):
-                    usage = response.usage
-                    print(f"Token使用: 输入={usage.prompt_tokens}, 输出={usage.completion_tokens}, 总计={usage.total_tokens}")
-                
+                print("调用API生成精选论文翻译...")
+                comment = summarize_selected_paper(client, paper, keywords, system_prompt)
+                paper['comment'] = comment
+                print(f"翻译:\n{comment}")
+
                 processed_count += 1
-                
+                batch_done_count += 1
+
             except Exception as e:
                 print(f"❌❌ API调用错误: {e}")
-                paper['selected'] = False
-                paper['comment'] = f"API错误: {str(e)}"
+                # 保留精选标记，但评论置空，避免错误内容进入展示
+                paper['comment'] = ""
                 processed_count += 1
+                batch_done_count += 1
             
             # 请求间延迟，避免速率限制
-            if i < len(current_batch):
+            if i < len(current_selected_indices):
                 time.sleep(1)
         
         # 批次处理完成统计
-        print(f"\n批次 {batch_num+1} 完成: 处理了 {len(current_batch)} 篇论文，其中 {batch_selected_count} 篇精选")
+        print(f"\n批次 {batch_num+1} 完成: 翻译了 {batch_done_count} 篇精选论文")
         
         # 保存当前进度（每批完成后保存）
         progress_file = os.path.join(paths['progress_dir'], f"processing_progress_batch_{batch_num+1}.json")
@@ -260,7 +288,8 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
                 "total_batches": total_batches,
                 "processed_so_far": processed_count,
                 "selected_so_far": selected_count,
-                "papers_processed": all_papers[:processed_count]
+                "selected_indices": selected_indices,
+                "papers_snapshot": all_papers
             }, f, ensure_ascii=False, indent=2)
         
         print(f"进度已保存到: {progress_file}")
@@ -275,7 +304,7 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
     print("所有论文处理完成!")
     print(f"{'='*60}")
     print(f"总论文数: {len(all_papers)}")
-    print(f"已处理论文数: {processed_count}")
+    print(f"已翻译精选论文数: {processed_count}")
     print(f"精选论文数: {selected_count}")
     print(f"精选比例: {selected_count/len(all_papers):.1%}" if len(all_papers) > 0 else "0%")
     
@@ -292,7 +321,7 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
             json.dump(all_papers, f, ensure_ascii=False, indent=2)
         
         print(f"\n完整结果已保存到: {paths['json_output']}")
-        print(f"结果文件包含 {len(all_papers)} 篇论文，每篇都有 'selected' 和 'comment' 字段")
+        print(f"结果文件包含 {len(all_papers)} 篇论文，且仅精选论文带有comment")
         
     except Exception as e:
         print(f"保存结果文件错误: {e}")
@@ -300,7 +329,7 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
     return all_papers, selected_count
 
 if __name__ == "__main__":
-    # 处理所有论文，每批5篇
+    # 每批处理5篇“精选候选”论文
     papers_with_feedback, selected_count = process_all_papers(batch_size=5)
     
     if papers_with_feedback:
