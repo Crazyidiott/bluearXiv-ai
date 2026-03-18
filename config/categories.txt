@@ -1,3 +1,7 @@
-math.AG
-math.RT
-math.QA
+cs.AI
+cs.LG
+cs.GT
+cs.CR
+cs.CL
+cs.SE
+cs.OS
