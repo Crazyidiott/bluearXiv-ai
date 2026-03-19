@@ -4,3 +4,5 @@ LLM
 large language model
 reliable
 failure
+checkpoint
+agent checkpoint
