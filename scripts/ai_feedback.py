@@ -25,25 +25,66 @@ def get_file_paths():
     
     return paths
 
-def load_keywords(keywords_path: str) -> List[str]:
-    """从文本文件加载关键词，每行一个关键词"""
+def load_keywords_config(keywords_path: str) -> Tuple[str, List[str]]:
+    """加载关键词配置。
+
+    支持两种写法：
+    1) 显式前缀：
+       - primary: agent
+       - secondary: reliability
+    2) 兼容旧写法：第一行视为primary，其余行视为secondary。
+    """
     try:
         with open(keywords_path, 'r', encoding='utf-8') as f:
-            keywords = [line.strip() for line in f if line.strip()]
-        
-        print(f"从 {keywords_path} 加载了 {len(keywords)} 个关键词")
-        return keywords
+            lines = [line.strip() for line in f if line.strip()]
+
+        primary_keyword = ""
+        secondary_keywords: List[str] = []
+
+        for raw_line in lines:
+            if raw_line.startswith('#'):
+                continue
+
+            line = raw_line
+            lower_line = line.lower()
+
+            if lower_line.startswith('primary:') or lower_line.startswith('main:'):
+                value = line.split(':', 1)[1].strip()
+                if value and not primary_keyword:
+                    primary_keyword = value
+                elif value:
+                    print(f"警告: 检测到多个主关键词，忽略后续主关键词: {value}")
+                continue
+
+            if (
+                lower_line.startswith('secondary:')
+                or lower_line.startswith('additional:')
+                or lower_line.startswith('extra:')
+            ):
+                value = line.split(':', 1)[1].strip()
+                if value:
+                    secondary_keywords.append(value)
+                continue
+
+            # 兼容旧格式：首个关键词作为主关键词，剩余关键词作为附加关键词。
+            if not primary_keyword:
+                primary_keyword = line
+            else:
+                secondary_keywords.append(line)
+
+        print(
+            f"从 {keywords_path} 加载关键词配置: "
+            f"主关键词={primary_keyword or '未设置'}, "
+            f"附加关键词={len(secondary_keywords)} 个"
+        )
+        return primary_keyword, secondary_keywords
         
     except FileNotFoundError:
         print(f"警告: 关键词文件未找到 - {keywords_path}")
-        return [
-            "moduli space",
-            "Conlumb branch",
-            "Hodge theory"
-        ]
+        return "moduli space", ["Conlumb branch", "Hodge theory"]
     except Exception as e:
         print(f"加载关键词错误: {e}")
-        return []
+        return "", []
 
 def load_papers_from_json(file_path: str) -> List[Dict]:
     """从JSON文件加载论文数据
@@ -70,21 +111,25 @@ def normalize_text(text: str) -> str:
     return (text or "").strip().lower()
 
 
-def should_select_by_keywords(paper: Dict, keywords: List[str]) -> bool:
-    """用本地关键词规则筛选精选候选，不调用API。"""
+def should_select_by_keywords(paper: Dict, primary_keyword: str, secondary_keywords: List[str]) -> bool:
+    """本地规则：必须命中主关键词，且至少命中一个附加关键词。"""
     title = normalize_text(paper.get('title', ''))
     abstract = normalize_text(paper.get('abstract', ''))
     categories = " ".join(paper.get('categories', []))
     haystack = f"{title}\n{abstract}\n{normalize_text(categories)}"
 
-    for keyword in keywords:
-        kw = normalize_text(keyword)
-        if kw and kw in haystack:
-            return True
-    return False
+    primary = normalize_text(primary_keyword)
+    if not primary or primary not in haystack:
+        return False
+
+    normalized_secondary = [normalize_text(k) for k in secondary_keywords if normalize_text(k)]
+    if not normalized_secondary:
+        return False
+
+    return any(kw in haystack for kw in normalized_secondary)
 
 
-def build_summary_prompt(paper: Dict, keywords: List[str]) -> str:
+def build_summary_prompt(paper: Dict, primary_keyword: str, secondary_keywords: List[str]) -> str:
     """构造单篇精选论文的总结提示词。"""
     title = paper.get('title', 'N/A')
     authors = paper.get('authors', [])
@@ -98,7 +143,9 @@ def build_summary_prompt(paper: Dict, keywords: List[str]) -> str:
 分类: {', '.join(categories) if categories else 'N/A'}
 摘要: {abstract}
 
-关键词列表: {", ".join(keywords)}
+关键词规则:
+- 主关键词(必须命中): {primary_keyword}
+- 附加关键词(至少命中一个): {", ".join(secondary_keywords)}
 
 请直接输出一段中文总结，要求：
 1. 3-4句，简洁，不要照搬摘要。
@@ -108,11 +155,20 @@ def build_summary_prompt(paper: Dict, keywords: List[str]) -> str:
 """
 
 
-def summarize_selected_paper(client: OpenAI, paper: Dict, keywords: List[str], system_prompt: str) -> str:
+def summarize_selected_paper(
+    client: OpenAI,
+    paper: Dict,
+    primary_keyword: str,
+    secondary_keywords: List[str],
+    system_prompt: str
+) -> str:
     """仅对精选论文调用API生成翻译/总结。"""
     messages = [
         {"role": "system", "content": system_prompt},
-        {"role": "user", "content": build_summary_prompt(paper, keywords)}
+        {
+            "role": "user",
+            "content": build_summary_prompt(paper, primary_keyword, secondary_keywords)
+        }
     ]
 
     response = client.chat.completions.create(
@@ -157,20 +213,25 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
     
     print(f"成功加载 {len(all_papers)} 篇论文")
     
-    # 加载关键词
-    keywords = load_keywords(paths['keywords'])
-    
-    if not keywords:
-        print("警告: 没有加载到关键词，使用默认关键词")
-        keywords = ["moduli space", "Conlumb branch", "Hodge theory"]
-    
-    print(f"使用关键词: {', '.join(keywords)}")
+    # 加载关键词配置
+    primary_keyword, secondary_keywords = load_keywords_config(paths['keywords'])
+
+    if not primary_keyword:
+        print("警告: 未配置主关键词，使用默认主关键词 moduli space")
+        primary_keyword = "moduli space"
+
+    if not secondary_keywords:
+        print("警告: 未配置附加关键词，使用默认附加关键词")
+        secondary_keywords = ["Conlumb branch", "Hodge theory"]
+
+    print(f"使用主关键词: {primary_keyword}")
+    print(f"使用附加关键词({len(secondary_keywords)}个): {', '.join(secondary_keywords)}")
     print(f"开始进行关键词筛选，共 {len(all_papers)} 篇论文...\n")
 
     # 第一阶段：本地关键词筛选（不调用API）
     selected_indices = []
     for idx, paper in enumerate(all_papers):
-        is_selected = should_select_by_keywords(paper, keywords)
+        is_selected = should_select_by_keywords(paper, primary_keyword, secondary_keywords)
         paper['selected'] = is_selected
         # 只在精选论文上保存翻译；非精选论文清空comment
         paper['comment'] = ""
@@ -259,7 +320,13 @@ def process_all_papers(batch_size: int = 5) -> Tuple[List[Dict], int]:
             
             try:
                 print("调用API生成精选论文翻译...")
-                comment = summarize_selected_paper(client, paper, keywords, system_prompt)
+                comment = summarize_selected_paper(
+                    client,
+                    paper,
+                    primary_keyword,
+                    secondary_keywords,
+                    system_prompt
+                )
                 paper['comment'] = comment
                 print(f"翻译:\n{comment}")
 

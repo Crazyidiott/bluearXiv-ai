@@ -7,7 +7,7 @@
 ## 1. 这个项目能做什么
 
 - 自动抓取你关注学科在 arXiv 的最新论文。
-- 调用 AI 对摘要进行中文总结，并打精选标记。
+- 先按关键词规则筛选精选（主关键词 + 附加关键词），再调用 AI 对精选论文做中文总结。
 - 生成网页日报（docs 目录）和 LaTeX 文件（latest.tex）。
 - 用 GitHub Actions 自动运行，并通过 GitHub Pages 展示网页结果。
 
@@ -31,7 +31,7 @@
 编辑两个文件：
 
 - config/categories.txt：写学科代码（每行一个），如 math.AG。
-- config/keywords.txt：写关键词（每行一个），用于 AI 判断是否精选。
+- config/keywords.txt：写主关键词和附加关键词，用于判断是否精选。
 
 ### 2.4 API 在哪里配置？
 
@@ -101,16 +101,23 @@ stat.ML
 
 ### 3.5 配置关键词（影响 AI 精选）
 
-编辑 config/keywords.txt，每行一个关键词，例如：
+编辑 config/keywords.txt，使用“主关键词 + 附加关键词”格式，例如：
 
-moduli space
-stability condition
-quantum group
+primary: agent
+secondary: reliability
+secondary: LLM
+secondary: checkpoint
 
-重要说明：
+精选规则（当前代码行为）：
 
-- 该文件建议只写纯关键词，不要加注释行。
-- 关键词越具体，精选结果通常越稳定。
+- 必须命中主关键词（primary）。
+- 且至少命中一个附加关键词（secondary）。
+- 只有同时满足上面两条，论文才会被标记为精选。
+
+兼容说明：
+
+- 旧格式仍可用：如果不写前缀，第一行会被视为主关键词，其余行视为附加关键词。
+- 支持注释行（以 # 开头）和空行。
 
 ### 3.6 开启 GitHub Pages（发布网页）
 
