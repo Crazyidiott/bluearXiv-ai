@@ -335,7 +335,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决现有LLM评估方法过于单一，无法全面衡量其作为agent处理现实世界复杂任务能力的问题。为此，作者提出了ItinBench基准测试，它将空间推理任务（如route optimization）与传统语言推理任务结合到旅行规划场景中，以同时评估LLM在多个认知维度的表现。实验发现，包括GPT系列在内的主流LLM在并发处理多类任务时，难以保持高且一致的performance，揭示了其reliability的局限。这项工作为构建更全面的推理测试平台提供了新视角，以更好地反映真实挑战。</div>
+                <div class="paper-comment">该研究旨在解决现有LLM评估方法过于单一，无法全面衡量其作为agent处理现实世界复杂任务能力的问题。为此，作者提出了ItinBench基准，它将空间推理任务（如route optimization）与传统语言推理任务结合到旅行规划场景中，以同时测试LLM在多个认知维度的表现。实验发现，包括GPT系列在内的主流LLM在并发处理多类任务时，难以保持高且一致的performance，暴露了其reliability的局限。这项工作为构建更全面的agent评估体系提供了新视角。</div>
             </div>
             
 
@@ -349,7 +349,7 @@
                     <span class="category-tag">cs.AI</span>
 <span class="category-tag">eess.SY</span>
                 </div>
-                <div class="paper-comment">PowerLens 解决了移动设备静态电源管理策略无法适应个性化需求的问题, 通过引入 LLM agent 的常识推理能力来弥合用户活动与系统参数间的语义鸿沟. 该系统采用多 agent 架构, 从 UI 语义中识别用户上下文, 并生成覆盖 18 个设备参数的 holistic 电源策略, 同时利用基于 PDL 的约束框架确保执行前的动作安全. 通过一个基于置信度蒸馏的两层记忆系统从隐式用户反馈中学习个性化偏好, PowerLens 在实验中实现了 81.7% 的动作准确率和 38.8% 的节能效果, 且系统自身能耗仅占日电池容量的 0.5%.</div>
+                <div class="paper-comment">PowerLens 解决了移动设备静态电源管理策略无法适应个性化用户活动与偏好的问题. 它利用 LLM agent 的常识推理能力, 通过多 agent 架构从 UI 语义识别用户上下文, 并为零样本、上下文感知的策略生成提供支持. 系统采用基于 PDL 的约束框架确保动作执行前的安全性, 并通过基于置信度蒸馏的双层记忆系统从隐式反馈中学习个性化偏好. 实验表明, 该系统在保证高可靠性的同时, 实现了 81.7% 的动作准确率和 38.8% 的节能效果, 且自身能耗极低.</div>
             </div>
             
 
@@ -362,7 +362,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究解决了现有agentic workflows依赖同质化LLM推理导致的效率低下和性能不足问题。HyEvo框架通过异构原子合成，将概率性的LLM节点与确定性的code节点结合，以降低推理成本和延迟。它采用LLM驱动的多岛进化策略，通过执行反馈迭代优化工作流拓扑和节点逻辑。实验表明，HyEvo在多项基准测试中优于现有方法，并将推理成本和执行延迟分别降低了高达19\(\times\)和16\(\times\)。</div>
+                <div class="paper-comment">该研究解决了现有agentic workflows生成方法效率低下、性能不足的问题，因其依赖预定义操作库和纯LLM的单一工作流。为此，HyEvo框架提出了一种结合概率性LLM节点与确定性code节点的异构原子合成方法，以降低推理成本与延迟。其核心是采用一种LLM驱动的多岛进化策略，通过执行反馈迭代优化工作流拓扑与节点逻辑。实验表明，HyEvo在多项基准测试中表现优异，相比先进开源基线，推理成本与执行延迟分别降低了高达19\(\times\)和16\(\times\)。</div>
             </div>
             
 
@@ -377,7 +377,7 @@
 <span class="category-tag">cs.LG</span>
 <span class="category-tag">cs.MA</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决LLM-based agent在长视野任务中因信息过载和稀疏奖励导致的规划失效问题。为此，作者提出了一个利用子目标分解进行在线规划的agent框架，以及一个名为MiRA的、基于里程碑提供密集奖励信号的RL训练框架。实验表明，该框架显著提升了agent在WebArena-Lite基准上的成功率，并使开源模型Gemma3-12B的性能超越了GPT-4等专有模型。</div>
+                <div class="paper-comment">该研究旨在解决LLM-based agents在长周期任务中因信息动态变化和稀疏奖励导致的规划失效问题。为此，它提出了一个利用子目标分解进行在线规划的agent框架，以及一个名为MiRA的、基于里程碑提供密集奖励信号的RL训练框架。实验表明，该实时规划机制提升了专有模型的性能，而将MiRA应用于开源模型Gemma3-12B，使其在WebArena-Lite上的成功率从6.4%大幅提升至43.0%，超越了包括GPT-4-Turbo在内的多个先进模型。</div>
             </div>
             
 
@@ -390,7 +390,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决LLM agent在工具调用时面临的answer quality与execution cost之间的权衡问题. 通过将agent orchestration建模为显式决策问题, 提出了一个基于utility的orchestration policy, 该策略通过平衡estimated gain, step cost, uncertainty和redundancy来选择respond, retrieve, tool call等动作. 实验表明, 这种显式的orchestration信号能显著影响agent行为, 其轻量级的utility设计为agent control提供了一个可控且可分析的策略框架.</div>
+                <div class="paper-comment">该研究旨在解决LLM agent在工具调用时面临的answer quality与execution cost之间的固有矛盾。通过将agent orchestration建模为显式决策问题，提出了一种基于utility-guided的策略，该策略通过平衡estimated gain, step cost, uncertainty和redundancy来选择respond, retrieve, tool call等动作。实验表明，这种显式的orchestration信号能显著影响agent行为，其轻量级的utility设计为研究质量-成本权衡提供了一个可控且可分析的policy框架。</div>
             </div>
             
 
@@ -403,7 +403,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究针对automated interpretability agents在评估中存在的陷阱展开. 为了解决基于复现的评估方法的主观性, 不完整性以及LLM可能通过记忆或猜测复现结果等问题, 作者构建了一个研究agent进行迭代实验设计. 他们提出了一种基于模型组件功能可互换性的无监督内在评估方法, 揭示了复杂自动化可解释性系统评估的根本挑战和基于复现评估的关键局限.</div>
+                <div class="paper-comment">该研究解决了自动化interpretability agents在评估环节的可靠性问题, 因为基于复现人类专家解释的传统评估方法存在主观性、不完整性以及LLM可能通过记忆或猜测来复现结果等缺陷. 为此, 作者构建了一个研究agent系统, 通过迭代设计实验和优化假设来进行automated circuit analysis. 为了克服传统评估的不足, 他们提出了一种基于模型组件功能可互换性的无监督内在评估方法. 这项工作揭示了评估复杂自动化可解释性系统的根本挑战, 并指出了基于复现的评估方法的关键局限性.</div>
             </div>
             
 <h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.LG</h3>
@@ -419,7 +419,7 @@
 <span class="category-tag">cs.AI</span>
 <span class="category-tag">cs.MA</span>
                 </div>
-                <div class="paper-comment">该研究解决了LLM-based multi-agent systems中因node-centric方式生成communication topology导致的suboptimal coordination和communication overhead问题. 通过提出GoAgent方法, 将collaborative groups作为atomic units进行显式建模, 并引入conditional information bottleneck (CIB) objective来压缩inter-group communication. 实验表明, 该方法在六个benchmarks上达到了93.84%的平均accuracy, 同时将token consumption降低了约17%.</div>
+                <div class="paper-comment">该研究解决了LLM-based multi-agent systems中因node-centric方式生成communication topology导致的suboptimal coordination和communication overhead问题. 为了提升系统效率和可靠性, 提出了GoAgent方法, 它将collaborative groups作为构建的atomic units, 通过LLM枚举candidate groups并autoregressively连接它们来构建graph. 该方法进一步引入conditional information bottleneck (CIB) objective来压缩inter-group communication, 过滤冗余噪声. 最终, GoAgent在六个benchmarks上取得了93.84%的平均accuracy, 同时将token consumption降低了约17%.</div>
             </div>
             
 
@@ -432,7 +432,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.LG</span>
                 </div>
-                <div class="paper-comment">该研究解决了LLM agent在跨会话交互中因缺乏持久记忆而导致高token成本和性能下降的问题. 其核心方法是Memori, 一个与LLM无关的持久记忆层, 通过Advanced Augmentation pipeline将非结构化对话转换为紧凑的语义三元组和对话摘要, 以实现精确检索. 在LoCoMo基准测试中, Memori仅使用约1,294 tokens per query就达到了81.95%的准确率, 显著降低了token消耗和部署成本.</div>
+                <div class="paper-comment">该研究解决了LLM agent在跨会话交互中因缺乏持久记忆而导致的高token成本和性能下降问题. 其核心方法是Memori, 一个与LLM无关的持久记忆层, 通过Advanced Augmentation pipeline将非结构化对话转换为紧凑的语义三元组和摘要, 实现精确检索. 在LoCoMo基准测试中, Memori仅使用约1,294 tokens per query就达到了81.95%的准确率, 显著降低了token消耗和部署成本.</div>
             </div>
             
 
@@ -445,7 +445,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.LG</span>
                 </div>
-                <div class="paper-comment">该研究解决了工业级Neural Architecture Search (NAS)中因使用大规模ensemble (M=50-200)进行验证而导致候选架构评估成本过高(\(O(M)\))的瓶颈。其核心是提出了Ensemble-Decoupled Theory，该理论在homogeneity假设下，通过轻量化的dual-learner训练估计\(\rho\), \(\sigma^2\)等量，从而仅需\(O(1)\)成本即可从单学习器性能预测系统级ensemble表现，并推导出架构改进的单调性条件。方法上，框架针对连续或离散的搜索空间，统一了closed-form优化、constrained differentiable优化以及LLM-driven search等策略，揭示了base diversity gain和accuracy gain两种正交的改进机制。最终，该框架将每次架构搜索的验证成本从\(O(M)\)降至\(O(1)\)，同时仅在最终部署时保留\(O(M)\)成本，为工业规模的可靠NAS提供了可行的设计原则。</div>
+                <div class="paper-comment">该工作解决了工业级Neural Architecture Search (NAS)中因必须评估整个模型ensemble而导致候选架构验证成本过高(\(O(M)\))的核心瓶颈。其提出的Ensemble-Decoupled Theory，在满足同质性假设下，推导出仅通过轻量级双学习器训练估计\(\rho\), \(\sigma^2\)等量，即可从单学习器性能预测系统级表现，从而将搜索成本降至\(O(1)\)。方法框架统一了连续与离散架构的搜索策略，包括利用LLM进行驱动搜索，揭示了base diversity gain和accuracy gain两种正交的改进机制。</div>
             </div>
             
 
@@ -458,7 +458,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.LG</span>
                 </div>
-                <div class="paper-comment">该研究旨在利用agentic AI技术解决从复杂生物数据中高效、可靠地挖掘知识的问题。为此，它提出了一个基于AI agent的虚拟研究小组框架，并采用hierarchical feature selection方法筛选关键的老化相关Gene Ontology terms。该方法通过验证发现，AI agent生成的大部分科学论断能得到现有文献支持，证明了该框架在提升知识发现reliability方面的有效性。</div>
+                <div class="paper-comment">该研究提出了一种基于agentic AI的虚拟研究小组框架, 旨在解决从Gene Ontology中可靠地挖掘与衰老相关生物学知识的问题. 通过结合hierarchical feature selection方法筛选关键GO terms, 并利用AI agents进行知识发现, 以提升大型语言模型在科学探索中的可靠性. 实验在四种模式生物上进行, 验证表明多数AI agent生成的科学主张能得到现有文献支持, 证明了该框架内部机制的有效性.</div>
             </div>
             
 <h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.CR</h3>
@@ -472,7 +472,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.CR</span>
                 </div>
-                <div class="paper-comment">该研究解决了在 multi-step tool-using LLM agents 中, 运行时安全强制措施如何影响端到端任务性能的问题. 通过比较不同架构, 发现安全中介虽能拦截大部分违规动作, 却因 Integrity Leaks 等问题, 导致 safe success rate 极低且恢复率近乎为零. 结果表明, 这种 enforcement 会带来显著的 verifier tax, 却无法保证安全完成任务, 凸显了 agents 需具备 grounded identity verification 和 post-intervention reasoning 能力的迫切性.</div>
+                <div class="paper-comment">该研究解决了在multi-step tool-using LLM agents中, runtime safety enforcement如何影响end-to-end task performance的问题. 通过比较baseline, TRIAD和TRIAD-SAFETY等架构, 研究发现safety mediation虽能拦截大量unsafe actions, 但难以转化为safe goal attainment, 存在明显的Safety Capability Gap. 主要failure mode是Integrity Leaks, 导致high unsafe success rates, 且blocked actions后的recovery rates极低. 这表明runtime enforcement产生了显著的verifier tax, 却无法保证safe completion, 凸显了对具备grounded identity verification能力agents的迫切需求.</div>
             </div>
             
 
@@ -486,7 +486,7 @@
                     <span class="category-tag">cs.CR</span>
 <span class="category-tag">cs.LG</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决手动设计Membership Inference Attacks (MIAs) 效率低、探索空间有限的问题。为此，作者提出了AutoMIA框架，利用LLM agents自动探索和生成新的MIA信号计算策略。该方法能针对特定目标模型和数据集定制攻击，实验表明其发现的攻击策略在AUC指标上相比现有方法最高提升0.18。这项工作首次证明了LLM agents可作为自动化设计高性能MIAs的有效且可扩展范式。</div>
+                <div class="paper-comment">该研究旨在解决手动设计Membership Inference Attacks (MIAs) 效率低下的问题, 以自动化地发现模型潜在的信息泄露漏洞. 为此, 作者提出了AutoMIA框架, 利用LLM agents自动探索和实现新的MIA信号计算策略. 该方法能够针对特定目标模型和数据集定制攻击, 实验表明其发现的攻击策略在AUC指标上比现有方法最高提升0.18. 这证明了LLM agents可作为设计高性能MIA的有效且可扩展的新范式.</div>
             </div>
             
 
@@ -501,7 +501,7 @@
 <span class="category-tag">cs.AI</span>
 <span class="category-tag">cs.LG</span>
                 </div>
-                <div class="paper-comment">该研究揭示了LLM agent领域的一个根本性矛盾：旨在提升安全性的defense training会系统性地损害agent执行多步任务的能力，同时无法阻止复杂攻击。通过分析97个agent任务和1,000个对抗性prompt，研究者发现了三种系统性偏差，如agent incompetence bias导致模型在良性任务上就拒绝或生成无效action。根本原因在于模型陷入了shortcut learning，过度拟合了表面攻击模式而非理解语义威胁。这些发现表明，当前的防御范式使多步agent变得不可靠，亟需能保持其工具执行能力的新方法。</div>
+                <div class="paper-comment">该研究揭示了LLM agent领域的一个核心矛盾：旨在提升安全性的defense training会系统性地损害agent执行多步任务的能力，同时无法阻止复杂攻击。通过分析97个agent任务和1,000个对抗性提示，研究发现了三种系统性偏差，如Agent incompetence bias导致模型在良性任务上就拒绝或生成无效动作。根本原因在于模型陷入了shortcut learning，过度拟合了表面攻击模式而非理解语义威胁。这些发现表明，当前的防御范式使多步agent变得不可靠，亟需能保持对抗条件下工具执行能力的新方法。</div>
             </div>
             
 
@@ -515,7 +515,7 @@
                     <span class="category-tag">cs.CR</span>
 <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究解决了现有LLM agent安全定义缺乏上下文考量的问题, 导致防御措施面临utility-security tradeoff. 为此, 作者提出了一个形式化框架, 定义了task alignment, action alignment, source authorization和data isolation四个上下文安全属性, 并引入了一组用于验证这些属性的oracle functions. 基于此框架, 研究将indirect prompt injection, jailbreak等现有攻击重新形式化为对特定安全属性的违反, 并将防御措施重新形式化为强化oracle或执行安全检查的机制, 从而为理解和改进agent安全性提供了系统化的基础.</div>
+                <div class="paper-comment">该研究解决了现有LLM agent安全定义缺乏上下文考量的问题, 这导致了防御措施在效用与安全之间存在根本性权衡. 作者提出了一个形式化框架, 通过定义task alignment, action alignment, source authorization和data isolation四个安全属性来捕捉上下文安全, 并引入一组oracle函数进行验证. 该框架将现有攻击(如indirect prompt injection, jailbreak)重新形式化为对这些属性的违反, 并为防御机制提供了系统化的分类, 从而为精确、上下文相关的agent安全分析奠定了基础.</div>
             </div>
             
 
@@ -528,7 +528,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.CR</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决使用LLM模拟用户隐私决策时，在个体准确性、提示可用性、token效率和群体代表性之间难以平衡的问题。为此，提出了Narriva方法，它基于用户过往的隐私行为数据生成文本化合成persona，而非依赖人口统计特征。该方法将数据压缩为基于隐私理论的结构化摘要，在多个数据集上的评估表明，其预测准确率高达88%，并比原始示例的上下文学习减少了80-95%的提示token。合成的persona还能复现不同研究的群体隐私行为分布，TVComplement值最高达0.85。</div>
+                <div class="paper-comment">该研究旨在解决利用LLM模拟用户隐私决策时，在个体准确性、提示可用性、token效率和群体代表性之间的平衡问题。提出的Narriva方法通过基于用户历史隐私行为数据生成文本化合成persona，而非依赖人口统计特征，来提升agent的可靠性。该方法将数据压缩为基于隐私理论的结构化摘要，在多个数据集上实现了高达88%的预测准确率，并显著减少了提示token数量。最终，合成的persona能有效复现不同研究的群体隐私行为分布，如TVComplement指标可达0.85。</div>
             </div>
             
 
@@ -542,7 +542,7 @@
                     <span class="category-tag">cs.CR</span>
 <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究解决了OpenClaw等autonomous coding agent平台中，因允许通过bootstrap guidance注入第三方技能而引入的novel attack surface问题。为了揭示这种隐蔽的guidance injection攻击风险，作者构建了26个恶意技能，通过将有害操作伪装成常规最佳实践来操纵agent的reasoning context。在基于真实工作空间构建的ORE-Bench上进行评估，攻击在多种LLM backend上取得了最高64.2%的成功率，且绝大多数恶意行为能自主执行并规避现有检测。这项工作凸显了agent生态系统设计中的安全矛盾，并强调了实施capability isolation和runtime policy enforcement等防御措施的紧迫性。</div>
+                <div class="paper-comment">该研究解决了OpenClaw等autonomous coding agent平台中，因允许通过bootstrap guidance注入第三方技能而引入的新型安全威胁。攻击者通过guidance injection，将恶意操作伪装成常规最佳实践，从而在agent初始化时隐秘地操纵其后续推理与行为。作者构建了涵盖13类攻击的26个恶意技能，在真实工作环境基准ORE-Bench上验证，攻击成功率最高达64.2%，且绝大多数能绕过现有检测。这项工作揭示了agent生态系统设计中的根本性安全矛盾，凸显了实施能力隔离、运行时策略执行等防御措施的紧迫性。</div>
             </div>
             
 <h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.CL</h3>
@@ -557,7 +557,7 @@
                     <span class="category-tag">cs.CL</span>
 <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究解决了生产级沉浸式对话系统中响应速度与长程任务能力之间的固有矛盾。为了在保证实时交互的同时，可靠地执行涉及规划与工具调用的复杂任务，作者提出了DuCCAE混合引擎。该系统通过解耦实时响应生成与异步agentic执行，并利用共享状态进行同步，实现了多agent协作与持续进化。实际部署表明，该系统在显著降低延迟的同时，大幅提升了agentic执行的可靠性和复杂任务完成率。</div>
+                <div class="paper-comment">该研究解决了生产级沉浸式对话系统中responsiveness与long-horizon task capability之间的固有矛盾。为了在保证实时交互的同时，可靠地执行涉及规划与工具调用的复杂agent任务，作者提出了DuCCAE这一混合引擎。其核心方法是通过共享状态将会话上下文与执行轨迹解耦，从而协调实时响应生成与异步agentic执行。最终，该系统在Baidu Search中的大规模部署显著提升了agentic execution reliability与对话质量，并将复杂任务完成率提升至65.2%，同时满足了严格的实时性要求。</div>
             </div>
             
 
@@ -571,7 +571,7 @@
                     <span class="category-tag">cs.CL</span>
 <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究解决了LLM在迭代推理过程中概率更新的稳定性问题, 旨在为agent的可靠决策提供理论保障. 通过提出一个控制先验信念与验证证据结合的belief revision exponent \(\alpha\), 并证明\(\alpha < 1\)是保证渐进稳定的充要条件. 实证分析发现, 在单步更新中模型行为接近贝叶斯更新但略高于稳定边界, 而在多步修订中exponent会下降, 最终产生符合理论预测的收缩性长期动态. 这项研究将\(\alpha\)-law确立为监测LLM推理系统更新稳定性与质量的原则性诊断工具.</div>
+                <div class="paper-comment">该研究解决了LLM在迭代推理过程中概率更新的稳定性问题, 旨在为agent的可靠决策提供理论保障. 通过引入一个控制先验信念与验证证据组合方式的belief revision exponent \(\alpha\), 并证明\(\alpha < 1\)是保证渐进稳定的充要条件. 实证分析发现, 在单步更新中模型行为接近贝叶斯更新但略高于稳定边界, 而在多步修订中exponent会递减, 最终产生符合理论预测的收缩性长期动态. 这项研究提出的\(\alpha\)-law为监控LLM推理系统的更新稳定性与质量提供了一个原则性诊断工具.</div>
             </div>
             
 
@@ -585,7 +585,7 @@
                     <span class="category-tag">cs.CL</span>
 <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决通用LLM在燃烧科学等复杂物理领域因知识不足和违反物理守恒定律而产生严重幻觉的问题。为此，作者提出了首个面向燃烧科学的全栈领域增强LLM工作流，整合了自动化语料构建、增量预训练、指令微调和基于可验证奖励的强化学习，确保模型内化物理规律而非仅学习文本统计模式。实验表明，该方法在专门评估基准FlameBench上，显著超越了先进的通用闭源模型和传统检索增强生成方法，为开发具备可靠科学推理能力的领域特定科研agent奠定了技术与资源基础。</div>
+                <div class="paper-comment">本文针对通用LLM在燃烧科学等复杂物理系统中因领域知识不足和无法遵循物理守恒定律而产生严重幻觉的问题，提出了一种全栈式领域增强工作流。该方法整合了自动化语料构建、增量预训练、指令微调和基于可验证奖励的强化学习，确保模型内化物理规律而非仅学习文本统计模式。实验表明，该模型在专门评估基准FlameBench上显著优于先进的通用闭源模型和传统检索增强生成方法，为开发具备可靠科学推理能力的领域特定科研agent奠定了技术基础。</div>
             </div>
             
 
@@ -598,7 +598,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.CL</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决研究人员如何批判性地评估LLM在其工作中的适用性问题, 核心是理解其能力与局限性的形成机制. 为此, 论文构建了一个无需技术背景的理解框架, 系统剖析了从pre-training data到agentic capabilities等六个关键组件. 通过分析每个组件的技术基础与研究启示, 明确了LLM的特定affordances和limitations. 最终, 该框架在一个使用LLM-based agents模拟社交媒体动态的案例研究中得到应用和展示.</div>
+                <div class="paper-comment">该研究旨在为研究者提供一个框架，以批判性地评估LLM在其工作中的适用性，解决因缺乏技术理解而导致的误用或回避问题。它通过剖析预训练数据、tokenization、transformer架构等六个核心组件，阐明LLM的能力与局限，特别分析了其agentic capabilities的可靠性与潜在failure modes。最终，该框架在一个模拟社交媒体动态的LLM-based agent案例研究中得到应用和展示。</div>
             </div>
             
 
@@ -612,7 +612,7 @@
                     <span class="category-tag">cs.CL</span>
 <span class="category-tag">cs.LG</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决单一agent架构在应对复杂、开放式任务时面临的scalability, error propagation等reliability挑战。为此，提出了Autonoma这一分层多agent框架，通过Coordinator, Planner, Supervisor等层级明确分工，实现工作流的生成与动态管理。其方法将编排逻辑与模块化执行agent分离，通过主动监控和错误处理确保robustness，并支持新功能以即插即用方式扩展。最终，该系统在封闭环境中实现了97%的任务完成率和98%的agent交接成功率，验证了其可靠性与高效协作能力。</div>
+                <div class="paper-comment">该研究旨在解决单一agent架构在应对复杂、开放式指令时面临的scalability, error propagation等reliability挑战。为此，提出了Autonoma这一分层多agent框架，通过Coordinator, Planner, Supervisor等层级明确分工，实现工作流的生成与动态管理。其方法将编排逻辑与模块化执行分离，通过主动监控和错误处理确保robustness，并支持即插即用的能力扩展。最终，系统在封闭环境中实现了97%的任务完成率和98%的agent交接成功率，验证了其可靠性与高效协作能力。</div>
             </div>
             
 
@@ -640,7 +640,7 @@
                     <span class="category-tag">cs.CL</span>
 <span class="category-tag">cs.GT</span>
                 </div>
-                <div class="paper-comment">该研究解决了在Sequential Social Dilemmas中利用LLM合成agent policy时，如何引导agent行为以实现合作而非过度剥削的问题。为了解决传统稀疏反馈（仅标量reward）在引导复杂社会行为上的不足，研究者引入了包含efficiency, equality, sustainability, peace等维度的dense feedback。具体方法是通过prompting LLM迭代生成Python policy functions，并在self-play中评估，利用dense feedback进行refine。最终效果表明，dense feedback能有效引导LLM agent发展出如territory partitioning等合作策略，在Cleanup等公共物品博弈中表现更优，同时研究也揭示了该方法在expressiveness与safety之间的内在张力。</div>
+                <div class="paper-comment">该研究解决了在Sequential Social Dilemma中利用LLM合成agent policy时，如何引导agent行为以实现合作而非过度剥削的问题。为了解决传统稀疏反馈（仅标量reward）在复杂社会困境中指导性不足的问题，作者提出了dense feedback方法，即在迭代优化中向LLM提供包括efficiency, equality等社会指标的评估信息。具体方法是通过prompt让LLM生成Python policy functions，在self-play中评估，并利用dense feedback进行多轮迭代精炼。最终效果表明，dense feedback在Gathering和Cleanup等环境中能一致匹配或超越sparse feedback，有效引导LLM agent学习到如territory partitioning等合作策略，并缓解了reward hacking等安全问题。</div>
             </div>
             
 
@@ -653,7 +653,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.CL</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决阿拉伯语自动作文评分(AES)中缺乏可扩展且考虑语言特性的工具问题。通过引入一种结构化的prompt工程框架，该方法利用multi-agent模拟，让专门的trait specialist raters评估不同的语言能力维度。在zero-shot和few-shot设置下，实验表明rubric-guided prompting能持续提升所有模型和维度的表现，其中Discourse-level traits如Development和Style改进最大。最终，结构化prompting而非单纯扩大模型规模，实现了有效的阿拉伯语AES，为低资源教育环境下的评估奠定了基础。</div>
+                <div class="paper-comment">该研究旨在解决阿拉伯语自动作文评分(AES)中缺乏可扩展且考虑语言特性的工具问题。通过引入一种结构化的prompt工程框架，该方法利用multi-agent模拟和rubric-guided策略，在zero-shot和few-shot设置下指导LLMs评估特定的语言能力维度。实验表明，结构化prompting(如rubric-guided方法)能显著提升模型在各项评分维度上的表现，尤其对Development和Style等语篇层面特征改善明显，证实了其有效性。</div>
             </div>
             
 
@@ -666,7 +666,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.CL</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决低资源东南亚地区高质量翻译数据稀缺与大规模模型训练能耗高昂的双重挑战. 为此, 提出了SAGE框架, 其核心是一个基于强化学习(RL)的agent, 通过Group Relative Policy Optimization (GRPO)进行优化, 以专家构建的小型对话集为语义奖励信号, 自主筛选出紧凑且文化对齐的训练数据. 该方法随后使用Low-Rank Adaptation (LoRA)对开源LLMs进行高效微调. 实验表明, SAGE在七种低资源语言的翻译任务上取得了新的SOTA性能, 同时将数据使用量和训练能耗分别降低了97.1%和95.2%.</div>
+                <div class="paper-comment">该研究旨在解决低资源东南亚地区高质量、文化适配翻译数据稀缺与大规模模型训练能耗高昂之间的矛盾。其提出的SAGE框架采用一种强化学习agent, 通过Group Relative Policy Optimization (GRPO)进行优化, 以专家构建的小型社区对话为语义奖励信号, 自主筛选出紧凑、高质量的训练数据集。该方法随后利用Low-Rank Adaptation (LoRA)对开源LLMs进行高效微调。实验在七种低资源语言上实现了新的SOTA性能, 同时将数据使用量减少了97.1%, 训练能耗降低了95.2%, 为可持续地弥合数字鸿沟提供了可行路径。</div>
             </div>
             
 
@@ -679,7 +679,7 @@
                 <div class="paper-categories">
                     <span class="category-tag">cs.CL</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决现有XAI方法因技术性强而难以被非专家理解的问题, 为此提出了一种基于multi-agent框架的XAI narrative生成与优化方法. 该方法通过Narrator Agent生成解释, 并引入多个Critic Agent基于faithfulness和coherence等指标提供反馈进行迭代优化. 实验在五个tabular数据集和五个LLM上验证了其有效性, 其中Claude-4.5-Sonnet结合Basic Design经过三轮迭代能将unfaithful narrative数量减少90%. 为进一步提升reliability, 研究还引入了基于majority voting的ensemble策略, 显著改善了多数LLM的性能.</div>
+                <div class="paper-comment">该研究旨在解决现有XAI解释技术性强、不易理解的问题，通过引入多智能体框架来生成和改进XAI narratives。其方法核心是设计了一个包含Narrator和多个Critic Agents的系统，通过迭代反馈优化narratives的faithfulness和coherence。实验表明，如Basic Design等agentic systems能显著提升narratives的faithfulness，其中Claude-4.5-Sonnet结合Basic Design经过三轮迭代将unfaithful narratives减少了90%。为进一步提升reliability，研究还引入了基于majority voting的ensemble策略，该策略对多数LLM有效。</div>
             </div>
             
 
@@ -694,7 +694,7 @@
 <span class="category-tag">cs.DB</span>
 <span class="category-tag">cs.IR</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决KGQA中specialized模型路径不可达与忽略隐式约束, 以及general模型成本高昂的问题. 为此提出了RouterKGQA框架, 通过specialized模型生成推理路径, 并仅在需要时调用general模型进行KG-guided repair, 实现了高效协作. 该方法还引入了constraint-aware answer filtering以减少冗余答案, 并设计了更高效的general agent workflow以降低推理成本. 实验表明, 该框架在多个基准上平均F1提升3.57点, Hits@1提升0.49点, 同时将每个问题的平均LLM调用次数降至1.15次.</div>
+                <div class="paper-comment">该研究旨在解决KGQA中specialized模型路径不可达与忽略隐式约束, 以及general模型成本高昂的问题. 其核心方法是RouterKGQA框架, 它通过specialized--general模型协作路由, 让specialized模型生成路径, 并仅在需要时触发general agent进行KG引导的修复与约束感知的答案过滤. 该方法在多个benchmark上平均F1提升3.57分, 同时将每问题的平均LLM调用降至1.15次, 以极低成本实现了性能提升.</div>
             </div>
             
 <h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.SE</h3>
@@ -709,7 +709,7 @@
                     <span class="category-tag">cs.SE</span>
 <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究旨在解决AI agent在硬件在环(HIL)的嵌入式与IoT系统开发中, 因软件与物理硬件行为紧耦合而导致的可靠性问题. 为此, 作者提出了一个基于技能的agentic框架, 并创建了IoT-SkillsBench基准, 用于在真实硬件环境中系统评估agent. 该方法通过引入结构化的人类专家技能, 显著提升了agent在不同平台和任务上的成功率, 在硬件验证实验中实现了近乎完美的性能.</div>
+                <div class="paper-comment">该研究旨在解决AI agent在硬件在环(HIL)的嵌入式与IoT系统开发中，因软件与物理硬件行为紧耦合而导致的可靠性问题，例如代码编译成功但实际部署失败。为此，作者提出了一个基于技能的agentic框架，并创建了IoT-SkillsBench基准，用于在真实硬件环境中系统评估agent。该方法通过为agent提供结构化的人类专家技能，在涵盖3个平台、42项任务的378次硬件验证实验中，实现了接近完美的成功率。</div>
             </div>
             
 
@@ -723,7 +723,7 @@
                     <span class="category-tag">cs.SE</span>
 <span class="category-tag">cs.AI</span>
                 </div>
-                <div class="paper-comment">该研究解决了LLM在修复复杂编译器bug时性能显著下降的问题, 因为编译器bug需要跨领域专业知识且报告描述稀疏. 为此, 作者提出了首个面向编译器的agentic harness `llvm-autofix`, 其核心包括专为agent设计的LLVM工具、可复现的bug基准`llvm-bench`以及一个定制的轻量级agent `llvm-autofix-mini`. 评估显示, 前沿LLM处理编译器bug时性能下降60%, 而`llvm-autofix-mini`的性能比现有最佳方法提升了约22%, 证明了专用工具的必要性.</div>
+                <div class="paper-comment">该研究旨在解决LLM在修复复杂编译器bug时性能显著下降的问题, 因为编译器bug需要跨领域专业知识且报告描述稀疏. 为此, 作者提出了首个面向编译器的agentic harness `llvm-autofix`, 其核心包括专为agent设计的LLVM工具、可复现bug的基准`llvm-bench`以及一个定制的轻量级agent `llvm-autofix-mini`. 评估显示, 前沿模型处理编译器bug时性能下降60%, 而`llvm-autofix-mini`的性能比现有最优方法提升了约22%, 证明了专用工具的必要性.</div>
             </div>
             
 <h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">others</h3>
@@ -738,7 +738,7 @@
                         <span class="category-tag">cs.AR</span>
 <span class="category-tag">cs.LG</span>
                     </div>
-                    <div class="paper-comment">该研究首次系统评估了agentic LLM在Verilog代码生成任务中的表现, 解决了agent框架对硬件设计语言生成效果不明确的问题. 通过引入开源硬件设计agent harnesses并进行对照实验, 分析了structured prompting, tool design对性能的影响以及agent的failure modes. 研究发现, 简单的agentic wrapping可能降低性能, 但精心设计的harnesses能匹配甚至超越非agentic baseline, 且开源与闭源模型间的性能差距主要源于更高的crash rates和较弱的tool output interpretation.</div>
+                    <div class="paper-comment">该研究旨在解决agentic框架在Verilog硬件描述语言代码生成任务中效果不明的问题. 通过引入基于CVDP benchmark的系统性评估和开源硬件设计agent harnesses, 作者对比了不同模型在结构化prompting和工具设计下的表现. 实验发现, 简单的agentic封装可能降低性能, 但精心设计的harness能匹配甚至超越非agentic基线, 且开源与闭源模型间的性能差距主要源于更高的crash率和更弱的工具输出解释能力. 这项工作为未来设计专用Verilog生成agent指明了方向.</div>
                 </div>
                 
 
@@ -752,7 +752,7 @@
                         <span class="category-tag">cs.IR</span>
 <span class="category-tag">cs.CL</span>
                     </div>
-                    <div class="paper-comment">该研究旨在解决长期运行的agent在固定上下文和延迟预算下，因记忆库增长而导致的检索性能退化问题。其核心方法是构建一个名为All-Mem的框架，通过动态拓扑演化来管理记忆，利用LLM驱动的诊断器提出并执行SPLIT, MERGE, UPDATE等拓扑编辑操作。这种方法避免了基于摘要的压缩带来的信息损失，并通过有界可见表面和类型化链接实现高效检索。实验表明，该系统在检索和问答任务上优于现有基线。</div>
+                    <div class="paper-comment">该研究旨在解决长期运行的agent在固定上下文和延迟预算下, 因记忆库增长而导致的检索性能退化问题. 为此, 提出了All-Mem框架, 它通过动态拓扑演化来维护一个结构化的记忆库, 并利用LLM驱动的诊断器, 以非破坏性的SPLIT, MERGE, UPDATE操作进行离线记忆整合. 该方法在在线检索时锚定于有限的可见表面以控制成本, 并通过类型化链接在查询时进行有界扩展. 在LOCOMO和LONGMEMEVAL基准测试上的实验表明, 其在检索和QA任务上优于现有基线, 提升了agent的长期可靠性.</div>
                 </div>
                 
 
@@ -766,7 +766,7 @@
                         <span class="category-tag">cs.SI</span>
 <span class="category-tag">cs.AI</span>
                     </div>
-                    <div class="paper-comment">该研究旨在解决社交平台干预政策(如推荐算法)在部署前难以评估其潜在风险(如加剧信息茧房)的问题. 为此, 提出了PolicySim, 一个基于LLM的agent社会模拟沙箱, 其核心是通过SFT和DPO优化的user agent模块来模拟用户行为, 并结合一个采用contextual bandit与message passing的自适应干预模块来模拟平台动态. 实验表明, 该方法能在微观和宏观层面准确模拟平台生态, 从而实现对干预政策的主动评估与优化.</div>
+                    <div class="paper-comment">该研究旨在解决社交平台干预政策(如推荐算法)在部署前难以评估其潜在风险(如加剧信息茧房)的问题. 为此, 提出了PolicySim, 一个基于LLM的agent社会模拟沙盒, 其核心方法包括: 通过SFT和DPO微调用户agent以提升行为真实性, 并设计了一个采用contextual bandit与message passing的自适应干预模块来模拟动态网络. 实验表明, 该系统能在微观和宏观层面准确模拟平台生态, 从而支持对干预政策进行有效的主动优化与评估.</div>
                 </div>
                 
 
@@ -781,7 +781,7 @@
 <span class="category-tag">cs.CL</span>
 <span class="category-tag">eess.AS</span>
                     </div>
-                    <div class="paper-comment">该研究旨在解决传统TTS系统在合成长音频时缺乏全局语境理解和副语言线索捕捉能力的问题, 如无法处理多说话人交互和情感演变. 其提出的Borderless Long Speech Synthesis框架采用了一种"Labeling over filtering/cleaning"数据策略和Global-Sentence-Token分层标注方案, 并在模型侧引入了Chain-of-Thought reasoning和Dimension Dropout来提升复杂指令的跟随能力. 该框架的核心设计是Native Agentic, 其分层标注结构作为LLM Agent与合成引擎间的Structured Semantic Interface, 构成了从场景语义到语音细节的层级化控制协议栈, 从而将Text2Speech范式扩展为无边界的、由Agent驱动的长语音合成.</div>
+                    <div class="paper-comment">该研究旨在解决传统TTS系统在合成长音频时缺乏全局语境和副语言信息理解的问题, 以实现更自然、多变的交互场景. 其核心方法是提出一个以Agent为中心的Borderless Long Speech Synthesis框架, 采用"Labeling over filtering/cleaning"数据策略与Global-Sentence-Token分层标注, 并在模型中引入Chain-of-Thought reasoning和Dimension Dropout来提升复杂指令的跟随能力. 最终, 该框架通过分层标注构建了LLM Agent与合成引擎间的Structured Semantic Interface, 将文本扩展为信息完整的宽频控制信道, 从而实现了从Text2Speech到无边界长语音合成的范式扩展.</div>
                 </div>
                 
 
@@ -795,7 +795,7 @@
                         <span class="category-tag">cs.CV</span>
 <span class="category-tag">cs.AI</span>
                     </div>
-                    <div class="paper-comment">该研究旨在解决端到端自动驾驶中，依赖昂贵、不可复现的真实路测进行策略评估的问题。为此，提出了X-World，一个可控的、以自我为中心的多摄像头世界模型，它能够根据给定的未来动作序列，生成遵循指令的、逼真的多视角未来视频流。其核心方法是一个多视角潜在视频生成器，通过显式地鼓励跨视角几何一致性和时间连贯性，并支持对动态agent、静态场景及外观的多种控制。最终，X-World实现了高质量、视角一致、长时间稳定且高度可控的视频生成，为可扩展、可复现的自动驾驶评估提供了实用基础。</div>
+                    <div class="paper-comment">该研究旨在解决端到端自动驾驶中, 依赖昂贵且不可复现的真实路测进行策略评估的问题. 为此, 作者提出了X-World, 一个可控的、以自我为中心的多摄像头世界模型, 它能够根据给定的未来动作序列, 生成遵循指令的、逼真的多视角未来视频流. 其核心是一个多视角潜在视频生成器, 通过显式地鼓励跨视角几何一致性和时间连贯性, 实现了高质量、高可控性的仿真. 最终, X-World生成了具有强视角一致性、长时程稳定动态和严格动作跟随能力的视频, 为可扩展、可复现的自动驾驶评估提供了实用基础.</div>
                 </div>
                 
 
@@ -809,7 +809,7 @@
                         <span class="category-tag">cs.DB</span>
 <span class="category-tag">cs.CL</span>
                     </div>
-                    <div class="paper-comment">该研究旨在解决Text-to-SQL任务中现有AI agent方法未能达到人类水平准确率的问题。其核心观点是，提升性能的关键并非设计更复杂的agent架构，而是使用高质量的训练数据。为此，作者提出了ReViSQL框架，通过构建经过验证的数据集BIRD-Verified，并采用reinforcement learning with verifiable rewards (RLVR)进行训练，显著提升了基础模型的SQL推理能力。最终，该框架在BIRD基准测试中首次实现了超越代理人类水平的执行准确率，同时其轻量级版本以更低的成本达到了先前最优方法的性能。</div>
+                    <div class="paper-comment">该研究解决了Text-to-SQL任务中AI agent与人类水平之间的准确率差距问题。其核心观点是，提升性能的关键并非设计更复杂的agent架构，而是使用高质量的训练数据。为此，作者提出了ReViSQL框架，通过构建经过验证的数据集BIRD-Verified，并采用reinforcement learning with verifiable rewards (RLVR)进行训练，显著提升了基础模型的SQL推理能力。最终，ReViSQL在BIRD基准测试中首次达到了人类水平的准确率，其最佳模型实现了93.2%的执行准确率，超越了先前的最佳方法。</div>
                 </div>
                 
 
@@ -824,7 +824,7 @@
 <span class="category-tag">cs.AI</span>
 <span class="category-tag">cs.LG</span>
                     </div>
-                    <div class="paper-comment">该研究解决了高能物理(HEP)分析流程自动化程度不足的问题, 旨在通过AI agents减轻研究者的重复性技术负担. 其核心方法是提出Just Furnish Context(JFC)框架, 该框架集成了基于文献的知识检索和多agent审查机制, 使基于LLM的agents能够自主规划、执行并记录完整的HEP分析. 实验证明, 该系统能在ALEPH, DELPHI和CMS的开放数据上成功进行电弱、QCD和希格斯玻色子测量, 展示了agent在event selection, background estimation到statistical inference等关键环节的可靠执行能力.</div>
+                    <div class="paper-comment">该研究解决了高能物理(HEP)分析流程自动化程度不足的问题, 旨在通过AI agent减轻研究者的重复性技术负担. 其核心方法是提出一个名为Just Furnish Context(JFC)的概念验证框架, 该框架集成了基于大型语言模型(LLM)的自主分析agent, 文献知识检索和多agent审查机制. 实验证明, 该框架能成功规划、执行并记录从事件选择到论文起草的完整HEP分析, 在ALEPH, DELPHI和CMS的公开数据上完成了电弱, QCD和希格斯玻色子测量, 展示了agent在当前HEP任务中已被低估的自主能力.</div>
                 </div>
                 
         </div>
