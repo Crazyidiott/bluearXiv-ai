@@ -146,7 +146,7 @@ https://你的用户名.github.io/bluearXiv-ai/
 4. 可选输入参数：
     - skip_fetch：false（首次建议 false）。
     - test_mode：false（首次建议 false）。
-    - ai_model_name：deepseek-chat（默认）。
+    - ai_model_name：deepseek-v4-flash（默认）。
     - date：留空表示今天；也可填 YYYY-MM-DD 生成指定日期。
 5. 点击绿色 Run workflow 按钮。
 

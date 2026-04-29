@@ -10,7 +10,7 @@ import math
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 从环境变量读取模型名称，如果没有则使用默认值
-MODEL_NAME = os.getenv('AI_MODEL_NAME', 'deepseek-chat')
+MODEL_NAME = os.getenv('AI_MODEL_NAME', 'deepseek-v4-flash')
 
 def get_file_paths():
     """获取所有必要的文件路径"""

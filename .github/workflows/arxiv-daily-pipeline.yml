@@ -17,7 +17,7 @@ on:
       ai_model_name:
         description: 'AI模型名称（可选）'
         required: false
-        default: 'deepseek-chat'
+        default: 'deepseek-v4-flash'
         type: string
       date:
         description: '指定日期（格式：YYYY-MM-DD，默认为今天）'
@@ -34,7 +34,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     env:
-      AI_MODEL_NAME: ${{ inputs.ai_model_name || 'deepseek-chat' }}
+      AI_MODEL_NAME: ${{ inputs.ai_model_name || 'deepseek-v4-flash' }}
     
     steps:
     - name: Checkout repository
