@@ -1,0 +1,2684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bluearXiv-ai - 2026-06-25</title>
+    <!-- KaTeX for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #f8f9fa;
+            font-size: 14px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #4a6fa5;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 8px;
+        }
+        .header .date {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .nav-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-link {
+            color: #2980b9;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .config-section {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+        .config-title {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .config-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .config-item {
+            display: inline-block;
+            background-color: #e8f4fc;
+            color: #2c3e50;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            margin: 0 5px 5px 0;
+        }
+        .section {
+            background: white;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .counter-item {
+            background-color: #f1f8ff;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .counter-category {
+            font-size: 1em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .counter-value {
+            font-size: 1.5em;
+            color: #4a6fa5;
+            margin: 8px 0;
+        }
+        .category-section {
+            margin-bottom: 30px;
+        }
+        .category-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #4a6fa5;
+        }
+        .paper-list {
+            margin: 0;
+            padding: 0;
+        }
+        .paper-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .paper-item:last-child {
+            border-bottom: none;
+        }
+        .paper-title {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .paper-title a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .paper-title a:hover {
+            color: #4a6fa5;
+            text-decoration: underline;
+        }
+        .paper-authors {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+        .paper-categories {
+            margin-bottom: 10px;
+        }
+        .category-tag {
+            display: inline-block;
+            background-color: #e8f4fc;
+            color: #2c3e50;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 4px;
+        }
+        .paper-comment {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #4a6fa5;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .selection-badge {
+            display: inline-block;
+            background-color: #ffeaa7;
+            color: #d35400;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .back-to-top:hover {
+            background-color: #3a5a80;
+        }
+        .footnote {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            line-height: 1.4;
+        }
+        @media (max-width: 768px) {
+            .counter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .header h1 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>bluearXiv-ai 论文精选</h1>
+        <div class="date">2026-06-25</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">返回首页</a>
+            <a href="#counter" class="nav-link">论文统计</a>
+            <a href="#selection" class="nav-link">精选论文</a>
+            <a href="#papers" class="nav-link">所有论文</a>
+        </div>
+    </div>
+    
+    <!-- 特定学科和关键词列表 -->
+    <div class="config-section">
+        <h3 class="config-title">📚 跟踪学科 (Categories)</h3>
+        <ul class="config-list">
+            <li class="config-item">cs.AI</li>
+<li class="config-item">cs.LG</li>
+<li class="config-item">cs.GT</li>
+<li class="config-item">cs.CR</li>
+<li class="config-item">cs.CL</li>
+<li class="config-item">cs.SE</li>
+<li class="config-item">cs.OS</li>
+        </ul>
+    </div>
+    <div class="config-section">
+        <h3 class="config-title">🔍 筛选关键词 (Keywords)</h3>
+        <ul class="config-list">
+            <li class="config-item">primary: agent</li>
+<li class="config-item">secondary: reliability</li>
+<li class="config-item">secondary: LLM</li>
+<li class="config-item">secondary: large language model</li>
+<li class="config-item">secondary: reliable</li>
+<li class="config-item">secondary: failure</li>
+<li class="config-item">secondary: checkpoint</li>
+        </ul>
+    </div>
+    
+    <!-- 论文统计部分 -->
+    <section id="counter" class="section">
+        <h2 class="section-title">📊 论文统计</h2>
+        <div class="counter-grid">
+            
+        <div class="counter-item">
+            <div class="counter-category">cs.AI</div>
+            <div class="counter-value">5</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">cs.LG</div>
+            <div class="counter-value">60</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">cs.GT</div>
+            <div class="counter-value">7</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">cs.CR</div>
+            <div class="counter-value">23</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">cs.CL</div>
+            <div class="counter-value">16</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">cs.SE</div>
+            <div class="counter-value">20</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">cs.OS</div>
+            <div class="counter-value">1</div>
+        </div>
+        
+
+        <div class="counter-item">
+            <div class="counter-category">others</div>
+            <div class="counter-value">39</div>
+        </div>
+        
+
+    <div class="counter-item" style="background-color: #e8f4fc;">
+        <div class="counter-category" style="font-weight: bold;">总计</div>
+        <div class="counter-value" style="color: #2c3e50;">171</div>
+    </div>
+    
+        </div>
+    </section>
+    
+    <!-- 精选论文部分 -->
+    <section id="selection" class="section">
+        <h2 class="section-title">⭐ 精选论文</h2>
+        <div class="paper-list">
+            <h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.AI</h3>
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.23991" target="_blank">Critique of Agent Model</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Eric Xing, Mingkai Deng, Jinyu Hou</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.MA</span>
+<span class="category-tag">cs.RO</span>
+                </div>
+                <div class="paper-comment">这篇论文旨在澄清自动化与真正Agent（agent）之间的界限，解决当前LLM系统被过度宣传为“Agent”所引发的概念混淆与控制担忧。作者从笛卡尔独立思想与科幻自主存在出发，沿goal, identity, decision-making, self-regulation, learning五个维度分析了现有Agent架构，提出区分依靠外部组装的agentic系统与能力内生生成的agentive系统，并由此设计了</div>
+            </div>
+            
+<h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.LG</h3>
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.23961" target="_blank">Forget Without Compromise: Nexus Sampling for Streaming KV-Cache Eviction Under Fixed Budgets</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Duc Duong et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.LG</span>
+                </div>
+                <div class="paper-comment">针对长上下文和agent场景下LLM的KV缓存超出固定内存预算的问题，现有方法依赖每步直接注意力分数和确定性top-K选择，导致单次</div>
+            </div>
+            
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.24340" target="_blank">Managing Task Execution for Unknown Workloads in Batteryless IoT: A Hardware-Agnostic Evaluation</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Samer Nasser et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.LG</span>
+                </div>
+                <div class="paper-comment">无电池IoT系统面临能量高度波动导致的执行可靠性问题，传统调度器依赖静态阈值或硬件特定预测量，难以应对未知工作负载。为此，提出两种硬件无关的动态调度策略：一个model-free Reinforcement Learning (RL) agent将应用视为“黑箱”自主学习调度，以及一个on-the-fly Approximated Prediction (AP)方法实时预测能量并调整任务。实验表明，AP方法以轻量计算实现接近最优的任务吞吐率，RL agent提供了可调的执行-生存平衡，在严重受限的小电容设备上显著提升了系统reliability，而大缓冲设备则仍可依赖简单静态策略。</div>
+            </div>
+            
+<h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.CR</h3>
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25195" target="_blank">SoK: AI Secure Code Generation: Progress, Pitfalls, and Paths Forward</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Rupam Patir et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+                </div>
+                <div class="paper-comment">该论文系统化梳理了AI安全代码生成的进展与困境，指出当前LLM和coding agent虽能理解安全编码原则，但在生成安全且功能正确的代码时仍频繁失败。作者提出三级评估框架，分别衡量模型对安全原则的自然语言理解、代码级执行能力以及两者间的knowledge-actuation gap。实验表明，安全原则理解是代码安全性与功能正确性的强统计预测因子，但模型普遍存在显著的知-行差距——能识别原则却无法落实到代码。最终结论指向原则引导的生成、评估与agentic workflow是突破当前瓶颈的关键路径。</div>
+            </div>
+            
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25332" target="_blank">Decoupling Reconnaissance and Exploitation: Measuring the Capability Boundaries of LLM-Based Web Penetration Testing</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Liwei Yu et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+                </div>
+                
+            </div>
+            
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25622" target="_blank">Probabilistic Agents in Deterministic Audits: Evaluating Multi-Agent Systems for Automated Audits Based on the German IT-Grundschutz</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Lea Roxanne Muth, Marian Margraf</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+                </div>
+                <div class="paper-comment">该论文提出了一种结合HybridRAG的多智能体系统(MAS)架构，以自动化德国IT-Grundschutz(IT-GS)认证中的文档验证与修订流程，从而缓解中小企业因资源密集型手动工作导致的合规困难。为满足IT-GS的确定性严格性，MAS在结构分析阶段引入假设验证循环(Hypothesis-Verification Loop)，通过跨引用智能体推断依赖与知识图谱以减少LLM的幻觉，并采用解耦推理管线(Decoupled Reasoning Pipeline)分离语义提取与确定性保护需求继承。实验表明，MAS在语义任务（如结构分析与建模）上显著降低手动工作量，但在逻辑推理阶段（如保护需求评估与IT-GS检查）由于LLM</div>
+            </div>
+            
+<h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.CL</h3>
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25819" target="_blank">Beyond Function Calling: Benchmarking Tool-Using Agents under Tool-Environment Unreliability</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Yang Tian, Zhengpeng Shi, Bo Zhao</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.SE</span>
+                </div>
+                <div class="paper-comment">该论文提出ToolBench-X基准，用于评估agent在工具环境存在可恢复性</div>
+            </div>
+            
+<h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.SE</h3>
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.24598" target="_blank">Toward Self-Evolution-Ready Workflow Harnesses: A Reversible Migration Path and Convertibility Taxonomy for Expert LLM Pipelines</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Yimo Lin, Zhen Zhang, Yibin Li</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+                </div>
+                <div class="paper-comment">专家验证的“LLM + script”工作流虽蕴含宝贵领域知识，却因无法基于反馈动态调整而陷入僵化，现有Agent研究多聚焦于新建系统与合成基准，未解决遗留生产管线的迁移难题。</div>
+            </div>
+            
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25514" target="_blank">Unlocking Model Potentials Through Adaptive Multi-Agent Scaffolding for Efficient Issue Resolution</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Yang Chen et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.SE</span>
+                </div>
+                <div class="paper-comment">为解决复杂软件issue时共享上下文导致上下文退化和中毒的问题，本文提出icat-agent，一种去中心化、基于事件消息传递的多agent脚手架。它通过rubric-based issue质量检查动态切换工作流：对高质量issue并行执行补丁与验证，对低质量issue先进行初步探索。在SWE-bench Verified和SWE-bench Pro上，icat-agent使用相同基础模型，分别提升3.6-8.4%和6.3-18.5%，同时每实例平均成本比多agent Claude Baseline降低$1.18。在SWE-bench Pro上，icat-agent+GPT-5.4-xhigh达到67.4%</div>
+            </div>
+            
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25550" target="_blank">On the Viability of Requirements Generation From Code: An Experience Report</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Alexander Korn et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.SE</span>
+                </div>
+                <div class="paper-comment">该论文评估了一种基于LLM和RAG的agentic方法，旨在从源代码自动生成需求并合成需求异味与非实现需求，以解决需求工程领域缺乏代码与需求配对数据集的问题。实验发现，当前LLM agent在三个关键维度上不可靠：无法稳定生成未实现的需求、无法保证生成需求的质量、以及无法可靠地引入合成异味。此外，仅依赖LLM或单一人工检查均不足以可靠检测需求异味。作者结论认为，使用LLM agent自动生成代码-需求数据集尚不成熟，必须引入严格的人工监督来保证数据质量。</div>
+            </div>
+            
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25588" target="_blank">IntentTester: Intent-Driven Multi-agent Framework for Cross-Library Test Migration</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Yi Gao et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.SE</span>
+                </div>
+                <div class="paper-comment">IntentTester提出一个multi-agent框架,用于解决跨库测试迁移时结构映射失效的问题。现有方法因API签名等结构依赖在跨设计或跨语言场景下易崩溃,导致迁移后的测试不可执行。该框架将测试抽象为语言无关的Test Description Language(TDL),通过repository graph对齐语义实体和依赖,并利用LLM进行推理与迭代验证,从而生成可执行测试。在9个开源项目(JSON、HTML、Time三个领域,Java与Python)上,IntentTester生成2,776个</div>
+            </div>
+            
+<h3 style="color: #4a6fa5; margin-top: 15px; margin-bottom: 10px;">cs.OS</h3>
+
+            <div class="paper-item">
+                <div class="paper-title">
+                    <a href="https://arxiv.org/abs/2606.25189" target="_blank">ActPlane: Programmable OS-Level Policy Enforcement for Agent Harnesses</a>
+                    <span class="selection-badge">⭐ 精选</span>
+                </div>
+                <div class="paper-authors">Yusheng Zheng et al.</div>
+                <div class="paper-categories">
+                    <span class="category-tag">cs.OS</span>
+                </div>
+                <div class="paper-comment">ActPlane针对AI agent在OS层面执行安全与有效性策略时存在的语义鸿沟问题，现有方法如tool-call guardrails无法捕获绕过工具层的系统动作，而OS sandboxes仅控制资源访问却返回不透明错误。该方法将策略声明置于agent最贴近任务的上下文，在OS内核通过eBPF实现轻量级信息流控制DS</div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- 所有论文部分 - 按学科分节 -->
+    <section id="papers" class="section">
+        <h2 class="section-title">📄 所有论文</h2>
+        
+        <!-- 这里将动态生成各个学科的论文小节 -->
+        <!-- 格式示例：
+        <div id="cs-AI" class="category-section">
+            <h3 class="category-title">cs.AI - 人工智能</h3>
+            <div class="paper-list">
+                论文内容...
+            </div>
+        </div>
+        <div id="others" class="category-section">
+            <h3 class="category-title">others - 其他</h3>
+            <div class="paper-list">
+                论文内容...
+            </div>
+        </div>
+        -->
+        <div id="cs-AI" class="category-section">
+<h3 class="category-title">cs.AI</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.23991" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23991" target="_blank">Critique of Agent Model</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Eric Xing, Mingkai Deng, Jinyu Hou</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.MA</span>
+<span class="category-tag">cs.RO</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24047" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24047" target="_blank">Ensemble Feature Selection and Harris Hawks Optimization for Explainable Mental Health Risk Prediction in Female Sex Workers</a>
+    
+        </div>
+        <div class="paper-authors">Ahnaf Atef Choudhury et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24388" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24388" target="_blank">PHANTOM: A Large-Scale Dataset of Multimodal Adversarial Attacks for Vision-Language Models</a>
+    
+        </div>
+        <div class="paper-authors">Simone Gallivanone et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24601" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24601" target="_blank">ASALT: Adaptive State Alignment for Lateral Transfer in Multi-agent Reinforcement Learning</a>
+    
+        </div>
+        <div class="paper-authors">Anurag Akula et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.26057" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.26057" target="_blank">The Unfireable Safety Kernel: Execution-Time AI Alignment for AI Agents and Other Escapable AI Systems</a>
+    
+        </div>
+        <div class="paper-authors">Seth Dobrin, Łukasz Chmiel</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="cs-LG" class="category-section">
+<h3 class="category-title">cs.LG</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.23961" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23961" target="_blank">Forget Without Compromise: Nexus Sampling for Streaming KV-Cache Eviction Under Fixed Budgets</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Duc Duong et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24340" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24340" target="_blank">Managing Task Execution for Unknown Workloads in Batteryless IoT: A Hardware-Agnostic Evaluation</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Samer Nasser et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23739" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23739" target="_blank">Systematic Exploration of 4-Expert Heterogeneous Mixture-of-Experts via Automated Pipeline Search</a>
+    
+        </div>
+        <div class="paper-authors">Yashkumar R Lukhi et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23740" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23740" target="_blank">Weight-Space Geometry of Offline Reasoning Training</a>
+    
+        </div>
+        <div class="paper-authors">Aleksandr Nikolich et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23741" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23741" target="_blank">A Survey on Federated Causal Discovery and Inference</a>
+    
+        </div>
+        <div class="paper-authors">Xianjie Guo et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.DC</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23742" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23742" target="_blank">Low-power analogue neural networks with trainable nonlinear connections for continuous control</a>
+    
+        </div>
+        <div class="paper-authors">Ian T. Vidamour et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.AR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23757" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23757" target="_blank">Synergizing Physically Constrained MCMC and Chemical-Informed Gaussian Processes for Reaction Network Discovery</a>
+    
+        </div>
+        <div class="paper-authors">Runzhe Liu et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23758" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23758" target="_blank">Exploring Dualistic Meta-Learning to Enhance Domain Generalization in Open Set Scenarios</a>
+    
+        </div>
+        <div class="paper-authors">Xiran Wang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23767" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23767" target="_blank">One Ruler: A Same-Hands Re-Evaluation of Bivariate Causal Direction on Tuebingen, with a Parameter-Free Compression Baseline</a>
+    
+        </div>
+        <div class="paper-authors">Wietse Stienstra</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23830" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23830" target="_blank">Deciphering Fingerprints of 3D Molecular Surfaces for Accurate Epitope Prediction</a>
+    
+        </div>
+        <div class="paper-authors">Fang Wu et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23833" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23833" target="_blank">Reconstructing GRACE Terrestrial Water Storage with Spatio-Temporal Graph Neural Networks: An Application to South America</a>
+    
+        </div>
+        <div class="paper-authors">Lukas Arzoumanidis et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23838" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23838" target="_blank">The Degeneracy Distillery</a>
+    
+        </div>
+        <div class="paper-authors">T. Lucas Makinen et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">astro-ph.IM</span>
+<span class="category-tag">physics.comp-ph</span>
+<span class="category-tag">physics.data-an</span>
+<span class="category-tag">stat.ML</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23851" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23851" target="_blank">Machine Learning Modeling for Real-Time Melt Pool Monitoring in Laser Powder Bed Fusion Additive Manufacturing: A Hybrid Approach</a>
+    
+        </div>
+        <div class="paper-authors">Inioluwa Emmanuel et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CV</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23856" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23856" target="_blank">Sesame: Structure-Aware Molecular Generation via Spatial Density-Map Conditioning</a>
+    
+        </div>
+        <div class="paper-authors">Konstantin Yatsenko, Arvind Thiagarajan</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23858" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23858" target="_blank">Are Safety Guarantees in Neural Networks Safe? How to Compute Trustworthy Robustness Certifications</a>
+    
+        </div>
+        <div class="paper-authors">Merkouris Papamichail et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23867" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23867" target="_blank">Exact Schur-Sylvester Dimensionality Reductions for Non-Smooth Stochastic Complexity and Manifold Sampling</a>
+    
+        </div>
+        <div class="paper-authors">Trenton Lau, Gary P. T. Choi</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.IT</span>
+<span class="category-tag">math.ST</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23871" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23871" target="_blank">Federated Survival Analysis in Healthcare: A Multi-Model Evaluation on Cross-Institutional Heterogeneous Breast Cancer Data</a>
+    
+        </div>
+        <div class="paper-authors">Natalia Moreno-Blasco et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">q-bio.QM</span>
+<span class="category-tag">stat.ME</span>
+<span class="category-tag">stat.ML</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23872" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23872" target="_blank">MGI: Member vs Generated Inference</a>
+    
+        </div>
+        <div class="paper-authors">Bihe Zhao et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23880" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23880" target="_blank">GRACE: Gated Refinement for Accurate Causal Edge Discovery in High-Dimensional Time Series</a>
+    
+        </div>
+        <div class="paper-authors">Mohammad Fesanghary, Abhinav Havaldar</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">stat.ME</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23898" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23898" target="_blank">ARIA: Adaptive Region-Based Importance Allocation for Conditional Diffusion Distillation</a>
+    
+        </div>
+        <div class="paper-authors">Loay Mualem et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23913" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23913" target="_blank">Closing the Loop: Formally Verified Law as a Reward Signal for Self-Improving Legal AI</a>
+    
+        </div>
+        <div class="paper-authors">Armin Heydari, Torben Leowald</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23920" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23920" target="_blank">Catastrophic Compositional Generation: Why Vanilla Diffusion Models Fail to Extrapolate</a>
+    
+        </div>
+        <div class="paper-authors">Duncan Soiffer et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23932" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23932" target="_blank">KLip-PPO: A per-sample KL perspective on PPO-Clip</a>
+    
+        </div>
+        <div class="paper-authors">Riccardo Colletti, Robin Holzinger</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23942" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23942" target="_blank">DREG: A Layer-Wise Jacobian Regularization as a General-Purpose Penalty</a>
+    
+        </div>
+        <div class="paper-authors">Rowan Martnishn</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23957" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23957" target="_blank">Learning the Koopman Operator using Attention Free Transformers</a>
+    
+        </div>
+        <div class="paper-authors">Mohammed Nagdi et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">eess.SY</span>
+<span class="category-tag">q-bio.MN</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23964" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23964" target="_blank">3D Masked Autoencoders are Robust Learners of Volumetric and Multimodal Cellular Representations for Microscopy</a>
+    
+        </div>
+        <div class="paper-authors">Amirhossein Kardoost et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CV</span>
+<span class="category-tag">q-bio.QM</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23977" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23977" target="_blank">A Comparative Study of Bayesian Contextual Bandits for Real-Time Warehouse Sorter Optimization</a>
+    
+        </div>
+        <div class="paper-authors">Tina Dongxu Li et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">eess.SY</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23978" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23978" target="_blank">Offline Reinforcement Learning for Warehouse SLAM Throughput Control</a>
+    
+        </div>
+        <div class="paper-authors">Tina Dongxu Li et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23993" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23993" target="_blank">Learning to Trigger: Reinforcement Learning at the Large Hadron Collider</a>
+    
+        </div>
+        <div class="paper-authors">Zixin Ding et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">hep-ex</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23995" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23995" target="_blank">EMAgnet: Parameter-Space EMA Regularization for Policy Gradient Self-Play in Large Games</a>
+    
+        </div>
+        <div class="paper-authors">Tristan Maidment et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.GT</span>
+<span class="category-tag">cs.MA</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24000" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24000" target="_blank">Cyclic Denoising Reveals Ultrastable Memories in Diffusion Models</a>
+    
+        </div>
+        <div class="paper-authors">Rishabh Sharma, Stefano Martiniani</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cond-mat.dis-nn</span>
+<span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.CV</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24007" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24007" target="_blank">Fast and Slow Variational Continual Learning</a>
+    
+        </div>
+        <div class="paper-authors">Subarnaduti Paul et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24020" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24020" target="_blank">You Don&#39;t Need to Run Every Eval</a>
+    
+        </div>
+        <div class="paper-authors">Yuchen Zeng, Dimitris Papailiopoulos</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24025" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24025" target="_blank">Information-Theoretic Classifier-Free Guidance with Adaptive Schedule Optimization</a>
+    
+        </div>
+        <div class="paper-authors">Haobo Chen, Xiangxiang Xu, Yuheng Bu</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24033" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24033" target="_blank">RoPE-Aware Bit Allocation for KV-Cache Quantization</a>
+    
+        </div>
+        <div class="paper-authors">Fengfeng Liang, Yuechen Zhang, Jiaya Jia</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24046" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24046" target="_blank">Rapid FinFET Modelling Using an Autoencoder</a>
+    
+        </div>
+        <div class="paper-authors">Amit Sarkar Suman Sau, Swagata Mandal</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">physics.app-ph</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24062" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24062" target="_blank">RAVEN: A Regime-Aware Variable-context Expert Network for Financial Time Series Forecasting</a>
+    
+        </div>
+        <div class="paper-authors">Cheng He et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24084" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24084" target="_blank">Blockwise Policy-Drift Gating for On-Policy Distillation</a>
+    
+        </div>
+        <div class="paper-authors">Liwen Zheng, Haiyun Jiang</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.CL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24087" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24087" target="_blank">NeuroSonic: Conditional Flow Matching for EEG-to-Speech Reconstruction</a>
+    
+        </div>
+        <div class="paper-authors">Wenhao Gao et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24113" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24113" target="_blank">FedUP: One-Shot Federated Unlearning via Centroid-Guided Plug-in Filters</a>
+    
+        </div>
+        <div class="paper-authors">Feihong Nan et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24119" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24119" target="_blank">When Top-1 Fails: Calibrating LoRA Monitors for Masked Diffusion LMs</a>
+    
+        </div>
+        <div class="paper-authors">Lucky Verma, Pratik Yadav</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24133" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24133" target="_blank">Holistic Data Scheduler for LLM Pre-training via Multi-Objective Reinforcement Learning</a>
+    
+        </div>
+        <div class="paper-authors">Chenhao Dang, Jing Ma, Mingjie Liao</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24140" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24140" target="_blank">A Time-Reparameterized Cumulative Intensity Extrapolation Sampler for Discrete Flow Matching</a>
+    
+        </div>
+        <div class="paper-authors">Feiyang Fu, Hehe Fan</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24143" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24143" target="_blank">AsyncOPD: How Stale Can On-Policy Distillation Be?</a>
+    
+        </div>
+        <div class="paper-authors">Wonjun Kang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24173" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24173" target="_blank">Lightweight Transformer Models for On-Device Fault Detection: A Benchmark Study on Resource-Constrained Deployment</a>
+    
+        </div>
+        <div class="paper-authors">Disha Patel</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24184" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24184" target="_blank">Project Ariadne: Prompt-Conditioned Route Generation for Synthesis Planning</a>
+    
+        </div>
+        <div class="paper-authors">Anton Morgunov, Victor S. Batista</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24396" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24396" target="_blank">Parallel Manifold Steering: Efficient Adaptation of Large Associative Memories via Residual Energy Shaping</a>
+    
+        </div>
+        <div class="paper-authors">Kanishk Awadhiya</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24408" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24408" target="_blank">Natural Identifiers for Privacy and Data Audits in Large Language Models</a>
+    
+        </div>
+        <div class="paper-authors">Lorenzo Rossi et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24418" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24418" target="_blank">Data Augmentation: A Fourier Analysis Perspective</a>
+    
+        </div>
+        <div class="paper-authors">Behrooz Tahmasebi, Melanie Weber, Stefanie Jegelka</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">stat.ML</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24459" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24459" target="_blank">An LLM-based Two-Stage Transformer Framework for Cross-Domain Bearing Fault Diagnosis with Limited Data</a>
+    
+        </div>
+        <div class="paper-authors">Jinghan Wang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24509" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24509" target="_blank">A Fair Evaluation of Graph Foundation Models for Node Property Prediction</a>
+    
+        </div>
+        <div class="paper-authors">Oleg Platonov et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.SI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24543" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24543" target="_blank">Reasoning as Attractor Dynamics: Latent Memory Retrieval via Gibbs-Weighted Energy Minimization</a>
+    
+        </div>
+        <div class="paper-authors">Kanishk Awadhiya</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24625" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24625" target="_blank">QC-SMOTE: Quality-Controlled SMOTE for Imbalanced Classification</a>
+    
+        </div>
+        <div class="paper-authors">Parth Upman, Shreyank N Gowda</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24679" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24679" target="_blank">FlowPipe: LLM-Enhanced Conditional Generative Flow Networks for Data Preparation Pipeline Construction</a>
+    
+        </div>
+        <div class="paper-authors">Kunyu Ni et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24790" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24790" target="_blank">Grad Detect: Gradient-Based Hallucination Detection in LLMs</a>
+    
+        </div>
+        <div class="paper-authors">Anand Kamat, Daniel Blake, Brent M. Werness</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24851" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24851" target="_blank">Real vs. Complex Spectral Bases for Neural Operators: The Role of Green&#39;s Function Alignment</a>
+    
+        </div>
+        <div class="paper-authors">Jason Sulskis, Sathya Ravi</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25004" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25004" target="_blank">Certification of Machine Learning Models via Directional Sharpness</a>
+    
+        </div>
+        <div class="paper-authors">Gefei Tan et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25097" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25097" target="_blank">Speculative Decoding at Temperature Zero: A Scoped Safety-Invariance Screen with a 48,072-Sample Expansion</a>
+    
+        </div>
+        <div class="paper-authors">Sahil Kadadekar</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25589" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25589" target="_blank">Leaking Circuit Secrets: Gradient Leakage Attacks on Graph Neural Networks</a>
+    
+        </div>
+        <div class="paper-authors">Rupesh Raj Karn, Johann Knechtel, Ozgur Sinanoglu</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25627" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25627" target="_blank">TL++: Accuracy and Privacy Preserving Traversal Learning for Distributed Intelligent Systems</a>
+    
+        </div>
+        <div class="paper-authors">Erdenebileg Batbaatar, Young Yoon</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.DC</span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="cs-GT" class="category-section">
+<h3 class="category-title">cs.GT</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.25276" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25276" target="_blank">Decidability and Undecidability Results for LIA-Definable Impartial Combinatorial Games</a>
+    
+        </div>
+        <div class="paper-authors">Shiguang Feng et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.GT</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25431" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25431" target="_blank">Envy-free Contracts with Subsidies</a>
+    
+        </div>
+        <div class="paper-authors">Matteo Castiglioni, Junjie Chen, Yingkai Li</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.GT</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25707" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25707" target="_blank">Equilibrium and Infeasibility: A new solution concept for games</a>
+    
+        </div>
+        <div class="paper-authors">Anne Reulke, Mikaël Touati, Rachid El-Azouzi</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.GT</span>
+<span class="category-tag">math.OC</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25910" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25910" target="_blank">Restoring Incentive Compatibility in Two-Stage Energy Markets with Prosumers</a>
+    
+        </div>
+        <div class="paper-authors">Nikolas Koumpis et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.GT</span>
+<span class="category-tag">econ.GN</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25997" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25997" target="_blank">Variable Bound Tightening for Nash Equilibrium Computation in Multiplayer Imperfect-Information Games</a>
+    
+        </div>
+        <div class="paper-authors">Sam Ganzfried</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.GT</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.MA</span>
+<span class="category-tag">econ.TH</span>
+<span class="category-tag">math.OC</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.26055" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.26055" target="_blank">Hotelling-Downs with Facility Synergy: The Mall Effect</a>
+    
+        </div>
+        <div class="paper-authors">Elliot Anshelevich, Jianan Lin, Noah Prisament</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.GT</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.26074" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.26074" target="_blank">Strategyproof Facility Location and Committee Selection with Mixed Max and Sum Agent Types</a>
+    
+        </div>
+        <div class="paper-authors">Yue Gruszecki, Elliot Anshelevich</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.GT</span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="cs-CR" class="category-section">
+<h3 class="category-title">cs.CR</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.25195" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25195" target="_blank">SoK: AI Secure Code Generation: Progress, Pitfalls, and Paths Forward</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Rupam Patir et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25332" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25332" target="_blank">Decoupling Reconnaissance and Exploitation: Measuring the Capability Boundaries of LLM-Based Web Penetration Testing</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Liwei Yu et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25622" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25622" target="_blank">Probabilistic Agents in Deterministic Audits: Evaluating Multi-Agent Systems for Automated Audits Based on the German IT-Grundschutz</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Lea Roxanne Muth, Marian Margraf</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24934" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24934" target="_blank">Unprivileged Topology Certificates for Cloud GPU Attestation</a>
+    
+        </div>
+        <div class="paper-authors">Faruk Alpay, Taylan Alpay</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24942" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24942" target="_blank">Quantum-Resilient Decentralized AI Economies: Proof-of-Useful-Work and Post-Quantum Security</a>
+    
+        </div>
+        <div class="paper-authors">Connor Barbaccia, Sudip Vhaduri, Sayanton Dibbo</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25059" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25059" target="_blank">What Does It Mean to Break a Distillation Defense?</a>
+    
+        </div>
+        <div class="paper-authors">Lena Libon et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25216" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25216" target="_blank">Homomorphic Encryptions for Privacy Preserving Vision</a>
+    
+        </div>
+        <div class="paper-authors">Preey Shah, Rohan Virani, Sanjari Srivastava</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.CV</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25248" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25248" target="_blank">Sponsored Group Signature and its Application to Privacy-preserving Guest Access in Smart Environments</a>
+    
+        </div>
+        <div class="paper-authors">Sepideh Avizheh, Reihaneh Safavi-Naini, Shiwei Sun</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.NI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25349" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25349" target="_blank">General Techniques for Reducing Key-Switching Overhead in Privacy-Preserving Two-Party Transformer Inference</a>
+    
+        </div>
+        <div class="paper-authors">Wenshao Yang, Zhenhua Liu, Dongdong Yao</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25356" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25356" target="_blank">Representation Matters: An Empirical Study of Program Representations for LLM Vulnerability Reasoning</a>
+    
+        </div>
+        <div class="paper-authors">Andrew Stoltman, Johnathan Tang, Haipeng Cai</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25533" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25533" target="_blank">Security and Privacy in Retrieval-Augmented Generation: Architectures, Threats, Defenses, and Future Directions for Building Trustworthy Systems</a>
+    
+        </div>
+        <div class="paper-authors">Balamurugan Palanisamy et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.CL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25561" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25561" target="_blank">CrypFormBench: Benchmarking Formal Analysis Capability of Large Language Models for Cryptographic Schemes</a>
+    
+        </div>
+        <div class="paper-authors">Zhaoxuan Li et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25608" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25608" target="_blank">An Approach for a Supporting Multi-LLM System for Automated Certification Based on the German IT-Grundschutz</a>
+    
+        </div>
+        <div class="paper-authors">Lea Roxanne Muth, Marian Margraf</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25645" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25645" target="_blank">Taxonomy of Risks on Automated Fact-Checking Systems Considering its Propagation</a>
+    
+        </div>
+        <div class="paper-authors">Jun Yajima, Tatsuya Oka, Takao Okubo</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25721" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25721" target="_blank">Tracing Target Answers in Poisoned Retrieval Corpora via Token Influence Attribution</a>
+    
+        </div>
+        <div class="paper-authors">Yan-Lun Chen et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.IR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25734" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25734" target="_blank">Shoot the Honey, Cloak the Player: Towards Zero-Runtime-Overhead Proactive Defense and Detection for Visual Game Cheating</a>
+    
+        </div>
+        <div class="paper-authors">Jianing Wang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25750" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25750" target="_blank">RAS: Measuring LLM Safety Through Refusal Alignment</a>
+    
+        </div>
+        <div class="paper-authors">Chang-Chieh Huang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25858" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25858" target="_blank">Color Matters: Trigger Color Affects Success in Federated Backdoor Attacks</a>
+    
+        </div>
+        <div class="paper-authors">Kavindu Herath, Joshua C. Zhao, Saurabh Bagchi</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25926" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25926" target="_blank">A Tattered Cloak of Invisibility: Measuring Anonymity Loss in Railgun on Ethereum</a>
+    
+        </div>
+        <div class="paper-authors">Kanan Huseynov et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25950" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25950" target="_blank">Do (Not) Tell Me About My Insecurities: Assessing the Status Quo of Coordinated Vulnerability Disclosure in Germany Amid New EU Cybersecurity Regulations</a>
+    
+        </div>
+        <div class="paper-authors">Sebastian Neef, Cenk Schlunke, Anne Hennig</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25998" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25998" target="_blank">BlowLive: Blow-Based Multi-Factor Biometrics with Liveness Detection and Revocability</a>
+    
+        </div>
+        <div class="paper-authors">Eyasu Getahun Chekole et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.26021" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.26021" target="_blank">Privacy Vulnerabilities of Attention Layers in Tabular Foundation Models and Protection of High-Risk Queries</a>
+    
+        </div>
+        <div class="paper-authors">Tânia Carvalho, Maxime Cordy</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.26028" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.26028" target="_blank">Can Trustless Agents Be Trusted? An Empirical Study of the ERC-8004 Decentralized AI Agent Ecosystem</a>
+    
+        </div>
+        <div class="paper-authors">Xihan Xiong et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.MA</span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="cs-CL" class="category-section">
+<h3 class="category-title">cs.CL</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.25819" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25819" target="_blank">Beyond Function Calling: Benchmarking Tool-Using Agents under Tool-Environment Unreliability</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Yang Tian, Zhengpeng Shi, Bo Zhao</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23700" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23700" target="_blank">Self-Recognition Finetuning can Prevent and Reverse Emergent Misalignment</a>
+    
+        </div>
+        <div class="paper-authors">Arush Tagade et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23701" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23701" target="_blank">Evaluating LLM Usage for Efficient and Explainable Numerical and Classified Implicit Sentiment Analysis of Product Desirability</a>
+    
+        </div>
+        <div class="paper-authors">Sherri Weitl-Harms, John Hastings</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.HC</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23915" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23915" target="_blank">Do LLM Attribution Metrics Transfer? Auditing Retrieval-Augmented Generation Evaluation Across Datasets and Constructs</a>
+    
+        </div>
+        <div class="paper-authors">Tianyu Ding, Aditya Nannapaneni, Juan Pablo De la Cruz Weinstein</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.IR</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23937" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23937" target="_blank">When Retrieval Metrics Mislead: Measuring Policy Signal in Long-Horizon Tool-Use Agents</a>
+    
+        </div>
+        <div class="paper-authors">Tianyu Ding, Juan Pablo De la Cruz Weinstein</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23959" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23959" target="_blank">Does My Embedding Reflect That $A = B$? Evaluating Mathematical Equivalence in Embedding Models</a>
+    
+        </div>
+        <div class="paper-authors">Jiaying Ye et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23992" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23992" target="_blank">RASC+: Retrieval-Constrained LLM Adjudication for Clinical Value Set Authoring</a>
+    
+        </div>
+        <div class="paper-authors">Sumit Mukherjee</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24083" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24083" target="_blank">CAVEWOMAN: How Large Language Models Behave Under Linguistic Input and Output Compression</a>
+    
+        </div>
+        <div class="paper-authors">Morayo Danielle Adeyemi, Ryan A. Rossi, Franck Dernoncourt</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24102" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24102" target="_blank">PORTER: Language-Grounded Event Representations for Portable Structured EHR Foundation Models</a>
+    
+        </div>
+        <div class="paper-authors">Lin Lawrence Guo et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24162" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24162" target="_blank">BehaviorBench: Benchmarking Foundation Models for Behavioral Science Tasks</a>
+    
+        </div>
+        <div class="paper-authors">Jin Huang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24172" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24172" target="_blank">A Pāninian Foundation for Indic Language Processing</a>
+    
+        </div>
+        <div class="paper-authors">Ritwik Banerjee, Lav R. Varshney</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24650" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24650" target="_blank">Harmonic: Hierarchical State Space Models for Efficient Long-Context Language Modeling</a>
+    
+        </div>
+        <div class="paper-authors">Petr Nyoma</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24655" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24655" target="_blank">AI-PAVE-Br: Leveraging Large Language Models for Enhanced Product Attribute Value Extraction through a Golden Set Approach</a>
+    
+        </div>
+        <div class="paper-authors">Murilo Gazzola et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.PF</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24825" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24825" target="_blank">L3Cube-MahaPOS: A Marathi Part-of-Speech Tagging Dataset and BERT Models</a>
+    
+        </div>
+        <div class="paper-authors">Hariom Ingle et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25487" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25487" target="_blank">How Reliable Is Your Jailbreak Judge? Calibration and Adversarial Robustness of Automated ASR Scoring</a>
+    
+        </div>
+        <div class="paper-authors">Yang Gao</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.26036" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.26036" target="_blank">Detect, Unlearn, Restore: Defending Text Summarization Models Against Data Poisoning</a>
+    
+        </div>
+        <div class="paper-authors">Poojitha Thota, Shirin Nilizadeh</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CL</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="cs-SE" class="category-section">
+<h3 class="category-title">cs.SE</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.24598" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24598" target="_blank">Toward Self-Evolution-Ready Workflow Harnesses: A Reversible Migration Path and Convertibility Taxonomy for Expert LLM Pipelines</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Yimo Lin, Zhen Zhang, Yibin Li</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25514" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25514" target="_blank">Unlocking Model Potentials Through Adaptive Multi-Agent Scaffolding for Efficient Issue Resolution</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Yang Chen et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25550" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25550" target="_blank">On the Viability of Requirements Generation From Code: An Experience Report</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Alexander Korn et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25588" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25588" target="_blank">IntentTester: Intent-Driven Multi-agent Framework for Cross-Library Test Migration</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Yi Gao et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23001" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23001" target="_blank">EnerInfer: Energy-Aware On-Device LLM Inference</a>
+    
+        </div>
+        <div class="paper-authors">Bohua Zou et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.OS</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25120" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25120" target="_blank">Fifty Years of Specification Completeness: What Aviation Certification Tells AI Governance About Epoch Limits, Proof Surfaces, and the Structural Gap</a>
+    
+        </div>
+        <div class="paper-authors">Christo Zietsman</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.CY</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25193" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25193" target="_blank">LLM4MTLs: Automated Generation and Empirical Evaluation of Model Transformation Languages</a>
+    
+        </div>
+        <div class="paper-authors">Bowen Jiang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25239" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25239" target="_blank">Tensor-Based Batch Fuzzing with Adaptive Perturbation Scaling for Deep Neural Networks</a>
+    
+        </div>
+        <div class="paper-authors">Guanqin Zhang, Yulei Sui</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25257" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25257" target="_blank">How Do Developers Maintain and Evolve Their Agents&#39; Instructions? An Empirical Study</a>
+    
+        </div>
+        <div class="paper-authors">Gianmario Voria et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25272" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25272" target="_blank">Semantic Code Clone Detection: Are We There Yet?</a>
+    
+        </div>
+        <div class="paper-authors">Zhiwei Xu et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25402" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25402" target="_blank">LibEvoBench: Probing Temporal Knowledge Stratification in Code Generation Models</a>
+    
+        </div>
+        <div class="paper-authors">Daniele Cipollone et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25418" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25418" target="_blank">Project-wise Comparison of Software Birthmarks Using Weighted Partial Similarity</a>
+    
+        </div>
+        <div class="paper-authors">Nikolay Fedorov et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25525" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25525" target="_blank">The impact of artificial intelligence on enterprise software user roles</a>
+    
+        </div>
+        <div class="paper-authors">Isabel Unger et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25530" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25530" target="_blank">Evaluating LLMs on Real-World Software Performance Optimization</a>
+    
+        </div>
+        <div class="paper-authors">Ezgi Sarıkayak et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.CL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25747" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25747" target="_blank">CodeChat-Eval: Evaluating Large Language Models in Multi-Turn Code Refinement Dialogues</a>
+    
+        </div>
+        <div class="paper-authors">Guoxiang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25863" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25863" target="_blank">Automated Detection of Configuration-Specific Security Vulnerabilities via Patch Analysis</a>
+    
+        </div>
+        <div class="paper-authors">Felipe de Sant'Anna Paixão et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25867" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25867" target="_blank">LLM-Based Discovery of Latent Requirements from Stakeholder Conversations: Preliminary Results from Industry</a>
+    
+        </div>
+        <div class="paper-authors">Mithila Sivakumar et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25876" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25876" target="_blank">The Web4 Agent Economy: A Large-Scale Empirical Study of the Landscape, Challenges, and Opportunities</a>
+    
+        </div>
+        <div class="paper-authors">Yuhan Jin et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25949" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25949" target="_blank">The Dependency Black Hole</a>
+    
+        </div>
+        <div class="paper-authors">Ehsan Zabardast, Bhuwan Paudel, Javier Gonzalez-Huerta</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25973" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25973" target="_blank">Helpful or Harmful? Evaluating LLM-Assisted Vulnerability Patching via a Human Study</a>
+    
+        </div>
+        <div class="paper-authors">Giulian Biolo et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.SE</span>
+<span class="category-tag">cs.AI</span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="cs-OS" class="category-section">
+<h3 class="category-title">cs.OS</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.25189" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25189" target="_blank">ActPlane: Programmable OS-Level Policy Enforcement for Agent Harnesses</a>
+    <span class="selection-badge">⭐ 精选</span>
+        </div>
+        <div class="paper-authors">Yusheng Zheng et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.OS</span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="others" class="category-section">
+<h3 class="category-title">others</h3>
+<div class="paper-list">
+
+    <div id="paper-2606.23706" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23706" target="_blank">Zero-Shot Neural Priors for Generalizable Cross-Subject and Cross-Task EEG Decoding</a>
+    
+        </div>
+        <div class="paper-authors">Baimam Boukar Jean Jacques et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">eess.SP</span>
+<span class="category-tag">cs.HC</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23707" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23707" target="_blank">Coordinate-Queryable Neural Field Reconstruction for EEG Spatial Super-Resolution with Unseen-Electrode Generation</a>
+    
+        </div>
+        <div class="paper-authors">Hongjun Liu et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">eess.SP</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23710" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23710" target="_blank">WiFi-Based People Counting Using Beam-Steerable Antennas: A Test-bed Study</a>
+    
+        </div>
+        <div class="paper-authors">Riccardo Bersan et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">eess.SP</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23718" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23718" target="_blank">Dimensionality Reduction of QAOA Parameter Space with Kernel PCA for Max-Cut</a>
+    
+        </div>
+        <div class="paper-authors">Sidharth Brahmandam, Vayd Ramkumar</div>
+        <div class="paper-categories">
+            <span class="category-tag">quant-ph</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23719" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23719" target="_blank">A Hybrid Quantum-Classical Approach for Melt Pool Prediction in Laser Powder Bed Fusion</a>
+    
+        </div>
+        <div class="paper-authors">Matthew M. Sato, Kincho H. Law</div>
+        <div class="paper-categories">
+            <span class="category-tag">quant-ph</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23725" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23725" target="_blank">Computational references are not experiments: pre-registered validation of machine-learned sodium-cathode voltages</a>
+    
+        </div>
+        <div class="paper-authors">Krishna Teja Vepa</div>
+        <div class="paper-categories">
+            <span class="category-tag">cond-mat.mtrl-sci</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23743" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23743" target="_blank">Sol Video Inference Engine: Agent-Native Full-Stack Acceleration Framework for Efficient Video Generation</a>
+    
+        </div>
+        <div class="paper-authors">Yitong Li et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23745" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23745" target="_blank">JEDEL: Zero-Shot DNA-Encoded Library Design for Early-Stage Drug Discovery</a>
+    
+        </div>
+        <div class="paper-authors">Zygimantas Jocys et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">q-bio.BM</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23754" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23754" target="_blank">Verifiable Foundation Models for Robot Safety</a>
+    
+        </div>
+        <div class="paper-authors">Davide Corsi, Kyungmin Kim, Roy Fox</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.RO</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23766" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23766" target="_blank">Machine Learning and Deep Learning for Exoplanet Detection and Atmospheric Characterization with JWST and the Upcoming Ariel Mission</a>
+    
+        </div>
+        <div class="paper-authors">Muallim Yakubu, Vwavware Oruaode Jude</div>
+        <div class="paper-categories">
+            <span class="category-tag">astro-ph.IM</span>
+<span class="category-tag">astro-ph.EP</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23827" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23827" target="_blank">Hessian-augmented Supervised Learning for Hamilton-Jacobi-Bellman PDEs</a>
+    
+        </div>
+        <div class="paper-authors">Matías Gómez-Aedo et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.OC</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">math.NA</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23933" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23933" target="_blank">Flow-Corrected Thompson Sampling for Non-Stationary Contextual Bandits</a>
+    
+        </div>
+        <div class="paper-authors">AmirHossein Naghdi, Ali Baheri</div>
+        <div class="paper-categories">
+            <span class="category-tag">eess.SY</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23939" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23939" target="_blank">Constrained Variable Projection for Structured Problems</a>
+    
+        </div>
+        <div class="paper-authors">Emanuele Zangrando et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.OC</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">math.NA</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23940" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23940" target="_blank">Prediction of Viscoelastic Droplet Impact Dynamics Using a Vision Transformer-Based Approach</a>
+    
+        </div>
+        <div class="paper-authors">Diego A. de Aguiar, Cassio M. Oishi</div>
+        <div class="paper-categories">
+            <span class="category-tag">physics.flu-dyn</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.23944" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.23944" target="_blank">Stochastic Expectation Maximization for Robust State-Space Radio Interferometric Imaging</a>
+    
+        </div>
+        <div class="paper-authors">Nawel Arab et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">astro-ph.IM</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">stat.ML</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24011" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24011" target="_blank">Low-rank Updates in Slowly Time-varying Graphs for Spatial-Temporal Signal Interpolation</a>
+    
+        </div>
+        <div class="paper-authors">Saghar Bagheri et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">eess.SP</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24134" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24134" target="_blank">Uniform Sampling from High-dimensional Spectral Norm Balls</a>
+    
+        </div>
+        <div class="paper-authors">Michael R. Metel</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.PR</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24152" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24152" target="_blank">Autonomous Video Generation with Counterfactual Controllability for Self-Evolving World Models</a>
+    
+        </div>
+        <div class="paper-authors">Xin Wang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24236" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24236" target="_blank">Automated Residual Plot Assessment With the R Package autovi and the Shiny Application autovi.web</a>
+    
+        </div>
+        <div class="paper-authors">Weihao Li et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">stat.ML</span>
+<span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24263" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24263" target="_blank">MotifGen: Spatiotemporal interpolation of misaligned satellite images via multi-source generative modeling, in an application to tropical cyclones</a>
+    
+        </div>
+        <div class="paper-authors">Clément Dauvilliers, Claire Monteleoni</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24271" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24271" target="_blank">Deep numerical schemes for systems of Ergodic BSDEs with applications to regime-switching forward utilities</a>
+    
+        </div>
+        <div class="paper-authors">Guillaume Broux-Quemerais et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.NA</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">math.PR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24298" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24298" target="_blank">PROTECT-90: A Fault Dataset for Power System Protection</a>
+    
+        </div>
+        <div class="paper-authors">Julian Oelhaf et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">eess.SP</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24353" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24353" target="_blank">Open-Vocabulary BEV Segmentation with 3D-Aware Geometric Constraints</a>
+    
+        </div>
+        <div class="paper-authors">Hojun Choi et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24403" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24403" target="_blank">RE4: Transformation-aware Imitation of Object Interactions Using Manipulation Modes</a>
+    
+        </div>
+        <div class="paper-authors">Arsh Chawla, Rahul Shome</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.RO</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24433" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24433" target="_blank">MedPCFM: Improving Medical Point Cloud Completion by Integrating Point Transformers and Flow Matching</a>
+    
+        </div>
+        <div class="paper-authors">Kamil Kwarciak, Marek Wodzinski</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24458" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24458" target="_blank">An Agnostic Machine Learning Model of Photosynthetic Habitability</a>
+    
+        </div>
+        <div class="paper-authors">Callum Gray et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">astro-ph.EP</span>
+<span class="category-tag">astro-ph.IM</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24506" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24506" target="_blank">CrossPool: Efficient Multi-LLM Serving for Cold MoE Models through KV-Cache and Weight Disaggregation</a>
+    
+        </div>
+        <div class="paper-authors">Zhuoren Ye et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.DC</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">cs.PF</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24586" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24586" target="_blank">EERLoss: A Novel Loss Function for Training Deep Biometric Models. A Case Study in Keystroke Dynamics</a>
+    
+        </div>
+        <div class="paper-authors">Nahuel Gonzalez et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CV</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24660" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24660" target="_blank">Extended pseudo-spectral physics-informed neural networks for phase-field models</a>
+    
+        </div>
+        <div class="paper-authors">Callum Marsh, Radek Erban, Andreas Munch</div>
+        <div class="paper-categories">
+            <span class="category-tag">q-bio.QM</span>
+<span class="category-tag">cs.LG</span>
+<span class="category-tag">math.NA</span>
+<span class="category-tag">physics.bio-ph</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24696" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24696" target="_blank">A Physics-Informed Fourier-Wavelet Transformer for Multiscale Computational Fluid Dynamics Surrogate Modeling</a>
+    
+        </div>
+        <div class="paper-authors">Somyajit Chakraborty, Ming Pan, Xizhong Chen</div>
+        <div class="paper-categories">
+            <span class="category-tag">physics.flu-dyn</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24715" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24715" target="_blank">Model selection with proper scoring rules on data sets of time series: prefer the mean scaled score</a>
+    
+        </div>
+        <div class="paper-authors">Giorgio Corani et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">stat.ML</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24769" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24769" target="_blank">Dirac-Frenkel dynamics with inertia for nonlinearly parametrized solutions of evolution problems</a>
+    
+        </div>
+        <div class="paper-authors">Matteo Raviola, Benjamin Peherstorfer</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.NA</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24770" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24770" target="_blank">Context-Aware Prediction of Student Quiz Performance with Multimodal Textbook Features</a>
+    
+        </div>
+        <div class="paper-authors">Samin Khan</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.CY</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24879" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24879" target="_blank">New Bounds for the Last Iterate of the Stochastic subGradient Method</a>
+    
+        </div>
+        <div class="paper-authors">Guglielmo Beretta et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">math.OC</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24884" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24884" target="_blank">InSight: Self-Guided Skill Acquisition via Steerable VLAs</a>
+    
+        </div>
+        <div class="paper-authors">Maggie Wang et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.RO</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.LG</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.24891" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.24891" target="_blank">Type Checking Project Haystack Grids using JSON Schema and Pydantic</a>
+    
+        </div>
+        <div class="paper-authors">Thomas Hirsch, Samina Kadkhoda Masoumali, Gerald Schweiger</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.PL</span>
+<span class="category-tag">cs.AI</span>
+<span class="category-tag">cs.SE</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25422" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25422" target="_blank">Information flow security on persistent memory</a>
+    
+        </div>
+        <div class="paper-authors">Graeme Smith</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.LO</span>
+<span class="category-tag">cs.CR</span>
+<span class="category-tag">cs.PL</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25756" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25756" target="_blank">Space-based Missile Defense</a>
+    
+        </div>
+        <div class="paper-authors">David Wright</div>
+        <div class="paper-categories">
+            <span class="category-tag">physics.soc-ph</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+
+    <div id="paper-2606.25788" class="paper-item">
+        <div class="paper-title">
+            <a href="https://arxiv.org/abs/2606.25788" target="_blank">Can Machine Learning Break Wi-Fi Privacy? A Study on MAC Address Randomization</a>
+    
+        </div>
+        <div class="paper-authors">Marta Puig et al.</div>
+        <div class="paper-categories">
+            <span class="category-tag">cs.NI</span>
+<span class="category-tag">cs.CR</span>
+        </div>
+    </div>
+</div>
+</div>
+    </section>
+    
+    <div class="footnote">
+        <p>- 数据来源 Data Source: <a href="https:arXiv.org">arXiv.org</a></p>
+        <p>- 本网页的内容由 <a href="https://github.com/vegetablefj/bluearXiv-ai">bluearXiv-ai</a> 自动生成。实际抓取的是 arXiv 中 "new" 页面的数据，即最近的有所在分类论文变动的一天的数据。</p>
+        <p>- 感谢 arXiv 提供的服务。评论和精选由 AI 生成，不代表任何人对论文本身的看法。精选依赖于论文与给定关键词的匹配度。</p>
+        <p>- 计数基于主学科，不计重数。</p>
+        <p>- This webpage is automatically generated by <a href="https://github.com/vegetablefj/bluearXiv-ai">bluearXiv-ai</a>.</p>
+        <p>- The data actually captured is from the "new" page, that is, the data of the most recent day when there were changes in corresponding subjects.</p>
+        <p>- Thanks for services prodived by arXiv. Comments and selection of good papers are generated by AI, not showing anyone's point of view about those papers. </p>
+        <p>- The selection also depends on the matched-degrees between papers and given keywords. </p>
+        <p>- The counters are based on main subject, not counting multiplicities.</p>
+    </div>
+    
+    <a href="#" class="back-to-top">↑</a>
+
+    <script>
+        // KaTeX自动渲染配置
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError: false
+            });
+            
+            // 平滑滚动到锚点
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 10,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
