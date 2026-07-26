@@ -206,7 +206,6 @@ others: 83
 \section{cs.AI}
 \arxivwithtarget{2607.20452}{AINTMA: Agentic AI Architecture for Autonomous Test Management with Generative Intelligence, Secure Cloud Communication and Adaptive Quality Analytics}{Vinil Pasupuleti, Shyalendar Reddy Allala, Siva Rama Krishna Varma Bayyavarapu, Shrey Tyagi, Srinivasateja Songa}\textbf{cs.AI}.
 
-该论文提出AINTMA, 一种多智能体agent架构, 旨在将传统测试管理转变为自主质量智能生态系统, 解决分布式云环境中缺乏自适应决策的问题. 方法上部署六个专门AI agent, 包括基于LLM的Generative Quality Intelligence agent以及将测试
 
 
 \arxivwithtarget{2607.20462}{Marking the Wrong Symptoms: Evaluating LLM Watermarks in Medical Texts}{Melanie Rieff, Robin Staab, Thibaud Gloaguen, Stefan Hegselmann, Martin Vechev}\textbf{cs.AI}.
@@ -231,7 +230,6 @@ others: 83
 
 \arxivwithtarget{2607.20468}{InferenceBench: A Benchmark for Open-Ended LLM Inference Optimization by AI Agents}{Jehyeok Yeon, Ben Rank, Maksym Andriushchenko}\textbf{cs.AI}.
 
-该论文提出了InferenceBench, 用于评估AI agent在开放式LLM推理优化任务中的表现, 因为现有benchmark往往依赖于预设流程或记忆化解决方案, 难以衡量agent的真正的优化能力. 每个agent需在一个H100 GPU上部署推理服务器, 在2小时内针对不同的推理瓶颈(prefill latency、decode latency、并发吞吐量) 进行优化. 结果显示, agent性能可达朴素PyTorch基线$8.08\times$、匹配默认配置的vLLM引擎$4.05\times$, 但仍低于简单超参数搜索的$11.53\times$. 定性分析表明agent虽然列举了大量优化技术, 但实际仅尝试少数配置, 剩余时间用于重测、修复或调参, 未能广泛探索多样策略, 暴露出agent在
 
 
 \arxivwithtarget{2607.20469}{DecodeShare: Tracing the Shared Subspace of LLM Decode-Time Decisions}{Zishan Shao, Lixun Zhang, Kangning Cui, Yixiao Wang, Ting Jiang, Hancheng Ye, Qinsi Wang, Zhixu Du, Yuzhe Fu, Fan Yang, Danyang Zhuo, Yiran Chen, Hai Helen Li}\textbf{cs.AI}.
@@ -244,7 +242,7 @@ others: 83
 
 \arxivwithtarget{2607.20471}{Benchmarking the Personalization Capabilities of Large Language Models}{Ashutosh Srivastava, Siddharth Yedlapati, Vinay Aggarwal, Yaman Kumar Singla, Shashwat Dixit, Jitendra Ajmera, Balaji Krishnamurthy}\textbf{cs.AI}.
 
-该论文针对现有 LLM 个性化基准仅衡量发送方适应的问题, 将 Bayesian Persuasion 框架(Kamenica & Gentzkow, 2011) 适配到生成式 agent 场景, 以评估模型生成的消息能否诱导第三方接收者的预期
+该论文针对大语言模型在个性化消息生成中的能力不足问题, 特别是经典个性化涉及发送方和接收方独立目标的双方博弈, 而现有基准仅测量发送方适应. 作者将Kamenica和Gentzkow (2011)的Bayesian Persuasion框架适配到generative agents, 并构建了包含6279条销售成功案例的SDR-Bench数据集和带时间约束的模拟环境SDR-Arena. 在多个前沿LLM和deep-research agents上测试发现, 这些模型存在一致的个性化瓶颈, 无法
 
 
 \arxivwithtarget{2607.20472}{Robust Critics: Defending LLMs Against Multi-Turn Attacks}{Roman Belaire, Arunesh Sinha, Pradeep Varakantham}\textbf{cs.AI}.
@@ -285,7 +283,6 @@ others: 83
 
 \arxivwithtarget{2607.20482}{PersonaTrail: Benchmarking Personalized Web Agents through Browsing Trails}{Seungbin Yang, Chaewoon Ki, Dohyun Lee, Jaegul Choo, ChaeHun Park}\textbf{cs.AI}, cs.CL.
 
-该工作针对现有Web Agent基准无法处理用户提供模糊指令、需要从原始浏览历史中推断个性化上下文的问题. 作者提出PersonaTrail基准, 在受控开放Web环境中利用真实的浏览轨迹作为用户历史来评估Agent的个性化能力. 为提升性能, 提出了Preference-Aware Contextual Memory (PACMem)框架, 将原始历史分解为事实记忆与偏好记忆, 在推理时检索最相关条目以指导导航. 实验表明, PACMem在两类任务上一致优于现有基于记忆的基线方法.
 
 
 \arxivwithtarget{2607.20483}{Tractable Hierarchical Control of Autoregressive Language Models}{Max Scribner, Antonio Vergari, Vaishak Belle}\textbf{cs.AI}.
@@ -302,6 +299,7 @@ others: 83
 
 \arxivwithtarget{2607.20486}{OPTScientist: Multi-Agent Discovery of Typed Optimizer Programs for Transformer Pretraining}{Zhongzheng Li, Tiancan Feng, Wenhao Li, Qingsong Ran, Shikun Feng, Xiaoyuan Zhang, Yue Wang, Xiaoguang Zhao}\textbf{cs.AI}.
 
+针对Transformer预训练优化器设计的科学难题, 现有自动化方法或搜索空间无约束导致程序不可靠, 或局限于窄参数族限制创新. 为此提出OPTScientist, 一个理论引导的多智能体框架, 通过Theorist、Designer、Engineer和Reviewer四个角色在类型化DSL中协作
 
 
 \arxivwithtarget{2607.20487}{Directional Hallucinations: Ideological Drift in News-Grounded LLM Question Answering}{Chendi Wang, Liam Cunningham, Tom Yishay, Jieying Chen}\textbf{cs.AI}, cs.CL.
@@ -310,7 +308,7 @@ others: 83
 
 \arxivwithtarget{2607.20488}{Autonomous Topology Mutation: Safe Runtime Restructuring for Multi-Agent LLM Systems with Capability, State, and Shadow Invariants}{Bronislav Sidik, Chaya Levi, Nizzan Kimhi}\textbf{cs.AI}.
 
-多 agent LLM系统在运行时因任务负载混合、工具错误累积或调用排队等导致单个agent过载, 但由于静态团队拓扑无法自调整, 系统性能严重下降. 该论文提出Autonomous Topology Mutation, 利用六个信号的Bottleneck Index进行实时过载检测, 并通过三个安全不变式——capability monotonicity、state
+多智能体LLM系统在运行时可能因agent过载(如任务类别混杂、工具错误累积、调用排队) 而导致性能下降, 但现有框架在启动后无法动态调整团队拓扑. 论文提出Autonomous Topology Mutation (ATM), 通过六信号
 
 
 \arxivwithtarget{2607.20489}{EvoSQL: Memory-Augmented Critic-Generator Co-Evolution for Text-to-SQL}{Jiawei Zhou, Jianwei Wang, Chenyu Zhou, Chaojian Shi, Ming Dong, Kai Wang}\textbf{cs.AI}, cs.DB.
@@ -347,7 +345,7 @@ others: 83
 
 \arxivwithtarget{2607.20499}{ExecuGraph: A Multi-Agent, Execution-Grounded Framework for Reliable Backend Code Synthesis with Large Language Models}{Sai Deekshith Lekkala, Jothi Prabha Appadurai, Rohith Reddy Bellibatlu, Manpreet Singh}\textbf{cs.AI}, cs.SE.
 
-ExecuGraph针对LLM单次生成后端代码缺乏正确性和运行时可靠性保证的问题, 提出了一个以执行验证为核心的多agent框架. 该方法通过将Planner、Code Generator等六个专业化agent组织在带有限重试预算的有向工作流中, 并在隔离沙箱中执行评测, 从而实现对代码的逻辑与运行双重验证. 在HumanEval上, 多agent完整配置相比单次生成基准提升了3.1个百分点, 且跨模型实验显示当基础模型能力更强时(如DeepSeekCoder V2 Lite) , 准确率从57.5%跃升至80.0%, 验证了多agent分解的价值随模型能力增长而
+ExecuGraph是一个多智能体框架, 通过执行验证(execution-based validation) 解决大语言模型单次生成后端代码时缺乏正确性与运行时可靠性的问题. 它协调六个专门Agent(Planner、Code Generator等) 在带重试预算的有向工作流中运行, 并在子进程隔离沙箱中执行. 在HumanEval上相比单基线提升+3.1个百分点, 而使用DeepSeekCoder V2 Lite时准确率从57.5%跃升至80.0%(+22.5pp) , 表明多智能体分解的价值随基础模型能力增长而放大. 该框架主要贡献是提供一个可配置代码库, 支持一键式、执行重试及每种
 
 
 \arxivwithtarget{2607.20500}{FlowEdit: Information-Theoretic Control of LLM Reasoning Flows for Ill-posed Problems Involving Conflicts}{Sizhe Tang, Guangyu Jiang, Yu Li, Rongqian Chen, Ioannis G. Kevrekidis, Tian Lan}\textbf{cs.AI}.
@@ -356,7 +354,6 @@ ExecuGraph针对LLM单次生成后端代码缺乏正确性和运行时可靠性�
 
 \arxivwithtarget{2607.20501}{MKEvolve: A Modular Multi-Agent Framework for Kernel Code Generation}{Jason Yoo, Rajarshi Saha, Shaowei Zhu, Tao Yu, Wei Tang, Youngsuk Park}\textbf{cs.AI}, cs.MA.
 
-MKEvolve提出一种模块化多Agent框架, 通过迭代共进化策略解决LLM生成硬件kernel代码时正确性与性能不足的问题. 该方法将复杂PyTorch模块分解为子模块, 每个子模块由独立LLM Agent生成对应kernel, 并利用beam search优化, 同时动态进行子模块的分裂与融合. 最终每个子kernel可独立验证与替换, 使整体代码具有可配置性、可解释性和可迁移性. 在KernelBench L2/L3实验上, MKEvolve相比端到端直接生成基线提升了正确性与加速比, 并使LLM token消耗降低最多35%.
 
 
 \arxivwithtarget{2607.20502}{Inducing Comparability of Factorised Probability Distributions}{Jan Speller, Malte Luttermann, Marcel Gehrke, Tanya Braun}\textbf{cs.AI}.
@@ -365,7 +362,6 @@ MKEvolve提出一种模块化多Agent框架, 通过迭代共进化策略解决LL
 
 \arxivwithtarget{2607.20503}{LeanFlow: A Case Study in Workflow-Driven Lean Autoformalization}{Lazar Milikic, Simon Guilloud, Khanh Nguyen, Viktor Kuncak}\textbf{cs.AI}, cs.LG, cs.LO.
 
-LeanFlow 是一个基于 LLM agent 的工作流驱动系统, 旨在将数学论文自动形式化为可构建的 Lean 项目. 通过在数论和测度论的两篇未形式化论文上进行消融实验, 使用 Kimi2.6 和 GPT5.5 模型, 验证了带队列的完整工作流在 2000 次 API 调用预算内完成项目, 而无队列变体则超出预算
 
 
 \arxivwithtarget{2607.20506}{Optimizing Hypergraph-Based RAG: Toward Better Fact Extraction and Chunk Retrieval}{Houda Khrouf, Pedro Fillastre, Sebastiao Correia}\textbf{cs.AI}.
@@ -374,12 +370,12 @@ LeanFlow 是一个基于 LLM agent 的工作流驱动系统, 旨在将数学论�
 
 \arxivwithtarget{2607.20507}{MiniCache: Reusable Program Caching with Small Model Interfaces for Efficient LLM Inference}{Jingquan Chen, Jinghua Piao, Jie Feng, Shaogang Hu, Yong Li}\textbf{cs.AI}, cs.LG.
 
-MiniCache 针对使用 LLM 进行程序辅助推理和 agent 决策时推理成本高的问题, 提出一种可复用程序缓存框架. 它将 Program-of-Thought (PoT) 程序转化为参数化缓存对象, 对于缓存命中请求, 利用同一小模型进行语义变量提取, 同时在 target-LLM 生成时作为 speculative draft 模型, 从而减少昂贵的 target-LLM 调用次数. 实验表明, 在购物式请求数据集上, MiniCache
+大语言模型在agentic decision making和program-aided reasoning等任务中推理成本高昂, MiniCache通过将Program-of-Thought程序转化为参数化缓存对象, 使得结构相似的请求可复用计算. 该方法利用一个小模型完成缓存命中时的语义变量提取和目标LLM生成时的speculative drafting, 从而减少昂贵的target-LLM调用. 实验表明, MiniCache在shopping-style请求数据集上实现了高达3.1x的延迟降低和2.8x的吞吐量提升, 证明了小模型作为
 
 
 \arxivwithtarget{2607.20510}{Telco-GAIA: Bilingual Benchmark for Agents in Telecom Domain}{Dmitrii Khizbullin, Zaid Alyafeai, Abdelrahman Eldesokey, Nourah AlSultan, Raghad Alshalan, David R. Pugh, Bernard Ghanem}\textbf{cs.AI}, cs.CL.
 
-电信领域现有agent评估缺乏多模态、多跳推理和客观可重复的标准, 为此提出Telco-GAIA双语benchmark. 它包含100个经人工验证的问答任务, 平均需要4.2跳推理, 数据来源涵盖静态网页、关系型SQL数据库和外部网络档案, 并在沙箱Docker环境中通过精确字符串匹配实现确定性评分, 避免了LLM-as-a-Judge的主观性. 评测表明, 即使最强的LLM也只能解决71%的任务, 在中等成本预算下降至约40%, 而视觉类
+Telco-GAIA是一个针对电信领域tool-using agents的双语多模态基准, 旨在解决现有评估方法在真实企业数据上缺乏可靠性(reliability) 和可复现性的问题. 该基准包含100个经过人工验证的问答任务, 平均需要4.2跳推理, 数据来自
 
 
 \arxivwithtarget{2607.20511}{SiGMA: Sign-Guided Merging and Adaptation for Multimodal Continual Instruction Tuning}{Keonhee Park, Gunhee Kim}\textbf{cs.AI}.
@@ -412,20 +408,22 @@ MiniCache 针对使用 LLM 进行程序辅助推理和 agent 决策时推理成�
 
 \arxivwithtarget{2607.20527}{Evaluating and Guarding Citation Faithfulness in Agentic Scientific Synthesis}{Taewan Goo, Junsik Kim, Kyulhee Han, GwonYul Jo, Jong-Soo Kim, Tae-Hyung Kim}\textbf{cs.AI}.
 
-在Agentic LLM科学文献合成系统中, 现有citation归因校验方法因验证器严格度不同导致unsupported-citation率从3%到18%波动, 且不同验证器
+现有agentic LLM系统(如OpenScholar、PaperQA2) 虽能生成带引用答案并检查引用, 但验证器本身不可靠: 同一输出下的无支持引用率因验证器严格程度不同可从约3%到约18%, 且验证器间对负面例子的一致性很低(negative-specific agreement 0.27-0.30
 
 
 \arxivwithtarget{2607.20528}{PromptPack: Scaling LLM Annotation Agents for Online Recommendation}{Sebastian Koralewski, Merwan Barlier, Yulia Stolin, Blaž Škrlj}\textbf{cs.AI}.
 
-在线推荐平台使用LLM作为标注agent从广告创意中提取结构化特征, 但单次调用中冗余的系统指令占输入token的94%, 导致规模化部署成本过高. 为此, 本文提出PromptPack, 一种通过in-context batching共享system prompt、结合严格XML结构envelope与输出修正层的高吞吐LLM Agent, 能同时处理多个创意并保证输出确定性. 在离线检索benchmark中, 基于下游logistic-regression ranker的评估显示: 采用batch size 20时, PromptPack相比未分组的在线基线降低了89%的LLM成本, 吞吐量提升2.5倍, 且AUC完全保持不变.
+PromptPack是一种可扩展的高吞吐量LLM标注agent, 旨在解决在线推荐平台中逐创意调用LLM进行结构化特征提取时成本过高的问题. 由于每次请求中重复的系统指令占输入token的94%, 导致
 
 
 \arxivwithtarget{2607.20531}{DynamicMCPBench: A Trace-Grounded, Effect-Scored Benchmark for LLM Agents over Live MCP Servers}{Jerzy Kamiński, Ilya Galyukshev, Artem Kuznetsov, Sergey Chuprin, Kirill Redko, Aidar Shumbalov, Anna Kalyuzhnaya}\textbf{cs.AI}.
 
+DynamicMCPBench是一个可复用的框架, 用于评估LLM agents在实时MCP服务器上的表现, 解决了传统基准因依赖静态“正确答案”或固定工具列表而无法处理动态、有状态数据的问题. 该方法通过让agent在真实服务器上执行任务, 记录成功轨迹并提取路径无关的effect checkpoints, 仅检查agent是否复现这些效果而非最终答案, 从而保证评分鲁棒
 
 
 \arxivwithtarget{2607.20536}{AppWorld-UL: Benchmarking Diverse Agent-User Interactions for Tool-Use}{Junzhi Chen, Harsh Trivedi, Jane Pan, Michael JQ Zhang, Tejas Srinivasan, Niranjan Balasubramanian, Ashish Sabharwal}\textbf{cs.AI}, cs.CL, cs.LG, cs.MA.
 
+该论文提出AppWorld-UL, 一个包含516个复杂任务的用户参与式benchmark, 旨在评估tool-use agent与用户之间多样化的交互能力. 现有基准缺乏歧义和约束等真实交互情境, 且仅在小环境中使用少量非状态变更的API. 作者在AppWorld框架的9个模拟App(如Amazon, Spotify) 基础上, 通过修改原始任务引入需要询问、确认或告知不可行的交互, 并用LLM模拟具备知识边界的用户行为. Claude Opus 4.7的成功率仅为48.6%, 在组合性子集上降至35.7%, 严格场景级指标下仅21.3%, 表明正确用户交互
 
 
 \arxivwithtarget{2607.20545}{StrideDiffusion: Accelerating Diffusion Models for Time-series Generation}{Du Yin, Estrid He, Julián Jerónimo Bañuelos, Yang Yang, Feng Hu, Yuchen Luo, Hao Xue, Stephan Sigg, Flora Salim}\textbf{cs.AI}, cs.CV, cs.SE.
@@ -434,7 +432,6 @@ MiniCache 针对使用 LLM 进行程序辅助推理和 agent 决策时推理成�
 
 \arxivwithtarget{2607.20553}{CMI-Mem: Toward Generalizable Long-Term Memory Management via CMI-Augmented Reinforcement Learning}{Yubo Wang, Qiuyu Zhao, Zenghui Sun, Shichao Dong, Jinsong Lan, Xiaoyong Zhu, Haoyang Li, Bo Zheng, Lei Chen}\textbf{cs.AI}, cs.CL.
 
-现有Memory Manager模型依赖LLM生成的QA对进行记忆价值评估, 导致结果受限于采样查询和下游reader, 缺乏通用性. 为此, 提出CMI-Mem, 一个基于强化学习的轻量级记忆管理器, 采用混合奖励函数: 下游QA正确性加上条件互信息(CMI). CMI直接计算新输入相对于当前记忆状态的互信息, 无需依赖采样QA查询, 从而补充而非替代QA based grounding. 实验表明, CMI-Mem在多种agent场景下
 
 
 \arxivwithtarget{2607.20554}{AI-Driven Multi-Hop Relay Selection for Smart Urban NR-V2X Networks via Learning-to-Optimize Graph Neural Networks}{Giambattista Amati, Federica Mangiatordi, Simone Angelini, Emiliano Pallotti, Pierpaolo Salvo}\textbf{cs.AI}, cs.LG, cs.NI.
@@ -451,11 +448,12 @@ MiniCache 针对使用 LLM 进行程序辅助推理和 agent 决策时推理成�
 
 \arxivwithtarget{2607.20709}{NVIDIA-labs OO Agents: Native Python Object-Oriented Agents}{Paul Furgale, Severin Klingler, James Nolan, Matt Staats, Gaia Di Lorenzo, Elisa Martinez Abad, Christian Schüller, Razvan Dinu, Alessio Devoto, Pascal Berard, Gal Kaplun, Elad Sarafian, Riccardo Roveri, Leon Derczynski, Ricardo Silveira Cabral}\textbf{cs.AI}, cs.CL.
 
-NVIDIA OO Agents (NOOA) 提出将agent直接建模为Python对象, 用方法、字段、docstring和类型注解分别替代动作、状态、prompt和契约, 统一了开发与LLM驱动的执行接口. 通过将代码体为“...”的方法交由LLM运行时补全, 普通方法保持确定性, 实现了与常规软件相同的测试、追踪和重构能力, 提升了agent的reliability. 在SWE-bench Verified、Terminal-Bench 2.0和ARC-AGI-3等基准上验证了当前LLM能有效使用该接口, 并在同一表面首次组合了六类面向模型的设计.
+该论文提出NVIDIA Object-Oriented Agents (NOOA), 将Agent定义为原生Python对象: 方法即动作, 字段即状态, docstrings即prompts, 类型注解即契约, 从而统一传统开发中分散的prompt模板、工具模式、回调代码与工作流图. 通过让开发者与Agent共享同一编程接口, Agent行为可像普通软件一样被测试、追踪、重构和优化. NOOA在单一表面首次结合了类型化I/O、通过引用传递、代码即动作、可编程循环、显式对象
 
 
 \arxivwithtarget{2607.20764}{ArbiGraph: Arbitrarily Scalable Verifiable Task Graphs for Evaluating Context Management}{Pavel Golikov, Evgenii Opryshko, Gennady Pekhimenko, Mark C. Jeffrey}\textbf{cs.AI}.
 
+ARBIGRAPH是一个用于评估工具辅助语言agent在长推理工作流中上下文管理能力(保留、更新、组合、丢弃任务相关上下文) 的基准生成器. 它通过将每个任务表示为自然语言问题与可执行Python求解器, 并利用标量和列表值类型的中间状态组合任务, 生成可控制长度、依赖结构、干扰项数量和值类型的任务图, 同时支持精确自动验证. 在Qwen3.5-27B工具辅助agent上评估数学、GSM风格文字题和Python追踪三类任务, 发现agent在孤立任务上表现良好, 但在复杂依赖任务上准确率下降高达33.3%.
 
 
 \arxivwithtarget{2607.20781}{The Human-AI Substitution Principle: When will you be replaced by AI in your organization?}{Bonny Banerjee, Shreya Singh}\textbf{cs.AI}, econ.GN.
@@ -496,7 +494,6 @@ NVIDIA OO Agents (NOOA) 提出将agent直接建模为Python对象, 用方法、�
 
 \arxivwithtarget{2607.20891}{Is Deep Research Reliable? Misleading Knowledge Induces False Conclusions}{Pengyu Zhu, Lijun Li, Longju Yang, Sen Su}\textbf{cs.AI}.
 
-Deep Research agents在长程任务中易受误导性知识影响, 导致最终报告错误采纳虚假结论. 针对此问题, 作者构建MisKnow-Agent框架, 生成含可控权威等级与风格的5,933个误导实例进行测试. 实验表明, 即使少量暴露于误导知识也会诱发错误结论, 且当前search-enabled verifier虽能在验证
 
 
 \arxivwithtarget{2607.20913}{Source-Prior-Driven Selective Adaptation for Efficient Diffusion Model Finetuning}{Yi Xiong, Yuan-Yuan Cheng, Xiao-Ming Fu}\textbf{cs.AI}.
@@ -505,6 +502,7 @@ Deep Research agents在长程任务中易受误导性知识影响, 导致最终�
 
 \arxivwithtarget{2607.20916}{Traceable Scholarship: Page Anchors and Ariadne's Thread for Humanistic Inquiry in the Age of Generative AI}{Deyu Jing}\textbf{cs.AI}, cs.DL.
 
+生成式AI使LLM能快速生成看似学术的文本, 但流畅性不等于有效解释, 核心风险是缺乏可追溯到原始页码、版本和证据的明确
 
 
 \arxivwithtarget{2607.20918}{OPOD: On-Policy Omni Distillation}{Tong Zhao, Yuyang Hu, Reed Li, Yu Lu, Haibo Shi, Yutao Zhu, Zhicheng Dou}\textbf{cs.AI}.
@@ -517,7 +515,7 @@ Deep Research agents在长程任务中易受误导性知识影响, 导致最终�
 
 \arxivwithtarget{2607.20926}{SciExplore: Evaluating Autonomous Agents from Scientific Navigation to Information Integration}{Yinhao Tang, Youqing Fang, Yanan Sun, Wenran Liu, Weiming Zhang, Bin Liu, Kuikun Liu, Wenwei Zhang, Kai Chen}\textbf{cs.AI}.
 
-SciExplore提出了一个评估自主agent在科学信息检索与推理能力的基准, 涵盖数据库导航、模糊文献检索、缺失引用补全和跨源结构化知识综合四类任务, 旨在填补现有基准忽略真实科研工作流复杂性的空白. 实验表明, 随着任务从实体级推理向领域级综合递进, 最先进的LLM和agent性能急剧恶化, 尤其在结构化知识合成任务上准确率极低, 揭示了当前模型在科学场景下信息整合与可靠推理方面的严重局限.
+SciExplore旨在解决现有基准无法评估LLM Agent在真实科研信息检索与推理中的关键能力问题, 尤其是面对异构数据源和复杂工作流时的可靠性. 该基准设计了四个递进任务: 科学数据库导航、模糊文献检索、缺失引用补全和跨源结构化知识合成, 覆盖十余学科. 测试结果表明, 当前SOTA LLMs和Agent的性能随任务复杂度急剧下降, 最复杂的结构化合成任务准确率极低, 揭示了它们在实际科研场景中严重的能力缺陷.
 
 
 \arxivwithtarget{2607.20937}{Clustered Edge Intelligence: Beyond Just Convergence of Edge Computing and AI}{Chinmaya Kumar Dehury, Boris Sedlak, Alaa Saleh, Ilir Murturi, Lauri Loven, Satish Narayana Srirama, Praveen Kumar Donta}\textbf{cs.AI}, cs.DC.
@@ -530,7 +528,6 @@ SciExplore提出了一个评估自主agent在科学信息检索与推理能力�
 
 \arxivwithtarget{2607.20972}{Delivery, Not Storage: Cue-Anchored Working Memory as a Harness Property for Coding Agents}{Swapnanil Saha}\textbf{cs.AI}, cs.SE.
 
-该论文指出编码 Agent 依赖显式文档存储(如 instruction files、plan artifacts) , 但人类专家依赖无需主动写/读的第二级记忆——由情境线索自动触发的操作事实, 这种自动回忆是长期运行 Agent 的关键, 却未被现有系统支持. 作者提出一种 cue-anchored working memory 模型, 将记忆与可组合的触发条件(path, symbol, semantic, event, temporal) 绑定, 由 harness 确定性注入, 而非由 Agent 自行选择读写. 实验表明, Agent 在114轮对话中自愿使用预存记忆的次数为零
 
 
 \arxivwithtarget{2607.20981}{Beyond Independent Optimization: Compression, MoE Routing, and Quantization Interactions in Multimodal Edge Intelligence}{Jay Gor, Karm Dave, Akshita Abrol, Rajesh Gupta, Sudeep Tanwar, Zhengkui Wang}\textbf{cs.AI}.
@@ -539,12 +536,12 @@ SciExplore提出了一个评估自主agent在科学信息检索与推理能力�
 
 \arxivwithtarget{2607.20982}{GuardianAgentBench: Where Agents Fail and How to Guard Them}{Vishal Ishwar Naik, Chenyu Xu, Donna Dong, Hussein Hassan, Abhishek Pradhan, Ofer Mendelevitch, Tallat Shafat, Humayun Irshad}\textbf{cs.AI}.
 
-该论文针对LLM agents在工具使用和自主决策中的可靠性问题, 提出GuardianAgentBench, 一个包含580个场景、覆盖六个领域、集成五种对抗攻击模式的基准. 实验发现即使最强配置正确率仅74.8%, 且存在强模型欠调用工具、弱模型过调用工具的两种失败模式, 性能随工具集大小与任务轮次单调下降. 最终提出执行时guardrail干预, 可恢复19.9%的失败, 假阳性率仅0.5%, 显著优于基于system prompt的防御.
+GuardianAgentBench (GABench) 提出了一个包含 580 个跨域场景的 benchmark, 用于评估 LLM agent 在工具调用与多轮规划中的可靠性. 实验发现即使最强配置也仅有 74.8% 的准确率, 并揭示两种失败模式: 强模型欠调用工具, 弱模型过调用工具, 且性能随工具集大小和轮次深度单调下降. 提出的运行时 guardrail 结构干预能以 0.5% 的假阳性率恢复 19.9% 的失败, 显著
 
 
 \arxivwithtarget{2607.20999}{Workflow-Localized Mechanism Learning: Attribution-Guided Repair and Knowledge Reuse for Structured Agent Skills}{Zibin Lin, Shengli Zhang, Taotao Wang, Yihan Xia, Deen Ma, Guofu Liao}\textbf{cs.AI}.
 
-Workflow-Localized Mechanism Learning (WML) 解决了 frozen language-model agents 在结构化工作流中故障定位不明、机制归属不清以及第三方 Agent Skills 难以本地化复用的问题. 该方法通过 Node-Mechanism Attribution 精确识别故障节点、关联机制及最小编辑目标, 将单一机制缺陷路由至 L3 资源、多机制关联缺陷路由至 L2 组合协议, 并利用六模块 Workflow-Guided
+现有Agent Skills优化器无法联合定位工作流故障节点、失效机制及复用第三方知识. 论文提出Workflow-Localized Mechanism Learning (WML), 其Node--Mechanism Attribution将单机制缺陷路由至L3资源、机制间关联缺陷路由至L2协议, 随后Workflow-Guided
 
 
 \arxivwithtarget{2607.21000}{Naju: A Native Discrete State-Space Model with Independent Retention and Writing for Long-Sequence Memory}{Hyuk Lim, Seunghyun Yoon}\textbf{cs.AI}.
@@ -557,12 +554,12 @@ Workflow-Localized Mechanism Learning (WML) 解决了 frozen language-model agen
 
 \arxivwithtarget{2607.21013}{EmoAgent-R1: Towards Multimodal Emotion Understanding with Reinforcement Learning-based Dynamic Agent Specialization}{Lihuang Fang, Yuchen Zou, kebin Jin, Jinghui Qin}\textbf{cs.AI}, cs.CV.
 
-多模态大语言模型在情绪理解中常因固定prompt而忽略动态性. 为此, EmoAgent-R1通过冷启动策略赋予模型初步的路由与推理能力, 再以强化学习实现动态的agent选择与特化. 为提高稀疏奖励下的训练效率, 提出P-GRPO, 利用PMI启发的渐进token级调制将粗粒度均匀信用分配转化为细粒度信号, 从而优化策略. 在MER基准上, 该方法在推理准确性与优化稳定性上均超越现有方案.
+多模态大语言模型在执行复杂情感理解任务时, 往往使用固定prompt感知情感, 难以适应情感源的动态性与复杂性. 为此提出EmoAgent-R1框架, 通过强化学习实现动态agent specialization: 先利用合成答案链式思维数据与agent routing数据进行冷启动训练, 赋予模型初步情感识别、推理及agent路由能力; 再通过强化学习执行包含agent selection与agent specialization的两步agentic workflow. 为缓解GRPO中粗粒度均匀信用分配问题, 提出Progressive Group-Relative Policy Optimization (P-GRPO), 结合组相对优势与基于PMI的渐进式token级调制, 将稀疏奖励转化为细粒度学习信号. 在MER benchmark上的实验表明, 该方法在情感推理性能与优化稳定性上均优于现有方法.
 
 
 \arxivwithtarget{2607.21019}{HiMe: Real-Time Self-Hosted Personal Agent Platform for Health Insights with Wearable Devices}{Wei Liu, Siya Qi, Linhai Zhang, Lorainne Tudor Car, Yulan He}\textbf{cs.AI}, cs.CL, cs.HC, cs.MA, cs.SE.
 
-HiMe 旨在解决传统可穿戴健康分析框架僵化、个性化不足且缺乏本地实时处理能力的痛点, 其核心原因在于现有方案无法在隐私保护下灵活生成适应性健康洞察. 该平台提出三项设计原则: 将 database 作为一等组件、联合优化有效性与效率以达成低成本 Pareto 最优、实时处理数据同时长期建模用户状态. 最终实现可本地部署、隐私优先的 Personal Health
+传统可穿戴设备健康分析受限于刚性框架和低个性化, 而LLM agent为个人健康分析提供了新可能, 但缺乏开源、本地化且实时处理隐私数据的平台. HiMe是一个本地部署、隐私优先的agent平台, 设计上强调数据库作为一等组件, 同时优化有效性与效率以实现低成本Pareto平衡, 并支持实时数据流与长期用户建模. 该平台兼容多种可穿戴设备, 确保数据在本地实时处理, 从而实现持续、个性化的健康监测. 最终效果是让个人能够借助Personal Health Agent获得低延迟、高隐私的实时健康洞察, 提升生活质量.
 
 
 \arxivwithtarget{2607.21042}{Faster IndexTTS-2: Accelerating and Streaming Autoregressive Zero-Shot Text-to-Speech Synthesis on GPUs}{Muyang Du, Shuang Yu, Junjie Lai}\textbf{cs.AI}.
@@ -575,6 +572,7 @@ HiMe 旨在解决传统可穿戴健康分析框架僵化、个性化不足且缺
 
 \arxivwithtarget{2607.21106}{AttriMem: Attribution-Guided Process Feedback for Agent Memory Learning}{Qinfeng Li, Yuntai Bao, Xinyan Yu, Hongze Chen, Wenqi Zhang, Xuhong Zhang}\textbf{cs.AI}.
 
+LLM
 
 
 \arxivwithtarget{2607.21151}{V-DEAL: Diagnosing Video Safety De-Calibration as an Understanding-Refusal Coupling Failure}{Zhetong Zhang, Honghao Fu, Miao Xu, Yiwei Wang, Yujun Cai}\textbf{cs.AI}.
@@ -655,7 +653,7 @@ HiMe 旨在解决传统可穿戴健康分析框架僵化、个性化不足且缺
 
 \arxivwithtarget{2607.21412}{Euclid-MCP: A Model Context Protocol Server for Deterministic Logical Reasoning via Prolog}{Bartolomeo Bogliolo}\textbf{cs.AI}, cs.CL, cs.SE.
 
-大型语言模型在多步逻辑推理中不可靠, 尤其在高风险领域难以保证规则一致性. Euclid-MCP 是一个开源的 MCP server, 通过 SWI-Prolog 提供确定性推理, 并引入 Euclid-IR 中间表示使 LLM clients 能生成并编译 Horn-clause 逻辑. 它支持 translate-run-inspect-repair 循环, 允许 agent 委托推理并获取完整证明轨迹. 在 IT 安全合规场景中, 当知识库规模增大时, LLM 出现系统性幻觉, 而 Euclid-MCP 给出精确答案且输出更紧凑、延迟更低, 表明语义 RAG 不适用于规则执行, 该 server 可作为 RAG 助手和 agentic 系统的稳定推理
+大型语言模型(LLM) 在多步逻辑推理中常出现幻觉, 尤其在安全合规场景下不可靠. Euclid-MCP 通过标准化 Model Context Protocol (MCP) 接口将 SWI-Prolog 符号推理引擎接入 LLM agent, 解决了神经符号集成缺乏统一工具接口的问题. 其核心是引入 human-readable 的中间表示 Euclid-IR, LLM 可生成该表示并经由 translate-run-inspect-repair 循环委托推理, 同时获取完整的证明迹. 实验表明, 在中小知识库上纯 LLM 尚可, 但面对较大问题时系统性地产生幻觉, 而 Euclid-MCP 以更低延迟和更紧凑输出给出精确答案, 证明语义 RAG 不适合规则强制执行.
 
 
 \arxivwithtarget{2607.21414}{Logical Regression for Planning with Axioms}{Connor Little, Christian Muise}\textbf{cs.AI}.
@@ -684,11 +682,12 @@ HiMe 旨在解决传统可穿戴健康分析框架僵化、个性化不足且缺
 
 \arxivwithtarget{2607.21482}{Agentic coding without the cloud: evaluating open-weight large language models on longitudinal data preparation tasks}{Mack Nixon, Liam Wright, Yevgeniya Kovalchuk, Alison Fang-Wei Wu, Martin Danka, Andy Boyd, David Bann}\textbf{cs.AI}, cs.CL.
 
+该论文针对纵向研究中数据准备这一瓶颈, 提出利用本地部署的开源Agent框架解决隐私限制问题(研究数据不能传输至云端) . 方法包括构建真实数据集、定义任务(如类别统一、多波合并) 及自动评估R代码与输出数据. 在20个变量创建任务上, 31B-35B参数量级模型达到87.9%的平均任务完成率, 证明消费级硬件上运行的开放权重LLM Agent在治理受限环境中具备可行性.
 
 
 \arxivwithtarget{2607.21495}{Toward Continuous Assurance for the Democratization of AI Agent Creation in Industry}{Natan Levy, Harel Berger}\textbf{cs.AI}, cs.ET, cs.MA.
 
-非工程用户通过低代码或无代码方式创建AI agent正变得普遍, 但这些agent依赖动态变化的模型、工具、数据源、权限等, 导致部署后可能无声退化, 即出现可靠性缺口. 为此, 本文提出一个轻量级持续保证框架, 包含依赖映射、就绪契约、定期检查、诊断和生命周期治理, 以评估agent在预期条件下是否保持操作就绪. 原型auditor和基于场景的评估表明, 该框架可将上述分类转化为切实的检查项和可操作的修复指导, 从而支撑民主化agent创建的可靠性.
+低代码/无代码环境下非工程人员创建的AI agent在部署后可能因依赖的模型、工具、权限等变化而无声退化, 导致可靠性缺口. 本文提出一种轻量级continuous-assurance框架, 通过dependency mapping、readiness contracts和scheduled checks持续评估agent的操作就绪度, 并借助diagnostics与lifecycle governance生成可操作的修复指导. 原型auditor在场景化评估中验证了该框架能将可靠性检查转化为实际检测项, 从而支持民主化Agent的持续可信运维.
 
 
 \arxivwithtarget{2607.21503}{Agentic Context Management: Solving Agent Memory and Cost by Treating Them as Lifecycle and Architecture Problems}{Gaurav Dadhich}\textbf{cs.AI}, cs.IR.
@@ -709,7 +708,7 @@ HiMe 旨在解决传统可穿戴健康分析框架僵化、个性化不足且缺
 
 \arxivwithtarget{2607.21557}{OpenForgeRL: Train Harness-native Agents in Any Environment}{Xiao Yu, Baolin Peng, Ruize Xu, Hao Zou, Qianhui Wu, Hao Cheng, Wenlin Yao, Nikhil Singh, Zhou Yu, Jianfeng Gao}\textbf{cs.AI}, cs.CL.
 
-OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂推理 harness(如 Claude Code、Codex) 而难以通过标准 SFT/RL 堆栈进行端到端训练的问题. 它通过轻量级代理记录 harness 的模型调用作为训练数据, 并结合 Kubernetes 编排器在远程容器中执行 rollout, 从而在任意环境中支持基于任何 harness 的 agent 训练. 实验表明, 在 ClawEval、OSWorld 等多项基准上, 基于少量任务训练的 Open
+OpenForgeRL 旨在解决现代 AI agents 依赖复杂推理 harness(如 Claude Code、Codex) 导致难以用标准 RL 框架端到端训练的问题. 该方法通过轻量级代理劫持 harness 的模型调用并记录为训练数据, 结合 Kubernetes 将每次 rollout 部署到独立远程容器, 实现训练与推理的彻底解耦. 在 ClawEval、QwenClawBench 等基准上, 仅用数百到数千任务, OpenForgeClaw 达到 31.7 pass^3 和 55.9 pass@3, OpenForgeGUI 在 OSWorld-Verified 上达
 
 
 \arxivwithtarget{2607.21558}{Beyond Sycophancy: Structured Resistance and Compliance in LLM Moral Reasoning}{Baihui Wang, Bernard Koch}\textbf{cs.AI}.
@@ -723,6 +722,7 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 \section{cs.LG}
 \arxivwithtarget{2607.20465}{DataPrep-Bench: Benchmarking LLMs as Training Data Preparators}{Hao Liang, Qifeng Cai, Yibo Lin, Jianzhuo Du, Qifeng Xia, Sizhe Qiu, Linzhuang Sun, Meiyi Qiang, Zhaoyang Han, Xiaochen Ma, Bohan Zeng, Ruichuan An, Conghui He, Wentao Zhang}\textbf{cs.LG}, cs.CL.
 
+现有研究缺乏统一基准衡量LLM和agent端到端准备训练数据的能力, 而训练数据质量直接决定LLM性能. DataPrep-Bench将LLM驱动的数据准备解构为数据构造与数据质量评估两个互补能力, 并采用下游训练效果(downstream training utility) 作为统一评判协议. 针对数据构造,
 
 
 \arxivwithtarget{2607.20492}{PhantomFill: When the Form Demands an Answer, Language Models Invent One}{Rana Muhammad Usman}\textbf{cs.LG}, cs.AI, cs.CL.
@@ -859,7 +859,7 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.20582}{Bayesian uncertainty estimation improves clinical decision making in medical AI agents}{Frederik Hauke, Patrick Wienholt, Christiane Kuhl, Dyke Ferber, Jakob Nikolas Kather, Sven Nebelung, Daniel Truhn}\textbf{cs.LG}, cs.AI, cs.MA.
 
-医疗AI agent在影像分析中缺少可靠的置信度度量, 导致其在模糊或非典型病例中容易产生错误诊断. 该研究利用Monte Carlo dropout对胸部X光多任务分类器进行epistemic uncertainty估计, 该信号能追踪泛化能力并标记高置信度但易出错的预测. 实验表明, 将不确定性作为binary error-risk flag而非原始分数传递给临床决策支持agent时, 其在不可
+医学图像分析模型常缺失可靠的置信度度量, 导致agent在模糊病例中误判. 通过在胸部
 
 
 \arxivwithtarget{2607.20586}{Exact ReLU realization of affine one-dimensional refinement iterates via residual memory and offset frames}{Boldsaikhan Bolorkhuu, Tsogtgerel Gantumur}\textbf{cs.LG}.
@@ -920,7 +920,7 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.20734}{LLMs Get Lost in Evolving User Intent}{Jihoon Tack, Philippe Laban, Jennifer Neville}\textbf{cs.LG}.
 
-当前LLM作为agent的
+当前LLM被部署为协同agent, 但测试仍基于单轮静态任务. 论文提出动态多轮对话框架, 模拟用户意图在对话中逐步揭示、修改甚至转向的场景. 实验发现, 静态评测表现优异的模型在动态意图场景下性能大幅下降, 暴露出LLM无法可靠跟踪用户意图的缺陷. 这表明现有agent的reliability评估存在根本缺口, 动态跟踪能力对实际协作至关重要.
 
 
 \arxivwithtarget{2607.20737}{Cardinality-Decomposed Loss: Matching Training Objectives to Relation Structure in Heterogeneous Recommendation Graphs}{Parul Maheshwari, Amulya Paruchuri, Yiqing Zou, Alireza Sahami Shirazi, Farhad Farahani, Prakhar Mehrotra}\textbf{cs.LG}, cs.IR.
@@ -1081,7 +1081,6 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.21273}{The Dark Room in the Reward Channel: Dense Prediction Rewards Collapse GRPO-Trained LLM Agents -- and What Actually Works}{Yu Wang}\textbf{cs.LG}.
 
-这篇论文研究密集预测奖励(dense per-step prediction reward) 在GRPO(Group Relative Policy Optimization) 训练LLM agents时引发的“暗室病理”(dark room pathology) : 预测准确率升至1.0, 但任务成功率为0, 轨迹长度被锁定在horizon.
 
 
 \arxivwithtarget{2607.21290}{Multi-Task Learning for Heterogeneous Prediction from Video Game State with Transfer Learning}{Jonas Peché, Aliaksei Tsishurou, Alexander Zap, Günter Wallner}\textbf{cs.LG}, cs.AI.
@@ -1224,7 +1223,7 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.20759}{IssueTrojanBench: Benchmarking AI Coding Agents Against Malicious Issue Requests}{Ankur Singh, Jinqiu Yang, Tse-Hsun Chen}\textbf{cs.CR}, cs.AI, cs.SE.
 
-该论文针对AI coding agents在处理恶意issue请求时的安全漏洞进行了benchmark研究, 因为这类agent在代码生成和执行中拥有自主工具访问权限, 易受攻击. 作者构建了
+AI coding agents在软件工程中自主执行代码, 面临来自LLM和agent架构的双重安全风险. 针对这一问题, 论文提出IssueTrojanBench基准, 基于四种新型攻击类别、六种投递向量及扰动增强构造恶意issue. 实验发现, 66.5%的恶意issue成功穿透编码agent的所有防护, 且拒绝机制几乎完全来自LLM层而非agent框架, GPT模型普遍脆弱, 而Sonnet 4.6对高风险操作有更选择性阻断. 该工作揭示了当前agent级防御策略效果有限, 亟需强化模型与agent层面的安全机制.
 
 
 \arxivwithtarget{2607.20800}{Classical Acceptance Is Not Hybrid Authentication: Measuring X.509 Verifier Semantics in Post-Quantum Migration}{Taesung Kim, Boheung Chung, Keonwoo Kim, Yousung Kang}\textbf{cs.CR}.
@@ -1262,7 +1261,6 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.20428}{Human-in-the-Loop Large Language Model Framework for Identification of Cutaneous Immune-Related Adverse Events}{Charles Lu, Olivia Burke, Debby Cheng, Adam Kashlan, Caitlyn Duffy, Zeyun Lu, Lirit Fuksman, Jin Ning Tian, Andrew Sedlack, Priya Katyal, Eudora Lee, Ralina Karagenova, Chuck Lin, Kun-Hsing Yu, Nicole LeBoeuf, Alexander Gusev, Yevgeniy R. Semenov}\textbf{cs.CL}, cs.HC, cs.MA.
 
-该论文提出了一种基于检索增强的多智能体(multi-agent) LLM框架, 并引入human-in-the-loop机制, 用于从临床笔记中自动识别皮肤免疫相关不良事件, 以解决人工审查耗时且评分者间一致性低的问题. 具体方法中, 多个LLM agent协同工作, 结合检索增强生成与人工反馈, 提升提取的准确性和可靠性. 最终, 该Agent-driven框架相比纯人工审查, F1提升至0.88(
 
 
 \arxivwithtarget{2607.20429}{More Is Not More: What Matters for Diversity in LLM Opinions?}{Qiyang Yao}\textbf{cs.CL}, cs.AI.
@@ -1271,7 +1269,6 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.20430}{LLM-INSTRUCT at UZH Shared Task 2026: Constraint-Aware Retrieval and Selective Debate for Paragraph-Level Argument Mining}{Phuong Huu Vu Tran, Long Minh Vo, Son Nguyen Minh Le, Hoang Van}\textbf{cs.CL}, cs.AI.
 
-该工作针对联合国与UNESCO决议中的段落级论点挖掘任务, 要求在多标签分类、关系预测等严格约束下仅使用8B参数开源模型. 为此, 作者提出LLM-INSTRUCT系统, 首先通过元数据感知的稠密检索缩小候选标签空间, 然后进行带维度上限的约束解码, 仅对低置信度案例升级至三智能体辩论分支(three-agent debate branch) 进行选择性讨论. 该系统在官方排行榜上综合排名第一, 其中Task 1b Micro-F1从35.83%提升至40.08%, 表明通过先缩减决策空间再生成可同时提高准确性与提交鲁棒性.
 
 
 \arxivwithtarget{2607.20431}{Skill-Contracted Agents for Evidence-Aware Materials Literature Analysis}{Bixuan Li, Yu Liu, Shuo Shi, Xiaoya Huang, Peng Kang, Lei Zheng}\textbf{cs.CL}, cs.IR.
@@ -1380,7 +1377,7 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.20458}{CAMeR: Keyword-Gated Hybrid Activation for Adaptive Memory Retention in LLM Agents}{Haowen Lai}\textbf{cs.CL}, cs.AI.
 
-现有LLM Agent的记忆系统在长对话中要么无差别保留所有信息, 要么使用统一遗忘策略, 无法区分相关与无关知识. CAMeR
+LLM Agent在长程对话中需管理海量信息, 但现有记忆系统要么全量保留, 要么采用统一遗忘启发式, 无法
 
 
 \arxivwithtarget{2607.20459}{THOR: A Theta-Gamma Hierarchical Oscillatory Reasoning Framework for Multi-hop QA}{Ziyang Ling, Ronald X. Xu, Mingzhai Sun}\textbf{cs.CL}, cs.AI.
@@ -1401,16 +1398,16 @@ OpenForgeRL 是一个开源框架, 旨在解决现代 AI agent 因依赖复杂�
 
 \arxivwithtarget{2607.20645}{Frontier Financial Judgement: Can agents tell what might move a stock?}{Joshua Harris}\textbf{cs.CL}, cs.AI, cs.LG.
 
-该论文提出Frontier Financial Judgement benchmark, 旨在评估agent在真实金融信息流中识别估值相关新信息的能力, 解决AI时代信息过载下人工判断难以复现的问题. benchmark包含
+本文提出了Frontier Financial Judgement基准, 用于评估agent复制专业股权分析师判断的能力, 核心挑战是区分真实新信息与过时或误导信息. 测试中, 最强agent仅52.4%完全匹配专家标签, 且前沿agent的false-positive率差异显著, 从GPT-5.6 Sol的约1%到Claude Sonnet 4.6的约32%. 该基准包含656个评估项, 结合了合成文章、实时新闻与历史文档, 揭示了agent在accuracy、cost、false positives和reliability之间存在的严重trade-offs, 阻碍
 
 
 \arxivwithtarget{2607.20668}{From Agent Failures to Text Policies: What Works and What Breaks}{Jaideep Ray, Ankit Goyal}\textbf{cs.CL}, cs.AI.
 
-TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 agent 时, 反馈仅在完整动作序列后到达, 难以定位导致失败的决策. 该研究将遵循有用策略的能力与从经验中学习策略的能力分离, 发现人类编写的策略可使冻结的 7B agent 在 TextWorldExpress 上提升 5.
 
 
 \arxivwithtarget{2607.20690}{Learning to Detect UI Principle Violations via Reinforcement Learning}{Nishi Mehta, Swathi Alse, Himani Kumavat, Yue Yu, Pratik Jayarao}\textbf{cs.CL}.
 
+该工作针对coding agent生成的Web
 
 
 \arxivwithtarget{2607.20722}{REGARD: Regional Affective Differences in Large Language Models}{Andrei Chetvergov, Alexander Evseev, Mikhail Solovev, Timofei Sivoraksha, Stepan Ukolov, Valeriia Kuschenko, Maria Chistyakova, Sergey Bolovtsov}\textbf{cs.CL}.
@@ -1439,7 +1436,6 @@ TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 ag
 
 \arxivwithtarget{2607.20872}{LegalCiteTrust: Benchmarking Citation Trustworthiness in Chinese Long-Form Legal Research Reports}{Yunhan Li, Mingjie Xie, Zeyang Shi, Gengshen Wu, Min Yang}\textbf{cs.CL}.
 
-中文法律研究报告中LLM和agent系统生成的引用可信度不足, 即使指向真实来源也可能遗漏条件或错误支持论点. 为此构建LegalCiteTrust基准, 包含72个任务, 从
 
 
 \arxivwithtarget{2607.20911}{Tencent WorkBuddy Bench: A Multi-Domain Coding-Agent Benchmark with Contamination-Resistant Task Construction}{Tencent WorkBuddy Bench Team, Siqi Cai, Shaopeng Chen, Xiang Fei, Yong Mao, Zihan Xu, Zhiheng Lyu, Zhijian Shao, Yuchen Shi, Shuwen Zhang, Chaofan Qiu, Linjie Che, Xiaoxi Zhao, Feng Wu, Kai Zhang, Chaofan Zhu, Yubin Qi, Xiaoyun Liang, Peijie Dong, Yunhao Zhang, Yuanjie Zhu, Ling Jiang, Xianjun Zhang, Zhehang Chu, Anyuan Sang, Zhen Feng, Sen Nie, Shi Wu, Yuanzhen Xu, Xin Li, Ning Yang, Zhiqiang Dong, Hande Dong, Qiang Lin, Yi Liu, Yunsheng Wu, Ke Li, Xing Sun}\textbf{cs.CL}, cs.SE.
@@ -1500,7 +1496,7 @@ TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 ag
 
 \arxivwithtarget{2607.21324}{GRADRAG: Cross-Component Prompt Adaptation for Coordinated Multi-Agent RAG}{Paolo Pedinotti, Enrico Santus}\textbf{cs.CL}, cs.AI.
 
-现有RAG系统多使用多个LLM agents, 但通常孤立优化各组件而非跨流水线协调. GRADRAG将RAG流水线建模为计算图, 通过评估器对下游答案与证据生成结构化反馈, 再由提示优化器迭代更新上游自适应agents(如检索器、图构建器、回答器) , 并支持在输出满意时提前停止. 实验在SQUALITY和QMSUM上采用两种检索范式(
+现有RAG系统依赖多个LLM agent, 但先前工作主要孤立优化各组件, 缺乏跨pipeline的协调反馈. GRADRAG将RAG pipeline建模为计算图, 通过Evaluator对下游答案与证据进行结构化评估, 生成可操作反馈; Prompt Optimizer利用该反馈迭代更新上游agent, 如retriever、graph constructor与answerer, 并在输出满意时触发早停. 在SQUALITY和QMSUM基准上, GRADRAG在flat
 
 
 \arxivwithtarget{2607.21332}{Phonetic forced alignment for low-resource language varieties: Model training and evaluation on Chengdu Mandarin}{Zhiheng Qian, Aini Li, Hai Hu, Liang Zhao}\textbf{cs.CL}, cs.AI.
@@ -1562,7 +1558,7 @@ TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 ag
 \section{cs.SE}
 \arxivwithtarget{2607.20478}{Verifier-First Evaluation of Agentic LLMs for Infrastructure-as-Code Generation}{Mohamed Jouini}\textbf{cs.SE}, cs.AI.
 
-该论文研究了从自然语言生成Infrastructure-as-Code (IaC) 时, 如何满足provider schema、依赖规划和组织策略约束, 而不仅仅是语法正确. 作者采用verifier-first评估框架, 在186个Terraform任务上系统比较了七种
+针对自然语言生成Terraform IaC的任务, 该论文采用verifier-first方法评估七种agent策略, 发现ReAct agent结合MCP或ChromaDB的RAG能将Qwen2.5-Coder 7B的pass@1从14.0%提升至45.7%(p<0.0001) , 主要减少VALIDATE_FAIL. 迭代细化+verifier反馈使Qwen7B和GPT-4o分别达到62.9%和84.4% pass@1, 且呈二元收敛特性. GEPA反射指令优化仅用80次verifier引导的rollout就将Active RAG基线提升+7.5pp(p=0.026) , 证明无需权重更新
 
 
 \arxivwithtarget{2607.20933}{Transformer-Assisted LLM-Based Source Code Summarisation: to Enable More Secure Software Development}{Jesse Phillips, Tracy Hall, Paul Rayson, Mo El-Haj}\textbf{cs.SE}, cs.CL.
@@ -1628,7 +1624,7 @@ TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 ag
 
 \arxivwithtarget{2607.20630}{Demonstrating GenDB: Instance-Optimized and Customized Query Processing Code Generation via LLM Agents}{Jiale Lao, Immanuel Trummer}\textbf{cs.DB}, cs.AI, cs.CL.
 
-传统查询引擎因内部复杂难以扩展且构建新系统成本高, 为此提出GenDB, 利用LLM agents生成针对特定数据、工作负载和硬件资源的实例优化查询执行代码. 该方法通过离线生成重复模板化查询代码, 并采用大量fuzz testing与人工检查确保正确性, 或与数据库系统混合处理ad-hoc查询. 在TPC-H及新基准上, GenDB生成代码的性能显著优于现有查询引擎.
+传统查询引擎内部复杂难以扩展, 构建新系统成本高昂. GenDB 通过 LLM agents 将查询处理从手工引擎转向实例优化的查询代码自动生成, 针对特定数据、负载和硬件生成定制
 
 
 \arxivwithtarget{2607.20636}{Algorithmic Approaches to Sequential Decision-Making and Social Epistemology}{Kavya Ravichandran}\textbf{cs.DS}, cs.LG.
@@ -1693,7 +1689,7 @@ TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 ag
 
 \arxivwithtarget{2607.20773}{HARP: The Human--AI Research Platform}{Zeshu Zhu, Natalie Friedman, Kevin Weatherwax, Emily Eiben}\textbf{cs.HC}, cs.AI.
 
-传统静态原型和对话记录难以捕捉用户与Live AI agent交互时的行为细节, 如提示词的编辑、犹豫和停顿. HARP平台通过提供可配置的agent与受控场景, 允许研究者操纵prompt、模型参数和响应特征, 并实时记录输入时长、延迟、删除及按键暂停等行为指标. 平台支持语音、表情等扩展分析, 并以一项关于技术细节与回答长度如何影响LLM输出保留的实证研究展示了其效用. 这使系统级AI设计选择对用户行为的影响得以被量化测试.
+现有方法(如静态原型和对话转录) 无法有效研究用户与live LLM agent的交互过程, 例如用户如何犹豫、修改prompt. HARP平台通过提供可配置的AI agent和细粒度行为记录(如按键暂停、删除) 解决了这一局限. 研究者能控制agent的prompt、model参数和实验条件, 并触发调查, 从而系统测试AI设计(如技术细节和回答长度) 对用户retention的影响. 最终效果表明, HARP能结合可控agent与行为/自报告度量, 支撑对reliable agent交互机制的实证研究.
 
 
 \arxivwithtarget{2607.20785}{Robostral Navigate}{Arjun Majumdar, Avinash Sooriyarachchi, Benjamin Tibi, Chris Bamford, Elliot Chane-Sane, Guillaume Lample, Khyathi Raghavi Chandu, Ludovic Ho Fuh, Mathieu Poiree, Olivier Duchenne, Rosalie Millner, Srijan Mishra, Theo Cachet, Thomas Chabal}\textbf{cs.RO}, cs.AI.
@@ -1834,7 +1830,7 @@ TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 ag
 
 \arxivwithtarget{2607.21268}{pAI-Econ-claude: A Gated Human-in-the-Loop Multi-Agent Architecture for AI-Assisted Economic Theory Development}{Chen Zhu, Xiaolu Wang, Weilong Zhang}\textbf{cs.MA}, cs.AI, econ.GN.
 
-本工作针对LLM-based multi-agent系统在经济学理论开发中因不存在廉价可验证的正确性信号而导致的可靠性问题, 提出一种带gated human-in-the-loop架构pAI-Econ-claude. 该架构通过可检查的中间记录共享工作空间、由专用gates诊断特定
+在社会科学研究(如经济学) 中, LLM-based agent 的生成结果缺乏廉价且完整的正确性信号, 导致多agent系统的可靠性问题. 为此, 提出了 pAI-Econ-claude, 一种门控的 (gated) human-in
 
 
 \arxivwithtarget{2607.21300}{Unlearning Under Imbalance: Benchmarking Fairness in Multimodal LLM Unlearning}{Lorenzo Orsingher, Thomas De Min, Massimiliano Mancini, Davide Talon, Elisa Ricci}\textbf{cs.CV}, cs.AI.
@@ -1859,7 +1855,7 @@ TextGrad 利用自然语言反馈作为梯度优化文本组件, 但应用于 ag
 
 \arxivwithtarget{2607.21400}{VoLN: Vision-Only Long-Horizon Navigation---Paradigm, Benchmark, and Method}{Jiabin Lou, Haopeng Wang, Yuanshuai Wang, Xinyu Liu, Xuxin Lv, Yuxin Guo, Lei Huang, Rongye Shi, Wenjun Wu}\textbf{cs.RO}, cs.AI.
 
-该论文提出Vision-Only Long-Horizon Navigation (VoLN)范式, 以解决现有Vision-and-Language Navigation (VLN)中路线级指令隐含空间先验、在GPS缺失的开放环境中不
+该论文提出Vision-Only Long-Horizon Navigation (VoLN)范式, 旨在解决传统VLN中embodied agent依赖外部指令提供的路线先验信息(如朝向、距离) 的问题, 转向仅利用本地可观测场景线索进行
 
 
 \arxivwithtarget{2607.21401}{When Are Reasoning-Based Guardrails Not Efficient? ResponseGuard: A Fast Vision-Language Guard for Real-Time Moderation}{Dongbin Na}\textbf{cs.CV}, cs.AI.
