@@ -166,6 +166,7 @@ others: 76
 \section{cs.AI}
 \arxivwithtarget{2608.18389}{A Jagged Frontier: Evaluating Robustness of Code Agents to Semantics-Preserving Transformations}{Hasan Najib Mahmud, Shreya Gupta, Isha Chaudhary, Nathaniel Enis, Ravi Mangal, Gagandeep Singh, Corina Pasareanu}\textbf{cs.AI}, cs.SE.
 
+本工作针对AI code agent在仓库级代码修复中的reliability问题, 提出一种random variant sampler, 通过控制流重写、死代码注入和标识符重命名等semantics-preserving transformations (SPTs)生成扰动变体, 并在SWE-bench Verified与SWE-bench Pro上评估多种agentic scaffold与frontier model组合. 通过配对resolve-rate估计隔离扰动效应与内在随机性, 发现多数配置下性能小幅下降, 最高平均resolve-rate下降6.7个百分点, 且在16个配置中有6个呈现统计显著退化. 更关键的是, 模型鲁棒性排名在不同scaffold间不一致, 例如Qwen在mini-SWE agent下最鲁棒但在OpenCode下最脆弱, 揭示出jagged robustness frontier, 且简单scaffold对扰动更稳健, 表明顶尖模型仍易受语义保持扰动影响.
 
 
 \arxivwithtarget{2608.19202}{Active Inference as Context Acquisition for AI Agents}{Sanchayan Dutta, Sai Niranjan Ramachandran, Suvrit Sra}\textbf{cs.AI}, cs.CL, cs.LG.
@@ -194,7 +195,7 @@ others: 76
 
 \arxivwithtarget{2608.19303}{Outcome Monitors: Recovery Affordances for Silent Tool Failures}{Sugam Panthi, Rabab Abdelfattah}\textbf{cs.AI}, cs.CL, cs.SE.
 
-本工作针对tool-use agent在工具调用静默失败时(如缓存错误页或负价格以正常格式返回) 将错误结果当作事实消费的问题, 提出Outcome Monitors: 从任务无关轨迹或公共schema中挖掘outcome contracts, 并在违反时保留结果、给出包含违反属性与恢复工具的非绑定receipt. 在冻结的预设评估中, 该方法将ToolMaze完成率从10.9%提升至28.1%(跨两个provider家族的四个模型, 并在第三个家族复现) , 在tau-bench retail两个tier上分别提升14.0和12.0点; 控制实验表明增益主要来自恢复工具列表, 而非诊断细节或时机. 在基于公开incident taxonomy的转录套件中, contract词表外的检出率降至46%, 但配送继续且完成率不变, 说明扩展检测边界仍是未解问题.
+针对Agent调用工具时的静默失败(如缓存错误页或负价格以正常格式返回并被当作事实), 本文提出Outcome Monitors: 从任务无关轨迹或公开schema挖掘outcome contracts, 一旦违反即保留结果并签发非绑定receipt, 注明违规属性与可用恢复工具. 在冻结的预置评估中, 该方法将ToolMaze任务完成率从10.9%提升至28.1%, 覆盖两个模型家族共四个模型并在第三个家族复现;
 
 
 \arxivwithtarget{2608.19408}{Beyond Imitation: Filtering On-Policy Distillation by Reasoning Progress}{Chen Yang, Haiyuan Wan, Rengrong Xiong, Yize Chen, Danny H.K. Tsang}\textbf{cs.AI}, cs.LG.
@@ -219,7 +220,7 @@ others: 76
 
 \arxivwithtarget{2608.19652}{Can Agent Memory Systems Track Evolving State?}{Xinyi Fan, Miri Liu, Ruozhen Yang, Siru Ouyang, Jiawei Han}\textbf{cs.AI}, cs.CL.
 
-长期部署的LLM agent面临记忆系统跟踪动态世界状态的关键缺口: 现有benchmark偏重事实回忆, 而真实交互中事实、约束和决策不断修订, 答案必须反映当前状态而非被取代的旧状态. 作者将此能力定义为state tracking, 并构建了StateMemBench基准, 包含234个跨session场景, 通过closed-pool grading区分“当前状态”与“被取代状态”的错误来源. 提出的StateMem方法显式建模supersession和relational dependencies, 在DeepSeek-V4-Flash上将current-state accuracy从0.205提升至0.363(相对
+该论文指出现有LLM-based agent记忆评测多聚焦于recall式任务, 忽视了长期交互中事实、约束与决策更新后必须反映当前状态这一核心能力, 作者将该能力定义为state tracking并构建了包含234个多会话场景的StateMemBench基准. 文中提出state-first记忆方法StateMem, 显式建模supersession与relational dependencies以追踪状态演变, 在DeepSeek-V4-Flash上当前状态准确率较最强同骨干基线提升1.8倍(0.205到0.363) , 在Qwen-3.5-9B上较最强记忆系统提升1.6倍(0.149到0.233) . 该方法还能作为轻量级single-call wrapper挂载到现有记忆系统, 在六个memory与retrieval后端上提升当前状态准确率+32到+67点, 且长度与成本匹配的控制实验证明其中+15到+32点归因于状态结构而非额外上下文.
 
 
 \arxivwithtarget{2608.19680}{Frequency-Aware Continual Learning for Smart Contract Vulnerability Detection with Large Language Models}{Tenghui Huang, Jiawen Kang, Dongning Liu, Changyan Yi, Chengjun Cai, Anjia Yang, Li Li, Dong In Kim}\textbf{cs.AI}.
@@ -236,6 +237,7 @@ others: 76
 
 \arxivwithtarget{2608.19701}{Beyond Memory Majority: Latent-Source Reasoning for Multi-Agent Memory Arbitration}{Chenchen Lin, Wenhao Yuan, Xuehe Wang, Edith Cheuk Han Ngai}\textbf{cs.AI}.
 
+长期多智能体系统中, 不同agent写入的记忆可能继承相同上游来源或共享偏差, 导致检索到的记忆被重复计票并形成虚假多数, 即Memory Correlation Bias. 为此提出Correlation-Aware Memory Arbitration (CAMA)框架, 将检索记忆建模为query-conditioned evidence groups, 结合neural dependency inference与provenance-based symbolic priors估计有效独立证据源数量, 并通过sequential recovery policy主动追溯上游来源以补全缺失证据. 在多个benchmark上, CAMA有效抑制了相关记忆造成的虚假多数, 性能超越现有state-of-the-art baseline方法.
 
 
 \arxivwithtarget{2608.19729}{SafeBranch: Branch-Pair Safety Alignment for Embodied Agents}{Hyunse Lee, Jiwoo Jeong, Haneul Lee, Kyochul Jang, Youngjae Yu, Woojin Lee}\textbf{cs.AI}, cs.CV, cs.RO.
@@ -256,7 +258,7 @@ others: 76
 
 \arxivwithtarget{2608.19794}{Towards general embodied intelligence: integrating large language models, knowledge bases, and reasoning capabilities to build the next generation of AI agents}{Fujiang Yuan, Xia Huang, Lusheng Wang, Jun Ding, Zhen Tian, Yuxin Wang, Shaojie Gu, Yuki Funabora, Yanhong Peng, Zebing Mao}\textbf{cs.AI}, cs.RO.
 
-该论文聚焦于构建通用具身智能(GEI) 的路径, 系统综述了以large language model(LLM) 为核心的智能体如何与structured knowledge bases(KB) 及reasoning ability(RA) 协同, 从而在物理环境中实现感知、推理与行动. 作者指出, 单纯依靠LLM的涌现能力不足以支撑可靠(reliable) 的具身决策, 必须引入外部知识库与hybrid symbolic-neural reasoning机制来弥补事实性错误与环境反馈的缺失. 文中提出一个概念性框架, 强调LLM、KB、RA与embodiment四者之间的闭环交互, 并识别出五大关键挑战: 高效部署、闭环知识整合、混合推理、感知-行动对齐以及持续学习. 该综述为构建适应动态复杂环境的多模态自主agent提供了路线图, 但其所提出的框架是指导性模型而非可直接落地的工程架构.
+该综述旨在为通用具身智能(GEI)提供统一路线图, 以解决当前LLM智能体在知识整合、符号推理与物理环境交互中的割裂问题. 文章系统梳理了LLM架构、预训练与推理机制, 并探讨其与结构化知识库(KBs)及逻辑推理的结合方式, 进而提出一个概念性框架, 将LLMs、KBs、RA与具身性协同用于感知-推理-行动循环. 通过分析现有具身智能范式, 作者指出通向GEI的五个关键挑战: 高效LLM部署、闭环知识整合、混合符号-神经推理、感知-行动锚定及持续学习. 该工作为构建能适应复杂动态环境的多模态具身Agent提供了综合性研究路径, 但框架本身是指导性概念而非已实现的工程架构.
 
 
 \arxivwithtarget{2608.19804}{ADAPT: Physics-Aware Diffusion-based World Models for Adaptive Predictive Transferable HVAC Control}{Xu Yang, Kailai Sun, Dianyu Zhong, Qianchuan Zhao}\textbf{cs.AI}.
@@ -277,17 +279,17 @@ others: 76
 
 \arxivwithtarget{2608.19842}{SAPO: Single-Rollout Autoregressive Policy Optimization for Agentic Reinforcement Learning}{Dayang Liang, Lang Feng, Bo An, Yunlong Liu}\textbf{cs.AI}.
 
-针对agentic reinforcement learning中现有critic-free方法的三点缺陷: 缺乏显式value generalization与temporal credit assignment、长程任务中advantage collapse、采样预算与性能的权衡, 本文提出SAPO框架. 该方法利用LLM的自回归结构, 让policy与value function共享单一backbone, 在不同causal boundary上分别输出预测, 并独立优化PPO目标与on-policy SARSA目标. 为稳健估计每轮贡献, 引入融合$\lambda$-return与batch normalization的trajectory-level generalized advantage estimator. 在ALFWorld与WebShop上基于Qwen2.5-1.5B/7B的实验表明, SAPO训练稳定, 平均性能较PPO和GRPO分别提升15.1
+现有agentic RL方法如GRPO虽避免critic开销, 但缺乏显式value generalization与时间信用分配, 且长程任务中优势估计易退化, 需在采样预算与性能间折中. 本文提出SAPO, 让policy与value共享同一自回归backbone, 在不同causal boundary上分别生成policy与value预测, 同时优化PPO目标与on-policy SARSA辅助目标. 为稳健估计每轮贡献, 引入trajectory-level GAE, 结合$\lambda$-returns与batch normalization. 在ALFWorld与WebShop上用Qwen2.5-1.5B/7B验证, SAPO平均比PPO和GRPO高$+15.1$与$+12.1$个百分点, 省去独立critic内存, 且单轮迭代耗时比PPO降低$33.2\%$.
 
 
 \arxivwithtarget{2608.19861}{PolicyGuide: From Guarding One Action to Guiding the Whole Workflow for Policy-Compliant LLM Agents}{Seongjae Kang, Taehyung Yu, Sung Ju Hwang}\textbf{cs.AI}, cs.CL, cs.LG.
 
-PolicyGuide将领域政策编译为workflow graph, 并在user-turn边界触发proactive verifier, 以同时防范forbidden actions和遗漏的程序性步骤. 与action-local guards或workflow-following系统不同, 它基于持久化的graph state协调未完成请求, 返回沿政策合规路径的step-specific remediation. 在$\tau^2$-bench的airline, retail
+PolicyGuide 针对客服 LLM agent 在执行多步流程时既可能违反禁令动作、又可能遗漏程序步骤的问题, 将每条组织 policy 编译为 workflow graph, 并在用户轮次边界调用 proactive verifier, 结合持久化的图状态对未完成请求给出符合 policy 的逐步修复建议. 在 $\tau^2$-bench 的航空、零售和电信三个领域上, 采用 GPT-5.4 作为 agent 与 verifier 时, 平均 $\mathrm{Pass}^4$ 从 $0.42$ 提升至 $0.62$, 其中流程结构最强的电信域提升最大(从 $0.19$ 到 $0.61$) . 该方法生成的 workflow 也可迁移至 Claude Sonnet 4.6 与 Gemini 2.5 Pro 等不同 agent 上, 并在对抗性用户测试中取得最低的攻击成功率, 同时在作者设计的 workflow 级验证中展现出最强的流程合规性.
 
 
 \arxivwithtarget{2608.19880}{EnvHarness: Awakening Static Worlds for Agent Learning}{Chengsong Huang, Zifeng Wang, Rujun Han, Jun Yan, Yanfei Chen, Zoey CuiZhu, Ke Jiang, Peng Xia, Han Yu, Yufan Zhuang, Yifei Ming, Jiaqi Pan, Bhavana Dalvi Mishra, Jiaxin Huang, Burak Gokturk, Tomas Pfister, Chen-Yu Lee}\textbf{cs.AI}, cs.CL, cs.LG.
 
-针对LLM agent训练依赖静态、手工构建环境而无法贴合agent弱点的问题, 提出EnvHarness, 一种可编程plug-in组件层, 通过标准接口包装静态环境以重塑其行为而不修改底层逻辑, 并保持原始verifier. 自动化工具EnvRigger将目标policy视为black box,
+针对LLM agent在静态人工环境中学习效率低、环境无法随agent能力提升而自适应演化的问题, 本文提出EnvHarness, 一种可编程的插件层, 通过标准接口包裹静态环境以重塑其行为, 无需修改底层逻辑且保留原始verifier. 配套的EnvRigger将目标policy视为黑盒, 基于其执行轨迹诊断缺陷并合成EnvHarness组件, 再通过新rollout验证. 在四个领域的五个benchmark上, 该方法相较原始环境与领域特化生成管线, 在held-out实例上最高提升9.0分, 并减少9.8%执行步数, 同时为强化学习提供更优的优化信号, 实现policy与环境持续共演化.
 
 
 \arxivwithtarget{2608.19882}{TESTNAV: Pareto-Guided Search for Compositional Robustness Testing}{Arooj Arif, Tobias Hartung, Elena Botoeva, Alexandros Koliousis}\textbf{cs.AI}.
@@ -304,7 +306,7 @@ PolicyGuide将领域政策编译为workflow graph, 并在user-turn边界触发pr
 
 \arxivwithtarget{2608.19902}{Bringing analytic rigor to agentic AI for science: The Brain Researcher platform for neuroimaging data analysis}{Zijiao Chen, Nicholas Lu, Xinhui Li, Jocelyn A. Ricard, Ce Ju, Huan H. Wang, Christian Kindermann, Jeanette A. Mumford, Steven Dillmann, James Kent, Alejandro de la Vega, Sanmi Koyejo, Vince D. Calhoun, Joshua W. Buckholtz, Juan Helen Zhou, Steffen Bollmann, Russell A. Poldrack}\textbf{cs.AI}, q-bio.NC.
 
-针对agentic AI在科学分析中缺乏可辩护性的问题, Brain Researcher平台通过将方法论判断嵌入工作流而非事后审查, 为neuroimaging数据分析设定了 admissible analyses、required checks 和 claim scope 等规则约束. 该方法利用multiverse analysis暴露analytic-choice敏感性, 并通过科学评审将结论分类, 从而缓解selective analysis和premature success等失败模式. 在七个模型上的benchmark中, 该平台将first-choice tool-selection accuracy从23.3%提升至93.6%, verifiable grounding从4.6%提升至22.0%, 显著增强了结论的可靠性与可溯源provenance.
+针对科学分析中 agent 可能产生的选择性分析、过早宣称成功等 reliability 问题, 本文提出 Brain Researcher, 一个在神经影像学计算环境中运行的 agentic research harness. 它通过设定 admissible analyses 规则、强制检查与 claim scope 限制, 将方法论判断嵌入工作流而非事后审查. 在七个模型上, 该平台将首选题 tool-selection accuracy 从 23.3% 提升至 93.6%, 并显著增强 grounding 可验证性; 合作者与自进化实验中, multiverse analyses 可暴露 analytic-choice sensitivity, 最终科学评审将结论分为 accepted、qualified、revised、blocked、rejected 或 deferred 等层级.
 
 
 \arxivwithtarget{2608.19907}{Spike-based Belief Propagation in Nonlinear Dynamical Systems}{Sepideh Adamiat, Hongye Wang, Wouter M. Kouw, Bert de Vries}\textbf{cs.AI}, cs.LG, cs.NE, eess.SY.
@@ -325,12 +327,12 @@ PolicyGuide将领域政策编译为workflow graph, 并在user-turn边界触发pr
 
 \arxivwithtarget{2608.19974}{ReguSim: Evaluating LLM Agent Rule Grounding in Financial Compliance}{Yiyang Luo, Yihang Jiang, Qijun Xie, Liang Lan, Lin Willian Cong, Anyi Rao, Yunya Song}\textbf{cs.AI}.
 
-该论文研究金融合规场景中LLM agent的规则落地可靠性问题, 指出agent可能引用规则却仍提交违反可执行约束的订单, 或在监控时误读证据. 作者提出受控环境ReguSim与带目标标记的基准ReguBench, 将陈述推理、尝试动作、执行强制和监控证据四类工件分离评测. 实验显示, 在DeepSeek V4 Pro与Gemini 3.5 Flash上, 可见规则能减少但无法消除被拒绝动作, 且激励或个人设定会改变行为; 桥接研究发现交易员推理可误导独立监控器, 除非展示强制证据. 监控任务中, 简单结构化baseline达到或超过纯prompt LLM, 表明合规评估应关注规则约束下的动作与证据使用, 而非单一合规分数.
+针对金融合规场景中LLM agent可能“口称规则却违规下单”的问题, 作者构建了受控环境ReguSim与基准ReguBench, 将规则推理、意图动作、执行强制和监控证据四类要素分离评估. 实验显示, 显式规则提示能减少但无法杜绝违规行为, 且激励或人格框架会改变agent行为; 桥接实验进一步表明, 若无执行证据, 独立监控器易被交易员话术误导. 在监控任务中, 简单的结构化基线在性能上不逊于乃至超过纯prompt的LLM, 说明应将合规评估视作对规则约束行为与证据使用的审计, 而非单一合规分数.
 
 
 \arxivwithtarget{2608.19993}{Optimal Skill Selection for LLM Agents with Provable Bicriteria Guarantees}{Yu Chen, Ruishuo Chen, Xun Wang, Zhuoran Li, Longbo Huang}\textbf{cs.AI}.
 
-LLM agent在有限context window中加载reusable skill documents以获取任务能力, 但现有方法仅按semantic relevance独立打分并贪心选择, 缺乏对所选集合的quality guarantee和cost awareness, 导致冗余技能浪费token甚至降低性能. 本文将
+本文解决LLM agent在有限context window下选择reusable skills的最优化问题, 现有基于semantic relevance的top-k或greedy方法缺乏质量保证和cost awareness, 导致token浪费甚至性能下降. 作者将skill selection建模为在hard token budget下最大化monotone submodular benefit减去context penalty的优化问题, 并提出多项式时间算法Best Prefix Selection (BPS). 该算法
 
 
 \arxivwithtarget{2608.20009}{ExPhy: A Benchmark for Explicit Physical Property Learning in Multi-Object Trajectory Forecasting}{Rui Wang, Yeteng Wu, Xianlin Zhang, Mengshi Qi}\textbf{cs.AI}.
@@ -403,7 +405,7 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.20274}{Break It Down, Pass It On: Cross-Task Skill Transfer in LLM Agents}{Yiyang Feng, Biddut Sarker Bijoy, Niranjan Balasubramanian, Jiawei Zhou}\textbf{cs.AI}, cs.CL.
 
-大型语言模型智能体(agent)可通过归纳技能(skill induction)复用经验提升能力, 但技能跨任务迁移的可靠性尚不明确. 该论文系统对比了任务级(task-level)与子任务级(subtask-level)技能归纳, 以及文本(text)与代码(code)技能格式, 发现子任务级技能平均可提升agent相对无记忆基线的性能, 而任务级技能往往造成性能下降, 且文本技能的迁移效果优于代码. 为解释此现象, 作者提出技能utility score, 综合衡量技能与任务的specificity与abstractness, 该分数无需任务执行即可计算, 且与迁移后的任务成功率一致相关, 可作为技能记忆的实用诊断指标.
+本研究针对LLM agent的技能迁移可靠性问题, 通过对照实验系统比较了task-level与subtask-level技能归纳、以及text与code技能格式对跨任务迁移效果的影响. 实验发现task-level技能在多数情况下会降低agent相对无记忆基线的性能, 而subtask-level技能平均能提升性能, 且text技能迁移效果优于code. 为解释该现象, 作者提出技能utility score, 该分数综合衡量技能的specificity与abstractness, 二者单独均无法预测任务成功, 但组合后与迁移成功率稳定相关, 且无需执行任务即可用于诊断技能记忆的质量.
 
 
 \arxivwithtarget{2608.20290}{Phantom Gains: Auditing Self-Improvement Against a Measured Null}{Cheng Xu, Nan Yan, Liming Chen, M-Tahar Kechadi}\textbf{cs.AI}, cs.CL.
@@ -412,7 +414,7 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.20314}{MidTool: Mid-training Data Synthesis for Agentic Tool Use}{Fengqing Jiang, Yite Wang, Boyi Liu, Zhaoyang Wang, Canwen Xu, Zhewei Yao, Radha Poovendran, Yuxiong He}\textbf{cs.AI}.
 
-针对大型语言模型(LLM) 的agentic tool use能力, 现有mid-training研究多聚焦于数学与软件工程, 缺乏面向通用工具调用的专门训练数据与流程. MidTool提出一种开放语料构建pipeline, 融合网页、PDF、代码数据及来自真实tool APIs、MCP skills和文档化工作流的合成监督信号, 以训练模型识别工具可用性(affordance) 、从上下文中抽取参数、编排工具调用流程并从不完整信息中恢复. 基于Qwen3-4B/8B-Base在MidTool-Mix上完成mid-training, 再经SFT与RL后训练, 相比基线在BFCL、tau2-Bench与MCP Universe上持续提升下游性能, 表明通用工具使用同样受益于专门的mid-training而非仅依赖post-training.
+MidTool 针对通用工具使用(general tool use) 这一 agentic 能力在 mid-training 阶段缺乏专门研究的问题, 提出了一套开放语料构建流程, 从 web、PDF 与代码中抽取数据, 并结合真实 tool API、MCP skills 与文档化 workflow 生成合成监督信号, 以训练模型识别工具可用性、基于上下文 grounding 参数、编排调用流程并从不完整信息中恢复. 作者在 Qwen3-4B-Base 与 Qwen3-8B-Base 上使用 MidTool-Mix 进行 mid-train, 随后分别施加 supervised fine-tuning 与 reinforcement learning, 在 BFCL、tau2-Bench 和 MCP Universe 上均
 
 
 \arxivwithtarget{2608.20316}{Pandora's AI Model Routing Box: Efficient Allocation with Costly Value Estimation}{Adam Fisch, Shubhendu Trivedi, Fantine Huot, William W. Cohen, Michael Kaisers, Mirella Lapata, Kate Larson, Jacob Eisenstein}\textbf{cs.AI}.
@@ -421,12 +423,12 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.20318}{AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement}{Yizhe Chi, Wenyi Li, Deyao Hong, Xiaoqiu Wang, Mingju Gao, Kaisen Yang, Bingxiang He, Youjie Zheng, Calvin Xiao, Qinhuai Na}\textbf{cs.AI}, cs.CL, cs.LG.
 
-该论文指出, 递归自我改进(RSI) 的核心在于智能体能否设计出更好的training algorithm, 而现有benchmark无法将算法设计与数据收集或超参数调优区分开. 作者提出AI4AI-Bench, 包含10个冻结的研究代码库, 每个任务要求agent在4小时内重写训练算法, 随后在统一评估协议下从零重跑并对比原始算法, 所有任务被映射到同一评分尺度. 对6个系统的29种配置进行测试, 平均得分仅为$0.166$, 最强系统也仅达$0.250$; 分析显示多数提交未改变模型的学习方式, 而少数真正修改算法的提交平均得分显著更高, 且更强的推理能力能大幅提升此类修改的出现频率. 作者公开了任务套件、评估器与所有提交, 以便后续系统可被重复测量.
+该论文针对递归自我改进(RSI) 中一个未被衡量的核心能力: LLM agent 是否能在算法层面自主设计 training algorithm, 而非仅靠数据收集或超参数调优. 作者提出 AI4AI-Bench, 包含 10 个冻结的研究仓库和 10 类 training algorithm family, 要求 agent 在 4 小时内改写算法, 再用固定 evaluator 从零重跑并对比原始算法. 实验显示, 在 29 种配置下平均得分为 $0.166$, 最强系统仅达 $0.250$, 且多数 agent 根本未改变模型的学习方式; 增加推理努力可将改变学习方式的提交比例从 $8\%$ 提升至 $64\%$, 平均分从 $0.094$ 提升至 $0.196$. 该基准释放了任务集、评估器与全部提交, 以支持可重复测量.
 
 
 \arxivwithtarget{2608.20320}{An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction}{Narges Ahmadi, Yubo Jiao, Jônatas Augusto Manzolli, Jiangbo Yu, Luis Miranda-Moreno}\textbf{cs.AI}, cs.CL.
 
-该论文构建了一个可审计的multi-agent workflow, 将对话式数据采集、结构化数据处理与行为预测三个agent级模块串联, 以解决传统travel behavior研究中数据收集和建模分离的问题. Agent框架通过chatbot执行image-augmented stated-preference调查, 收集454条学生通勤者在五种天气场景下的mode
+该研究针对出行行为研究中数据收集与预测建模相互割裂的问题, 提出一个三agent
 
 
 \section{cs.LG}
@@ -548,7 +550,7 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.19760}{Credit Without Ground Truth: Auditing Step-Level Credit Assignment in LLM Agents Against Executed Replay}{Haiyue Zhang}\textbf{cs.LG}, cs.AI, cs.CL.
 
-该论文针对LLM agent训练中step-level credit assignment信号缺乏因果真值的问题, 在单agent工具环境ALFWorld中通过executed replay构造了因果ground truth, 用于审计LLM-judge scores、outcome-conditioned logprob ratios和policy confidence等信号. 结果表明这些隐式credit信号对因果贡献的识别均不优于随机水平, 且与policy的fluency高度相关(median rank correlation +0.75) , 而conditioning on outcome不增加因果信息(partial correlation -0.004) . 进一步发现因果贡献具有稀疏性(30.5%的决策点有可测效应) 和模型依赖性, 且七臂预注册训练实验中无任何credit rule稳定优于未训练policy, 其表观差异完全由训练剂量(optimizer steps) 解释, 因此比较credit规则必须匹配有效样本量.
+在LLM Agent训练中, 步骤级credit assignment信号(如LLM-judge分数、outcome-conditioned logprob比、policy自身置信度) 通常按步骤correctness评估, 但本文在ALFWorld单agent工具环境中通过executed replay构造因果ground truth, 发现这些信号对步骤contribution的预测均不优于随机. 因果贡献具有稀疏性(30.5%决策点有可测效应) 且依赖policy, 且implicit credit主要反映policy的fluency(中位秩相关+0.75) , 而conditioning on outcome不增加因果信息(partial correlation -0.004) . 进一步seven-arm预注册训练实验显示, 所有credit规则均未稳定超越未训练policy, 其表观差异完全由training dose(即有效样本量或optimizer steps) 解释, 因此比较credit规则必须匹配effective sample size, 否则测的是dose而非credit.
 
 
 \arxivwithtarget{2608.19762}{Finite-Horizon Input-Output Dynamics of Minibatch Perturbations in AdamW}{Kang Liu, Suyan Li}\textbf{cs.LG}, cs.AI, math.OC, stat.ML.
@@ -561,7 +563,7 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.19803}{MileGPO: Milestone Inference with Local Evidence for Graph-Based Policy Optimization of Long-Horizon LLM Agents}{Bo Qian, Yuting Wu, Shuang Zeng, Huaiyu Wan, Dalin Zhang, Jiqiang Liu}\textbf{cs.LG}, cs.AI, cs.CL.
 
-针对长程LLM agent强化学习中的credit assignment难题, 现有方法在trajectory-level信号细化时忽略有意义的intermediate milestones, MileGPO提出基于grouped on-policy rollouts的process-level credit分配. 其包含Milestone Discovery识别成功轨迹上的candidate milestones与失败轨迹中的recurring traps, Reliability-Calibrated Shaping按outcome-based confidence加权候选以强化可靠结构, Progress-Contrastive Calibration则通过对比同状态分支证据检验candidate是否反映局部进展. 该方法无需auxiliary models或额外环境交互, 在ALFWorld和WebShop上达到state-of-the-art性能, 且消融实验表明可靠性加权、局部进展与同状态分支证据能有效解决模糊的中间credit分配.
+针对长程 LLM agent 的强化学习, 最终奖励稀疏导致 credit assignment 困难, 已有方法常忽略中间里程碑. MileGPO 利用分组 on-policy rollouts 设计 Milestone Discovery 识别成功轨迹中的候选里程碑与失败轨迹中的 recurring traps, 并通过 Reliability-Calibrated Shaping 与 Progress-Contrastive Calibration 分别按置信度和局部进展筛选关键信号, 无需额外模型或环境交互. 在 ALFWorld 和 WebShop 上达到 state-of-the-art 性能, 且 ALFWorld 的 in-distribution 到 out-of-distribution 差距较小, 消融实验验证了同状态分支证据对解决模糊中间 credit 的有效性.
 
 
 \arxivwithtarget{2608.19807}{Answer-Level Trust Selection for Physical Vision-Language Reasoning}{Rongyu Yu, Ke Niu, Fengxiang He}\textbf{cs.LG}.
@@ -744,6 +746,7 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.19901}{MaliciousSkillBench: A Comprehensive Benchmark for Malicious Agent Skill Detection}{Yue Wang, Yi Liu, Gelei Deng, Ying Zhang, Yuekang Li, Zhenyu Chen, Leo Zhang}\textbf{cs.CR}, cs.AI.
 
+针对LLM Agent Skills带来的恶意行为直接分发渠道, 现有恶意Skill数据集分散且评估碎片化, 该论文提出综合基准MaliciousSkillBench: 整合13个公开来源, 归一化得到7,539个唯一恶意样本与2,235个善意Skill, 并统一为11类攻击模式. 基于该基准, 作者评估了三种学习型文本检测器与三种现成Skill扫描器, 发现跨来源泛化性能显著下降, 最强TF-IDF SVM在Random/structural-disjoint/Source-Disjoint下F1为0.932/0.916/0.665, 但对未见来源的善意误报率高达62.4%. 结果表明, 可靠恶意Skill检测需要更广的跨源覆盖, 并应联合衡量攻击检出率与良性误报率.
 
 
 \arxivwithtarget{2608.19924}{Securing Filesystems for Confidential Computing}{Dimitra Giantsidi, Antoine Delignat-Lavaud, Cédric Fournet, Jinnan Guo, Heidi Howard, Tianjiao Huang, Kapil Vaswani, Stavros Volos}\textbf{cs.CR}.
@@ -809,7 +812,7 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.19206}{Hallucination as a Feature, not a Defect: Evaluating a multi-agent architecture to transform speculative language-model outputs into testable scientific hypotheses}{Nicolas Rodriguez-Alvarez}\textbf{cs.CL}, cs.AI, cs.MA.
 
-该论文针对LLM对齐策略抑制幻觉导致推测性R&D受限的问题, 将hallucination视为一种可调用的生成资源, 而非单纯缺陷.
+该论文针对LLM为抑制幻觉而牺牲组合性创造力的问题, 提出一种Rust实现的多agent编排架构, 将高熵的生成agent与基于web检索的评估agent置于Epistemological Friction循环中, 并加入低熵语义瓶颈以降低噪声和重复. 实验对比了直接提示、自反思、去语义过滤、去检索接地及去侧视镜等消融条件, 发现直接提示在多数指标上表现最弱, 但完整结构并不普遍优于简单自反思. 结果表明, 单一agent在物理或社会科学的强约束场景下更容易产生原创性、可行性与经验接地之间的失衡, 而多agent架构仅在假设须满足严格实证或制度约束时显现优势; 这说明幻觉本身并无价值, 其效用取决于架构约束与显式评估.
 
 
 \arxivwithtarget{2608.19207}{Compliance, Capability, and Conflict: Benchmarking Multimodal LLMs under System Messages}{Juan Yeo, Geewook Kim}\textbf{cs.CL}.
@@ -830,7 +833,7 @@ LLM agent在有限context window中加载reusable skill documents以获取任务
 
 \arxivwithtarget{2608.19218}{Time-Series Retrieval for Grounding Multimodal Language Models in Remaining Useful Life}{Valeriu Dimidov, Raphaël Frank}\textbf{cs.CL}, cs.AI, cs.LG.
 
-This work addresses the challenge of remaining useful life (RUL) estimation in prognostics and health management (PHM) using multimodal large language models (MLLMs) within agentic AI systems. The authors propose a retrieval-augmented framework where historically similar degradation segments are retrieved from the training set and jointly visualized with the test trajectory, forming a structured multimodal prompt for MLLM-based inference. Evaluated on the C-MAPSS FD001 benchmark, the method consistently outperforms a non-retrieval baseline using random references, achieving lower prediction error and higher stability. The improvement is modulated by model capacity, indicating that time-series RAG is effective only when the MLLM can sufficiently leverage retrieved evidence, while current MLLM-based RUL estimation still
+该论文研究如何利用多模态大语言模型(MLLM)和agentic AI进行剩余使用寿命(RUL)估计, 以解决传统PHM方法在复杂时序数据推理上的局限. 作者提出基于time-series retrieval的RAG框架, 从训练集中检索历史相似退化片段, 与测试轨迹共同转换为可视化对比图, 并通过结构化多模态提示交由MLLM处理. 在C-MAPSS FD001上的重复实验表明, retrieval-based inference相比随机参考基线一致降低RUL预测误差并提升稳定性, 但收益依赖模型容量, 且当前MLLM在实际PHM场景中的RUL估计能力仍有明显局限.
 
 
 \arxivwithtarget{2608.19220}{Can Conversational AI loosen Us-Versus-Them Boundaries? The Effects of Common, Dual, and Separate Identity Framings on Pro-Immigrant Intergroup Helping}{Oluwadamilola Jeboda, John F. Dovidio, Jonas R. Kunst}\textbf{cs.CL}, cs.AI.
@@ -875,7 +878,6 @@ This work addresses the challenge of remaining useful life (RUL) estimation in p
 
 \arxivwithtarget{2608.19564}{Remember, Verify, or Ask? Cross-Family Evaluation of Memory Commitment in LLM Agents}{Baichuan Li, Junyi Yao, Zihao Zheng}\textbf{cs.CL}.
 
-该论文提出MCB基准, 用于界定LLM agent的记忆与澄清边界, 即判断交互信息应持久化、仅当前使用、重新验证还是向用户询问, 以降低错误持久记忆对后续行为的隐性损害. 方法上构造140个主场景和70个对比场景, 评估动作标签与结构化工具调用选择, 其中非作者独立标注达到97.1%一致率. 实验发现Claude和Qwen在验证信息新鲜度上表现优于主动询问歧义, few-shot prompting将准确率从0.557提升至0.771, 但澄清召回率仅0.333, 而policy prompt可显著减少错误持久化. 研究还揭示标签与工具调用一致性仅为57%(Claude) 和23%(Qwen) , 说明记忆评估必须同时检验显式决策与实际工具调用.
 
 
 \arxivwithtarget{2608.19611}{Forking Fast: Efficiently Estimating Uncertainty Dynamics in Text Generation}{Eric Bigelow, Amir Zur, Satchel Grant, Tal Haklay, Can Rager, Owen Lewis, Thomas McGrath, Jack Merullo, Ekdeep Singh Lubana, Atticus Geiger}\textbf{cs.CL}, cs.AI, cs.LG.
@@ -884,12 +886,12 @@ This work addresses the challenge of remaining useful life (RUL) estimation in p
 
 \arxivwithtarget{2608.19621}{Mitigating Identity Essentialism in LLM Agents with Longitudinal Life Trajectories}{Hexi Wang, Yujia Zhou, Bangde Du, Weihang Su, Xinyuan Cao, Qingyi Pan, Qingyao Ai, Yueyue Wu, Min Zhang, Yiqun Liu}\textbf{cs.CL}.
 
-该论文针对LLM社交模拟中agent构建的可靠性问题, 指出基于静态档案的agent会产生identity essentialism, 即模型将群体平均倾向误作个体特质, 导致群体内同质化和群体间过度分离, 与真实人类多样性不符. 作者认为根源在于稀疏的静态表征和prompt-only记忆缺乏经验整合能力. 为此提出LifeMem, 一种结合结构化life-event检索与agent专属参数化记忆的纵向记忆框架. 在Add Health和Understanding Society数据集上的实验表明, LifeMem能显著提升agent与人类数据在response分布、整体及组内多样性、以及跨生命阶段个体变化模式上的一致性.
+该论文聚焦于LLM-based social agents的可靠性问题, 指出现有静态profile驱动的agent在群体模拟中表现出过度的demographic separation与within-group compression, 即identity essentialism现象, 导致个体多样性失真. 作者认为根源在于sparse static representation与prompt-only memory缺乏经验整合能力, 受互补记忆系统启发提出LifeMem框架, 结合structured life-event retrieval与agent-specific parametric memory实现纵向轨迹记忆. 在Add Health与Understanding Society数据集上基于三种LLM的实验表明, LifeMem在response distribution、overall及within-group diversity、以及跨life stages的within-person change等指标上均更接近真实人类数据, 验证了纵向生活事件记忆对构建faithful与dynamically evolving social agents的有效性.
 
 
 \arxivwithtarget{2608.19662}{ReCache: Efficient KV Cache Reuse and Compression for Tool-Augmented LLM Agents}{Yichu Fang, Sitong Wei, Haozhe Hu, Xiaoyu Shen}\textbf{cs.CL}.
 
-针对工具增强型LLM Agent中工具与技能schema跨请求重复出现但组合顺序多变, 导致标准prefix caching无法复用KV cache的问题, ReCache提出resource-wise attention将各资源表示独立缓存, 并赋予资源局部位置以生成composition-invariant的KV块. 为降低推理开销, 该方法进一步将资源可见性限制在
+ReCache 针对 tool-augmented LLM agent 中工具与技能 schema 以不同组合反复出现、导致标准 prefix caching 失效的问题, 提出将资源表征独立缓存以提升 KV cache 复用效率. 其核心是 resource-wise attention, 通过消除跨资源交互并分配资源局部位置, 使生成的 KV blocks 具有 composition invariance; 同时借助 contribution-selected layer--KV-head-group routes 限制资源可见性, 并结合结构性与语义剪枝保留关键字段. 在七个公开 tool/skill use 数据集上, resource-wise attention 的 Inv-F1 为 82.3%, 与 dense 的 82.4% 基本持平, 且 TTFT 加速 3.655 倍; 完整框架将 KV tensor 内存降低 92.43%, attention 加速 1.423 倍, 表明将可复用 schema 编码与选择性资源访问解耦能显著降低 agentic inference 成本而仅带来轻微效果损失.
 
 
 \arxivwithtarget{2608.19670}{The Asymmetric Harms of LLM Compression}{Yuan Wu, Mairui Li, Lesia Semenova, Chudi Zhong}\textbf{cs.CL}.
@@ -902,7 +904,7 @@ This work addresses the challenge of remaining useful life (RUL) estimation in p
 
 \arxivwithtarget{2608.19741}{One Success Isn't Reliability: Thinkingbox, a Sandbox and Benchmark for Agents in Stateful Business Workflows}{Zhuochun Li, Youngmin Ko, Ali Keramati, Nicola Ferri, Susana Palmaz Lopez Pelaez, Liang-Chun Tsai, Calvin Wang, Mirco Milletari, Tuhin Kundu, Vadim Smolyakov, Kjartan Olafsson, Tommy Guy}\textbf{cs.CL}, cs.DB.
 
-现有agent benchmark多在代码修复、网页导航或函数调用等场景中评估单步正确性, 但在有状态的业务工作流中, agent必须通过多轮交互收集信息、遵循领域策略并协调依赖工具以完成持久状态迁移, 而不会产生附带影响. 为此本文提出Thinking
+本文针对有状态业务工作流中现有agent评测仅关注单步工具调用或响应合理性、忽视多轮信息收集与持久状态正确迁移的问题, 提出Thinkingbox沙箱与Thinkingbox-bench基准. 该基准包含507个受策略约束的工作流, 覆盖零售、保险、银行IT等场景, 通过可执行检查严格验证最终后端状态及必要响应属性, 拒绝错误、缺失或额外副作用. 测试发现最强模型pass@1仅65.36%, 而pass@20仅25.25%, 且大量失败轨迹表现为干净终止和合法状态变更, 说明response或tool-call级信号无法可靠代理端到端任务完成度. 该工作揭示agent在stateful业务任务中从偶然成功到稳定可靠之间仍存在显著差距.
 
 
 \arxivwithtarget{2608.19746}{PersonalBench: Measuring the Authorship Gap in LLM Personalization}{Yash Ganpat Sawant}\textbf{cs.CL}.
@@ -915,7 +917,7 @@ This work addresses the challenge of remaining useful life (RUL) estimation in p
 
 \arxivwithtarget{2608.19799}{SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?}{Zhipeng Xu, Jiahao Lu, Yining Zheng, Yuxin Wang, Xipeng Qiu}\textbf{cs.CL}, cs.SE.
 
-该工作提出SWE-bench Science, 一个覆盖20个科学领域、98个GitHub仓库共119个任务的科学软件工程benchmark, 用于评估coding agents修复科学代码的能力. 作者指出科学代码错误会直接损害实验证据的可信度, 而现有评测只关注整体任务成功率, 难以揭示agent失败的具体原因. 通过将任务分为Issue-driven、Expert-exploratory和Engineering-integration三类, 并分析最佳agent(Claude Code with Opus-5) 的pass@1仍低于50%, 他们归纳出四类失败机制: 科学知识或抽象不足、探索误导或表面修复、修复覆盖不全或系统集成失败、无法泛化科学知识. 配对消融实验进一步表明, 科学指引并非总是有益: 合理信息可提升平均表现和token效率, 而不匹配的指引会导致anchoring且不一定提高精确修复成功率. 该benchmark为研究科学软件工程中coding agents的能力与失败机制提供了广泛测试平台.
+科学软件日益成为科研仪器的一部分, 但其编码错误会直接威胁科学结论的有效性, 而现有coding agent评测多关注总体任务成功率, 缺乏对失败原因的深入分析. 为此, 作者提出SWE-bench Science, 一个覆盖20个科学领域、含119个任务的repository-level基准, 将任务分为Issue-driven、Expert-exploratory和Engineering-integration三类. 基于该基准, 最强的Claude Code with Opus-5 (max)在pass@1上仍低于50%, 并暴露出四类重复出现的失败机制: 科学知识或抽象能力不足、探索方向误导或仅做表面修复、修复覆盖不完整或系统集成失败、以及对未观测案例缺乏科学知识泛化能力. 配对的消融实验进一步表明, 科学知识并非总有益处: 良好的信息能约束修复并提升平均性能与token效率, 而不匹配的指导则
 
 
 \arxivwithtarget{2608.19800}{LoRA-GA$^2$: Low Rank Adaptation with Multi-step Gradient Adaptive Alignment}{Haonan He, Xinyue Fan}\textbf{cs.CL}, cs.AI.
@@ -964,7 +966,7 @@ This work addresses the challenge of remaining useful life (RUL) estimation in p
 
 \arxivwithtarget{2608.20106}{OenoBench: A Wine-Domain Benchmark for Knowledge-Grounded Evaluation of Large Language Models}{Nikita Khudov}\textbf{cs.CL}.
 
-该论文提出OenoBench, 一个包含3,266道多选题的葡萄酒领域知识基准, 覆盖六个知识支柱和四个难度层级, 所有问题均由经URL验证的原子事实生成. 其方法论核心是一个基于agent的pipeline: LLM负责重述事实并审计结果, 但绝不作为事实来源, 最终由九个agent组成的审计团队依据人工标注的gold sheet通过Cohen's $\kappa$校准评分. 评测16种前沿模型配置后发现, 准确率区间为53%-84%, 其中o3最优; 推理模式带来的提升仅存在于DeepSeek R1(+6.8pp) , 且闭卷可解题目上的准确率普遍提升约33pp, 揭示出参数化记忆的上限. 该工作为评估LLM在专业领域中的可靠性提供了可追溯、人工可复核的基准框架, 并以CC-BY-SA-4.0协议开放全部资源.
+本文针对大型语言模型在葡萄酒领域知识评估中缺乏可靠基准的问题, 构建了包含3,266道多选题的OenoBench基准, 覆盖六大知识支柱与四个难度层级. 方法上, 作者提出一种LLM-driven pipeline, 由35个来源可验证的爬虫从政府登记处与同行评审期刊提取事实, 再由语言模型负责重新格式化与生成问题, 并引入由九个agent组成的审计机制, 对齐人类gold sheet后通过Cohen's $\kappa$校准. 在16个前沿模型配置上的评估显示, 整体准确率为53%-84%, o3最优达83.6%, 同时发现推理模式对DeepSeek R1提升6.8pp、对Claude与Gemini无提升, 且所有配置在closed-book可解项上均存在约33pp的参数记忆上限, 仅有contextual slice可避免.
 
 
 \arxivwithtarget{2608.20116}{When Text and Numbers Disagree: Evidence Arbitration in Large Language Models}{Mattia Carletti, Edward Phillips, Fredrik K. Gustafsson, Patitapaban Palo, Lei Clifton, Danielle Belgrave, Xiao Gu, David A. Clifton}\textbf{cs.CL}.
@@ -977,7 +979,7 @@ This work addresses the challenge of remaining useful life (RUL) estimation in p
 
 \arxivwithtarget{2608.20169}{Task-CoEvolve: Efficient Harness Optimization via Adaptive Validation Task Selection}{Atsuyuki Miyai, Kiyoharu Aizawa, Toshihiko Yamasaki}\textbf{cs.CL}, cs.AI, cs.LG.
 
-Task-CoEvolve 针对 LLM agent harness 优化中固定验证集评估成本过高的问题, 提出在每次迭代中只评估部分精心挑选的验证任务. 其核心思想是利用候选 harness 在不同任务上的分歧程度来识别信息量大的任务, 并基于方差加权的采样策略聚焦于 agent 能力边界附近的任务, 同时通过采样概率校正实现对完整验证集性能的无偏估计. 实验表明, 在在线文本分类和 Terminal-Bench 2.1 上, 该方法能以 80% 的评估削减量达到与全量评估相当的最终性能, 显著提升优化效率.
+该论文针对LLM agent harness优化中固定验证集评估成本过高的问题, 提出Task-CoEvolve方法. 其核心观察是候选harness存在分歧的任务更具区分度, 据此基于历史结果进行variance-weighted sampling, 动态聚焦于agent能力边界附近的任务, 并利用采样概率校正实现不同迭代轮次间的分数可比. 在在线文本分类和Terminal-Bench 2.1上, 该方法与全量搜索最终性能相当, 但优化过程中的评估次数减少80%.
 
 
 \arxivwithtarget{2608.20281}{Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization}{Qian Kou, Xiaofeng Shi, Xiaosong Qiu, Hua Zhou}\textbf{cs.CL}, cs.AI.
@@ -1003,7 +1005,7 @@ Task-CoEvolve 针对 LLM agent harness 优化中固定验证集评估成本过�
 
 \arxivwithtarget{2608.19263}{The Evaluation Context Protocol (ECP): A Portable Contract for AI Agent Evaluation}{Aniket Wattamwar, Manav Anandani, Mrunal Kakirwar}\textbf{cs.SE}, cs.MA.
 
-该论文聚焦于AI agent评估范式的缺陷, 指出当前LLM评估方法无法捕捉agentic架构中的operational reliability问题, 如benchmark exploitation和“confidently wrong”现象. 为此, 作者提出Evaluation Context Protocol (ECP), 一个早期、vendor-neutral的portable contract层, 通过定义轻量JSON-RPC接口使agent暴露user-visible output、tool calls和audit context, 从而支持跨框架与CI系统的统一programmatic checks. 论文还给出了覆盖LangChain、LlamaIndex、CrewAI和PydanticAI的开源参考实现, 但强调ECP仍是work in progress, 其方法集与grader families需进一步实证验证与迭代.
+本文聚焦AI agent评估方法的根本缺陷, 包括benchmark exploitation和“confidently wrong”现象, 指出理论能力与实际可靠性之间的鸿沟, 并强调观察性基础设施不足是评估碎片化的核心原因. 为应对该问题, 作者提出Evaluation Context Protocol (ECP), 一个厂商中立的早期框架, 通过定义轻量JSON-RPC接口让agent暴露用户可见输出、工具调用及审计上下文, 从而支持跨框架与CI系统的统一程序化检查. 论文还给出开源参考实现, 包含LangChain、LlamaIndex、CrewAI和PydanticAI适配器, 并对照近期文献中的失败模式进行设计定位. ECP目前是进行中工作, 其评估面、方法集和grader族预计会随实践迭代,
 
 
 \arxivwithtarget{2608.19269}{Stable Within, Unidentified Across: Semantic Identification of Benchmark Effects and Rankings}{Xi Qin}\textbf{cs.SE}.
@@ -1044,7 +1046,7 @@ Task-CoEvolve 针对 LLM agent harness 优化中固定验证集评估成本过�
 
 \arxivwithtarget{2608.19703}{Loreley: Repository-Scale Program Evolution with Quality-Diversity Search}{Mohan Chen}\textbf{cs.SE}, cs.AI.
 
-Loreley 将 Quality-Diversity (QD) archive 引入 repository-scale program evolution: 完整 Git commit 状态被保留并作为 parent 或 context 供后续 agent 编辑, 替代 sequential champion editing 与 Independent Root 的单一分支策略. 在 matched Zstandard 实验中, QD 在 48 个候选任务下的压缩率比 Sequential Champion 低 0.135%(95% BCa 区间 -0.556% 到 +0.161%) , 比 Independent Root 高 0.320%(区间 -0.082% 到 +0.686%) , 统计上均未确认 QD 优势. 尽管 archive 的 stepping-stone 机制确实被触发(如 7 个 QD 获胜者中 4 个的 primary-parent ancestry 含非 incumbent 状态) , 但最终 endpoint
+Loreley 面向 repository 级程序进化, 针对 sequential agent 只保留当前 champion 而丢弃分支、independent 方法缺乏连续性但保留多样性的矛盾, 提出在 Quality-Diversity (QD) archive 中保留完整仓库状态并作为 parent 或 context 用于后续编辑. 其候选为隔离 worktree 中的 Git commits, 由项目指定 evaluator 评判. 在 matched Zstandard 实验中, 48 jobs 下 QD 的压缩率比 Sequential Champion 低 0.135%(95% BCa 区间 -0.556% 至 +0.161%) , 比 Independent Root 高 0.320%(-0.082% 至 +0.
 
 
 \arxivwithtarget{2608.19752}{A Fully Automated, Deployment-Aware Testing Pipeline for IoT-Based Automotive Applications}{Denesa Zyberaj, Roman Vintonyak, Pascal Hirmer, Marco Aiello}\textbf{cs.SE}.
@@ -1053,7 +1055,7 @@ Loreley 将 Quality-Diversity (QD) archive 引入 repository-scale program evolu
 
 \arxivwithtarget{2608.19784}{PRAXIS: Graph-Grounded Tacit Knowledge for Domain Code Generation}{Xue Jiang, Tianyu Zhang, Lingwei Wu, Ziyu Wang, Ge Li, Yuan Sui, Hao Zhu, Wenpin Jiao, Zhi Jin, Yihong Dong}\textbf{cs.SE}.
 
-PRAXIS针对LLM agent在领域代码生成中因缺乏tacit knowledge而失败的问题, 提出将隐性的业务规则与接口契约从代码依赖图中系统提取并结构化为可复用单元. 该方法模拟人类开发流程在目标代码库中获取知识, 并在agent交互时主动推送相关上下文. 实验表明, PRAXIS在领域代码生成任务上显著优于具备强agentic search能力的基线方法, 且能无缝集成到不同agent框架与LLM中, 性能随实践经验积累持续提升.
+针对LLM agent在领域特定代码生成中因缺乏隐性知识而失败的问题, 论文提出PRAXIS框架. 该框架模拟人类开发流程, 从目标代码库中系统性地提取领域业务规则与接口契约等隐性知识, 将其组织为基于代码依赖图的结构化单元, 并在agent生成代码时主动提供这些知识. 实验结果表明, PRAXIS在多个agent框架和LLM上均稳定超越具备强搜索能力的SOTA方法以及基于经验和技能的方法, 且随实践积累持续提升性能.
 
 
 \arxivwithtarget{2608.19848}{Further Progress Towards Operation Proof Obligation Generation for VDM}{Nick Battle, Carlo Rende, Peter Gorm Larsen}\textbf{cs.SE}.
@@ -1062,7 +1064,7 @@ PRAXIS针对LLM agent在领域代码生成中因缺乏tacit knowledge而失败�
 
 \arxivwithtarget{2608.19854}{Repo0: Design-Driven Zero-to-All Code Generation}{Silin Chen, Haoyi Teng, Xiaodong Gu, Yuling Shi, Jiale Huang, Yongpan Wang, Hongyu Zhang, Haibing Guan}\textbf{cs.SE}, cs.AI.
 
-Repo0针对从自然语言需求直接生成完整软件项目这一zero-to-all code generation任务, 解决了现有LLM agent假设预定义仓库结构、无法在开发中维持模块化架构的问题. 其核心是一个连续结构演化框架, 通过显式维护由requirement-level DAG与component-level DAG及其对齐关系构成的Dual-DAG架构状态, 并依据modularity metrics迭代调整组件边界直至结构收敛, 再以收敛架构引导test-driven development代码生成. 在RepoCraft的六个真实仓库上使用GPT-5 mini与DeepSeek V3.2评估, Repo0在Functionality Coverage与Pass Rate上均达最优, 相较RPG基线分别最多提升20.08与29.74个百分点, 消融实验也验证了Dual-DAG状态与模块化引导演化的关键作用.
+Repo0聚焦zero-to-all code generation场景, 挑战在于LLM agent必须从自然语言需求直接构建完整软件项目, 同时持续维持模块化的仓库架构, 而非依赖预设repo结构. 该框架引入显式架构状态Dual-DAG, 由requirement-level DAG、component-level DAG及二者对齐关系构成, 通过modularity metrics指导的结构性动作迭代演化组件边界, 直至structural convergence后再进行test-driven development代码生成. 在RepoCraft六个真实仓库上的实验表明, Repo0在所有设置下均取得最高Functionality Coverage与Pass Rate, 相比最强基线RPG最高提升20.08与29.74个百分点.
 
 
 \arxivwithtarget{2608.19960}{Evaluating Automated Testing on an Open-Source Web Application Using Cypress}{Quoc-Binh Nguyen, Truc-Ly Phan Nguyen, Ngoc Hong Tran, Dung Hai Dinh}\textbf{cs.SE}, cs.ET.
@@ -1075,7 +1077,7 @@ Repo0针对从自然语言需求直接生成完整软件项目这一zero-to-all 
 
 \arxivwithtarget{2608.20195}{From Agent Behaviour to Agent-Friendly Documentation: An Empirical Study of How Coding Agents Discover, Read, and Write Technical Documentation}{Zhijun Gao, Jing Chen}\textbf{cs.SE}, cs.AI, cs.HC.
 
-该论文针对自主coding agent与technical documentation的交互行为展开经验研究, 因为现有文档均面向人类开发者而缺乏对agent文档使用模式的理解. 基于SWE-chat和AIDev两个数据集, 作者通过行为追踪与统计建模分析了文档consultation、creation与code editing之间的时序关系, 发现agent文档交互呈现两叶循环而非线性过程, 且consultation与后续editing的关联在stage-adjusted模型下为OR 1.33 (95% CI [1.09, 1.62]), 但consultation反而与即时的testing行为负相关 (adjusted OR 0.39 [0.25, 0.60]). 研究进一步指出"actionability"和"verifiability"作为agent-friendly文档的常用假设缺乏一致的行为证据, 并公开了分析pipeline与事件级数据.
+本研究通过行为数据分析, 回答了一个关键问题: 自主coding agent实际如何使用技术文档, 以及这对文档设计有何启示, 而非依赖直觉假设. 方法上, 作者对SWE-chat的557个agent会话和AIDev的33,097个agentic pull requests进行了事件级分类与统计建模, 包括transition probability, lift和adjusted odds ratio等. 结果发现agent的文档交互高度偏向agent-facing artifacts (如instructions和working notes占60.5%), 而阅读文档与代码编辑之间的因果关联微弱 (adj. OR 1.33 [1.09, 1.62]), 且consultation反而伴随更少的即时测试 (adj. OR 0.39 [0.25, 0.60]). 最终作者提出agent-documentation interaction是双叶循环而非线性流程, 并指出”actionability”和”verifiability”两个公认的agent-friendly文档属性缺乏一致的行为证据.
 
 
 \section{others}
@@ -1089,7 +1091,7 @@ Repo0针对从自然语言需求直接生成完整软件项目这一zero-to-all 
 
 \arxivwithtarget{2608.19230}{When AI Writes, Who Gets Cited? Evidence of Citation Monoculture Across Language Models}{Sina Alemohammad, Denghui Zhang, Bolong Tang, Anthony Qin, Gengchen Mai, Ahmed Abbasi, Richard Baraniuk, Zhangyang Wang}\textbf{cs.DL}, cs.AI.
 
-这些作者将文献检索建模为 fixed-budget subset selection, 证明语言模型作为 agent 在检索真实论文时会产生 citation monoculture: 即使候选全部有效, 模型仍趋向于选择同一小圈子, 且跨厂商的偏好一致性几乎与同厂商相当. 通过 exchangeability bound 排除无偏好映射的 selectors, 并用 spectral decomposition 和 rarity theorem 揭示机制, 显示模型偏好主要由论文内容驱动. 对照实验中, 人类专家无此集中倾向, 表明这一共享偏好并非检索或可见度问题, 而是模型内在的 filter, 需直接修正偏好映射本身.
+该论文研究LLM作为文献检索agent执行工具调用时, 即使所有引用真实且候选论文可见性相同, 不同模型仍会收敛到同一窄子集, 形成citation monoculture. 作者将任务形式化为fixed-budget subset selection, 基于120篇论文、11个模型和随机化panel实验, 结合exchangeability bound、spectral decomposition与rarity theorem识别机制, 并利用controlled paraphrase与design resampling归因约90%的偏好变异. 结果显示模型引用集中度显著高于随机选择, 跨供应商一致性接近内部一致性, 而八位领域专家在相同条件下无此共同偏好, 表明必须直接改变模型的共享preference map
 
 
 \arxivwithtarget{2608.19231}{TorchDCM: A Unified PyTorch-Native Package for Discrete Choice Modeling}{Baichuan Mo, Zhengzhong Ricky You, Xiqun Michael Chen, Ruimin Li}\textbf{stat.ML}, cs.LG.
@@ -1238,7 +1240,7 @@ Repo0针对从自然语言需求直接生成完整软件项目这一zero-to-all 
 
 \arxivwithtarget{2608.19739}{Question-Guided Evidence Acquisition for Multimodal Visual Question Answering}{Alin-Ionut Popa}\textbf{cs.CV}, cs.AI, cs.LG.
 
-针对多模态文档VQA中模型直接视觉推理不可靠的问题, 本文提出Q-Guide, 一个基于LLM的轻量级agent, 它不依赖单次固定编码, 而是在推理时主动判断缺失证据并调用定向工具(如读文本、放大区域、定位坐标) 来逐步获取信息. 在DocVQA2026和Manga109上, Q-Guide显著优于直接提示和多智能体系统, 准确率分别达$65.0\%$ vs.\ $40.0\%$和$32.4\%$ vs.\ $24.4\%$, 且增益在多个Claude骨干中稳定. 结果表明, 性能随感知预算(2-3轮) 提升, 关键是将感知导向正确位置, 而复杂的planner、router或多agent协作并无额外收益.
+针对多模态文档VQA中模型在直接视觉推理下难以可靠读取小文本、表格和拓扑元素的问题, 本文提出Q-Guide agent, 将感知从单一固定编码改为推理时逐步获取证据, 通过读取问题判断缺失信息并调用定向工具(如文本读取、区域放大、位置 grounding) 来补充证据, 从而实现更慢但更精细的感知. 在DocVQA2026和Manga109上, Q-Guide显著优于直接提示和近期多智能体文档系统($65.0\%$ vs.\ $40.0\%$, $32.4\%$ vs.\ $24.4\%$) , 且在三个Claude骨干上均保持优势. 实验表明, 性能随感知预算增加而提升, 主要增益来自两到三轮的定向感知, 而加入planner、router或多智能体协作并无帮助, 说明关键在于将感知引导到正确位置而非复杂控制逻辑.
 
 
 \arxivwithtarget{2608.19759}{GOAG: Generative and Object-Agnostic Grasp Planner for Dexterous Robotic Manipulation}{Julien Merand, Boris Meden, Mathieu Grossard, Liming Chen}\textbf{cs.RO}, cs.AI.
@@ -1331,7 +1333,7 @@ Repo0针对从自然语言需求直接生成完整软件项目这一zero-to-all 
 
 \arxivwithtarget{2608.20099}{Reward-Guided Autoregressive Graph Generation for Efficient Multi-Agent Communication Topology Design}{Poomphob Suwannapichat, Boonyarit Changaival, Caesar Wu, Pascal Bouvry}\textbf{cs.MA}, cs.CL, cs.LG.
 
-本文针对LLM-based Multi-Agent Systems中token消耗过高的问题, 指出现有自动拓扑设计方法ARG-Designer的训练目标缺乏对稀疏高效拓扑的显式激励. 作者提出Reward-Guided Autoregressive Graph Generation (RGA-Designer), 受RLHF启发, 训练一个联合建模任务正确性与结构紧凑性的reward model, 并以此作为反馈微调预训练的autoregressive graph generator. 该方法在保持与ARG-Designer相同任务准确率的同时, 平均将token consumption降低20.5%, 从而在通信拓扑设计中实现效率与可靠性的更好平衡.
+针对LLM-based Multi-Agent Systems (MAS)中token消耗过高的问题, 现有自动拓扑设计方法ARG-Designer缺乏对稀疏高效拓扑的显式训练激励. 本文提出RGA-Designer, 借鉴RLHF思路训练一个联合建模任务正确性与结构紧凑性的reward model, 并以此作为反馈对预训练的graph generator进行fine-tune. 该方法在保持与ARG-Designer相当的任务准确率的同时, 将token消耗平均降低20.5%, 实现更高效的communication topology设计.
 
 
 \arxivwithtarget{2608.20104}{Structured Affinity for Unsupervised Visual Class-Incremental Memory in Deep Artificial Immune Networks}{Siphesihle Sithungu}\textbf{cs.CV}, cs.AI, cs.LG.
@@ -1344,6 +1346,7 @@ Repo0针对从自然语言需求直接生成完整软件项目这一zero-to-all 
 
 \arxivwithtarget{2608.20129}{Multi-Agent Orchestration with the Common-Sense Reasoning Capabilities of LLMs for Autonomous Driving}{Mehdi Azarafza, Faezeh Pasandideh, Ali Ehteshami Bejnordi, Stefan Henkler, Achim Rettberg}\textbf{cs.MA}, cs.CL, cs.CV.
 
+该论文针对自动驾驶在未知场景中依赖强化学习或规则方法时缺乏上下文推理能力的问题, 提出一种混合框架, 以LLM(Large Language Model) 的common-sense reasoning作为orchestrator, 协调PPO训练的RL(Reinforcement Learning) 与PID控制, 避免LLM直接控车带来的latency和hallucination风险. LLM推理还被迭代用于动态环境下RL reward function的细化, 从而在不牺牲结构化控制与安全机制的前提下提升决策适应性. 实验在高度随机化的CARLA场景中验证, 结果表明该multi-agent orchestration方法在多样环境与交通条件下展现出可行性与可靠性.
 
 
 \arxivwithtarget{2608.20134}{Feature Evolution and Migration during Vision Transformer Training}{Joonas Järve, Halil Ibrahim Aysel, Tarun Khajuria, Meelis Kull}\textbf{cs.CV}, cs.LG.
